@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정보처리기술사 (120~139회 기출 & 최신동향) 학습 마스터 플랫폼</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fa-solid fa-graduation-cap logo-icon"></i>
+        <span>PE Master <small>30년차 전문가 노하우</small></span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-outline" id="btn-open-qbank-modal">
+          <i class="fa-solid fa-book"></i> 기출문제 원문(992제)
+        </button>
+        <button class="btn btn-outline" id="btn-harness-info">
+          <i class="fa-solid fa-robot"></i> gisulsa 멀티에이전트
+        </button>
+        <button class="btn btn-primary" id="btn-open-exam-modal">
+          <i class="fa-solid fa-dice"></i> 무작위 모의고사 생성기
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="hero-badge">120회 ~ 139회 기출(991문항) + 최신동향(전자신문, ITFIND, 주간기술동향, 위키독스)</span>
+      <h1>정보처리기술사 <span>7대 도메인 & 모범답안</span> 마스터</h1>
+      <p>기술사 답안의 표준 전개(개요, 핵심기술, 구축절차, 고려사항)와 2줄 암기 스토리로 단기간 합격권 진입! 총 <b id="hero-kw-count">544</b>개 핵심키워드 수록.</p>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="search-input" placeholder="키워드, 기술용어, 두음 암기 스토리를 검색하세요 (예: SDN, RAG, 6G, ACID...)">
+        <button id="search-clear-btn" class="search-clear"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="main-container">
+
+    <!-- Sidebar: Hierarchy Domain Navigator -->
+    <aside class="domain-sidebar">
+      <div class="sidebar-header">
+        <h3><i class="fa-solid fa-sitemap"></i> 도메인 계층 선택</h3>
+        <button id="btn-reset-filter" class="btn-text">전체보기</button>
+      </div>
+      <div class="domain-accordion" id="domain-accordion-list">
+        <!-- JS로 동적 생성 -->
+      </div>
+    </aside>
+
+    <!-- Content Area: Keyword Cards & Detail View -->
+    <section class="content-area">
+      <div class="content-header">
+        <h2 id="current-category-title">전체 모범답안 및 키워드 목록</h2>
+        <div class="stats-counter" id="keyword-count-badge">총 0개 검색됨</div>
+      </div>
+
+      <!-- Quick Filter Pills -->
+      <div class="filter-pills">
+        <button class="pill active" data-filter="all">전체</button>
+        <button class="pill" data-filter="past">기출문제 (120~139회)</button>
+        <button class="pill" data-filter="predicted">최신 미출제 예상문제</button>
+        <button class="pill" data-filter="type1">1교시형 (10점)</button>
+        <button class="pill" data-filter="type2">2~4교시형 (25점)</button>
+      </div>
+
+      <!-- Keyword Card Grid -->
+      <div class="keyword-grid" id="keyword-card-grid">
+        <!-- JS로 카드가 dynamic rendering -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal 1: Answer Detail Viewer -->
+  <div class="modal" id="modal-answer-detail">
+    <div class="modal-overlay"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-tags">
+          <span class="badge badge-domain" id="modal-domain-tag">경영정보시스템</span>
+          <span class="badge badge-subdomain" id="modal-subdomain-tag">IT감리</span>
+          <span class="badge badge-history" id="modal-history-tag">125회 기출</span>
+        </div>
+        <button class="modal-close" id="modal-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modal-keyword-title">IT감리 3대 감리 영역 및 수행절차</h2>
+        <div class="question-box">
+          <span class="q-label">Q. 출제 예상 문제:</span>
+          <p id="modal-question-text"></p>
+        </div>
+
+        <!-- 2줄 암기 스토리 -->
+        <div class="mnemonic-box">
+          <div class="mnemonic-header">
+            <i class="fa-solid fa-lightbulb"></i> 2줄 암기 스토리 & 두음 팁
+          </div>
+          <p id="modal-mnemonic-text"></p>
+        </div>
+
+        <!-- 답안 본문 (구조형 4단락 또는 원본 노트 마크다운) -->
+        <div class="answer-template">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-copy-answer"><i class="fa-solid fa-copy"></i> 답안 복사</button>
+        <button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> 인쇄 / PDF 저장</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Random Mock Exam Generator -->
+  <div class="modal" id="modal-mock-exam">
+    <div class="modal-overlay"></div>
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-dice"></i> 무작위 기술사 예상 모의고사 생성기</h2>
+        <button class="modal-close" id="modal-exam-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="exam-controls">
+          <div class="control-group">
+            <label>교시 선택:</label>
+            <select id="exam-type-select">
+              <option value="1교시형">1교시형 (10점 단답형 10문제 추출)</option>
+              <option value="2~4교시형">2~4교시형 (25점 서술형 4문제 추출)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="btn-generate-exam">
+            <i class="fa-solid fa-rotate"></i> 무작위 출제 실행
+          </button>
+        </div>
+
+        <div class="exam-paper" id="exam-paper-container">
+          <!-- 모의고사 문제지 렌더링 영역 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Multi-Agent Harness Info -->
+  <div class="modal" id="modal-harness">
+    <div class="modal-overlay"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-robot"></i> gisulsa 멀티에이전트 하네스 패키지</h2>
+        <button class="modal-close" id="modal-harness-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p>본 시스템에는 30년차 정보처리기술사의 답안 가이드를 자동화하기 위한 <code>gisulsa/</code> 디렉토리 하네스 패키지가 내장되어 있습니다.</p>
+        <div class="agent-list">
+          <div class="agent-item">
+            <strong><i class="fa-solid fa-pen-nib"></i> pe_solution_architect</strong>
+            <p>표준 4단락 모범답안과 2줄 암기 스토리 생성 전문 에이전트</p>
+          </div>
+          <div class="agent-item">
+            <strong><i class="fa-solid fa-file-signature"></i> pe_question_creator</strong>
+            <p>120~139회 기출패턴 및 최신 IT동향 기반 1/2~4교시 예상문제 출제위원 에이전트</p>
+          </div>
+          <div class="agent-item">
+            <strong><i class="fa-solid fa-newspaper"></i> pe_trend_analyst</strong>
+            <p>전자신문, IT FIND, 주간기술동향, 위키독스 모니터링 최신 미출제 키워드 탐색 에이전트</p>
+          </div>
+          <div class="agent-item">
+            <strong><i class="fa-solid fa-clipboard-check"></i> pe_reviewer</strong>
+            <p>30년차 기술사 관점 답안 검수 및 감점요인 피드백 에이전트</p>
+          </div>
+        </div>
+        <p class="harness-path"><i class="fa-solid fa-folder-open"></i> 저장 경로: <code>./gisulsa/agents/</code>, <code>./gisulsa/skills/</code>, <code>./gisulsa/scripts/</code></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: 실제 기출문제 원문 브라우저 -->
+  <div class="modal" id="modal-qbank">
+    <div class="modal-overlay"></div>
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-book"></i> 120~139회 기출문제 원문 (991문항)</h2>
+        <button class="modal-close" id="modal-qbank-close-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="exam-controls">
+          <div class="control-group">
+            <label>회차 선택:</label>
+            <select id="qbank-round-select"></select>
+          </div>
+          <div class="search-box qbank-search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="qbank-search-input" placeholder="기출문제 원문 검색...">
+          </div>
+        </div>
+        <div class="qbank-list" id="qbank-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 정보처리기술사 30년차 전문가 가이드 | GitHub Pages / Netlify 무료 웹 배포 최적화</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

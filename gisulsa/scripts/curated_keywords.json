@@ -1,0 +1,325 @@
+[
+ {
+  "id": "kw-001",
+  "mainDomain": "1. 경영정보시스템",
+  "subDomain": "1.1 IT감리",
+  "keyword": "IT감리 3대 감리 영역 및 수행절차",
+  "examHistory": "123회 1교시, 131회 2교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [예-현-종] 예비조사로 계획을 세우고, 현장감리로 증거를 수집하며, 종료회의로 감리보고서를 확정한다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. IT감리의 개요 및 배경\n- 정의: 정보시스템의 효율성, 안전성, 효과성을 확보하기 위하여 제3자적 관점에서 점검하고 개선을 권고하는 활동\n- 필요성: 대규모 IT 사업의 부실 방지, 예산 낭비 예방, 요구사항 반영 검증 및 품질 확보",
+   "section2": "Ⅱ. IT감리 3대 감리영역 및 핵심 점검 항목\n1. 사업관리: 추진체계, 일정/위험 관리, 품질보증 활동 점검\n2. 요구사항 분석/설계: 기능/비기능 요구사항 도출의 적정성, 데이터 모델링 검증\n3. 구현 및 시험: 소스코드 표준 준수, 보안 약점 점검, 단위/통합/시스템 테스트 결과 점검",
+   "section3": "Ⅲ. IT감리 단계별 수행 절차\n- 예비조사 단계: 감리계획서 작성, 감리단 구성 및 사전 자료 검토\n- 현장감리 단계: 착수회의, 실무 점검(면담/검증), 감리 시정조치사항 도출 및 종료회의\n- 보고서 작성 및 조치확인: 감리보고서 제출 및 시정조치 결과 확인",
+   "section4": "Ⅳ. 감리 시 고려사항 및 향후 발전방향\n- 고려사항: 감리인 독립성 확보, 상주 감리 활성화, 감리 프레임워크 표준화 준수\n- 발전방향: Agile/DevOps 환경에 적합한 연속적 감리(Continuous Audit) 및 AI 기반 자동 감리 도구 도입"
+  },
+  "questionText": "IT감리의 정의, 3대 감리영역(사업관리, 요구사항 분석/설계, 구현/시험) 및 단계별 수행절차를 설명하시오."
+ },
+ {
+  "id": "kw-002",
+  "mainDomain": "1. 경영정보시스템",
+  "subDomain": "1.2 IT성과관리",
+  "keyword": "IT BSC (Balanced Scorecard)",
+  "examHistory": "121회 2교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [기업-사용-운영-미래] 기업가치 창출, 사용자 관점 만족, 운영 우수성 확보, 미래 지향적 준비!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. IT BSC(IT Balanced Scorecard)의 개요\n- 기업의 비즈니스 전략과 IT 목표를 연계하여 IT의 가치를 다각도로 측정하고 평가하는 성과관리 프레임워크\n- 기존 재무적 관점 위주의 평가 한계를 극복하고 비재무적 가치를 균형 있게 측정",
+   "section2": "Ⅱ. IT BSC의 4대 관점 및 핵심 지표(KPI)\n1. 기업가치 관점 (Corporate Contribution): IT 투자의 ROI, NPV, 비즈니스 연계성\n2. 사용자 관점 (User Orientation): 사용자 만족도, 서비스 SLA 준수율, 장애 조치 시간\n3. 운영우수성 관점 (Operational Excellence): IT 프로세스 효율성, 보안 수준, 시스템 가동률\n4. 미래지향 관점 (Future Orientation): IT 인력 역량 개발, 신기술 도입률, R&D 투자 비중",
+   "section3": "Ⅲ. IT BSC 수립 및 이행 절차\n- 비즈니스 전략 분석 -> IT 전략 목표 도출 -> 관점별 CSF/KPI 정립 -> 측정 및 피드백 체계 수립",
+   "section4": "Ⅳ. IT BSC 성공적 운용을 위한 제언\n- 최고경영진(CXO)의 강력한 의지 반영, 실시간 KPI DashBoard 구축, 지속적인 전략 재조정(Alignment)"
+  },
+  "questionText": "IT 투자에 대한 성과 평가를 위한 IT BSC의 4가지 관점과 지표 수립 방안을 논하시오."
+ },
+ {
+  "id": "kw-003",
+  "mainDomain": "1. 경영정보시스템",
+  "subDomain": "1.3 IT프로젝트관리",
+  "keyword": "EVM (Earned Value Management)",
+  "examHistory": "128회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [PV-EV-AC / SV-CV] 계획가치, 획득가치, 실제비용으로 일정편차와 비용편차를 정량 분석한다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. EVM(Earned Value Management)의 개념\n- 프로젝트의 일정, 비용, 범위를 통합하여 진행 상황을 정량적으로 측정하고 성과를 분석하는 기법",
+   "section2": "Ⅱ. EVM 3대 기본 요소\n- PV (Planned Value): 계획 수립 시 예정된 작업의 예산 가치\n- EV (Earned Value): 실제 완료된 작업에 대해 인정된 획득 가치\n- AC (Actual Cost): 완료된 작업을 수행하기 위해 실제로 지출된 비용",
+   "section3": "Ⅲ. EVM 주요 성과 평가 지표 및 공식\n- SV (Schedule Variance) = EV - PV (0보다 크면 일정 진행 양호)\n- CV (Cost Variance) = EV - AC (0보다 크면 예산 절감)\n- SPI (Schedule Performance Index) = EV / PV (1 이상이면 진행 원활)\n- CPI (Cost Performance Index) = EV / AC (1 이상이면 비용 효율적)",
+   "section4": "Ⅳ. EVM 활용 시 유의사항\n- 정확한 WBS 작성 전제, 객관적인 획득가치(EV) 측정 기준(0/100 법칙, 50/50 법칙 등) 설정 필요"
+  },
+  "questionText": "프로젝트 성과지수 산정을 위한 EVM(획득가치관리)의 기본 요소(PV, EV, AC)와 주요 지표(SV, CV, SPI, CPI)를 설명하시오."
+ },
+ {
+  "id": "kw-004",
+  "mainDomain": "1. 경영정보시스템",
+  "subDomain": "1.6 클라우드정책거버넌스",
+  "keyword": "FinOps (Cloud Financial Operations)",
+  "examHistory": "미출제 예상",
+  "isPredicted": true,
+  "source": "주간기술동향 / IT FIND 최신이슈",
+  "mnemonic": "🔑 [가-최-운] 클라우드 비용의 가시성을 확보하고, 가치를 최적화하며, 지속적인 비용 운용 문화를 구축한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. FinOps(Cloud Financial Operations)의 필요성 및 개요\n- 클라우드 자원 사용 확대로 인한 비용 예측 불확실성 및 불필요한 자원 낭비(Cloud Waste) 증가\n- 재무, 엔지니어링, 비즈니스 팀이 협력하여 데이터 기반의 비용 의사결정을 내리는 문화 및 관리 기법",
+   "section2": "Ⅱ. FinOps 3단계 프레임워크 (Lifecycle)\n1. Inform (정보 제공): 비용 가시성 확보, 태그(Tagging) 체계 구축, 실시간 비용 모니터링\n2. Optimize (최적화): RI/SP(예약 인스턴스/절감 플랜) 적용, Right-sizing, 사용하지 않는 자원 자동 삭제\n3. Operate (운영 지속): KPI 기반 성과 측정, 자동화 정책 적용, 엔지니어링 문화 내재화",
+   "section3": "Ⅲ. FinOps 구현을 위한 핵심 구성요소\n- Cost Allocation & Tagging: 부서/프로젝트별 비용 배분\n- Anomaly Detection: 비용 이상 징후 실시간 알림 시스템\n- Automated Governance: 기준 미달 자원 자동 종료 스크립트 실행",
+   "section4": "Ⅳ. 성공적 FinOps 적용을 위한 기술사적 제언\n- 단순한 비용 절감이 아닌 '클라우드 가치 극대화' 관점 접근, AI 기반 비용 예측 및 자동 최적화 도구 도입"
+  },
+  "questionText": "멀티/하이브리드 클라우드 환경에서 클라우드 비용 낭비를 방지하기 위한 FinOps의 정의, 3단계 프레임워크 및 도입 방안을 논하시오."
+ },
+ {
+  "id": "kw-005",
+  "mainDomain": "2. 네트워크",
+  "subDomain": "2.1 SDN",
+  "keyword": "SDN (Software Defined Networking) & OpenFlow",
+  "examHistory": "122회 2교시, 130회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [분-중-오-스] 제어부와 전달부를 분리하여 중앙 컨트롤러가 OpenFlow 프로토콜로 스위치를 통제한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. SDN(Software Defined Networking)의 개요\n- 네트워크의 제어부(Control Plane)와 전달부(Data Plane)를 분리하여 중앙의 소프트웨어 컨트롤러가 동적으로 네트워크 자원을 제어하는 기술",
+   "section2": "Ⅱ. SDN 3계층 아키텍처 및 구성요소\n1. Application Layer: 밸런싱, 보안, QoS 등 네트워크 앱 (Northbound API 사용)\n2. Control Layer: SDN Controller (NOS), 중앙 집중적 경로 계산\n3. Infrastructure Layer: OpenFlow 스위치, 패킷 전달 전용 하드웨어 (Southbound API 사용)",
+   "section3": "Ⅲ. OpenFlow 프로토콜 동작 메커니즘\n- Flow Table 구조: Match Fields, Counters, Actions\n- Packet-In / Packet-Out: 첫 패킷 수신 시 컨트롤러에 경로 요청 후 플로우 테이블 업데이트",
+   "section4": "Ⅳ. SDN 도입의 효과 및 발전방향\n- 네트워크 프로그래밍 가능성 확보, NFV(Network Functions Virtualization) 및 SD-WAN과의 융합 발전"
+  },
+  "questionText": "SDN의 3계층 아키텍처, Control Plane과 Data Plane의 분리 메커니즘 및 OpenFlow 동작 방식을 설명하시오."
+ },
+ {
+  "id": "kw-006",
+  "mainDomain": "2. 네트워크",
+  "subDomain": "2.4 이동통신기술",
+  "keyword": "6G NTN (Non-Terrestrial Network, 비지상 네트워크)",
+  "examHistory": "미출제 예상",
+  "isPredicted": true,
+  "source": "전자신문 / 주간기술동향",
+  "mnemonic": "🔑 [위-음-글] 저궤도 위성과 무인기를 활용하여 지상 음영지역 없는 글로벌 초연결망을 구축한다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. 6G NTN(Non-Terrestrial Network)의 정의\n- 저궤도 위성(LEO), 중궤도 위성(MEO), 고고도 무인기 플랫폼(HAPS) 등을 이동통신 네트워크와 결합하여 입체적 커버리지를 제공하는 기술",
+   "section2": "Ⅱ. NTN의 주요 구성요소\n- LEO Satellites (저궤도 위성): 500~2,000km 고도, 저지연 통신 제공\n- Gateway & Feeder Link: 지상국과 위성 간의 고속 데이터 링크\n- Service Link: 위성과 지상 단말(UE) 간 직접 통신 (Direct-to-Cell)",
+   "section3": "Ⅲ. 기술적 해결과제 및 지상망 연동 기술\n- 도플러 효과 보정: 고속 이동 위성으로 인한 주파수 변이 보정\n- 핸드오버 관리: 빠른 위성 이동에 따른 위성 간/위성-지상 간 무순단 핸드오버\n- 3GPP Rel-17/18 표준 준수: NR-NTN 규격 반영",
+   "section4": "Ⅳ. 6G NTN의 기대효과 및 응용분야\n- 재난재해 시 통신 망실 방지, 오지/해상/항공 커버리지 확보, 도심항공교통(UAM) 관제 통신망 활용"
+  },
+  "questionText": "6G 핵심 네트워크 기술인 NTN(Non-Terrestrial Network)의 정의, 주요 구성요소 및 지상망과의 연동 방안을 설명하시오."
+ },
+ {
+  "id": "kw-007",
+  "mainDomain": "3. 데이터베이스",
+  "subDomain": "3.3 트랜잭션",
+  "keyword": "트랜잭션 ACID 특성 및 격리수준 (Isolation Level)",
+  "examHistory": "124회 1교시, 133회 2교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [원-일-고-영 / 미-커-리-직] ACID로 안전성을 확보하고, Read Uncommitted부터 Serializable까지 격리한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. 트랜잭션 ACID 특성의 개요\n- 데이터베이스에서 하나의 논리적 작업 단위를 이루는 트랜잭션이 안전하게 수행되기 위해 보장해야 하는 4가지 성질\n- Atomicity(원자성), Consistency(일관성), Isolation(고립성), Durability(영속성)",
+   "section2": "Ⅱ. 트랜잭션 격리수준 4단계 (ANSI/ISO SQL 표준)\n1. Read Uncommitted: 커밋되지 않은 데이터 읽기 허용 (Dirty Read 발생)\n2. Read Committed: 커밋된 데이터만 읽기 허용 (Non-Repeatable Read 발생)\n3. Repeatable Read: 선행 트랜잭션 종료 시까지 동일 읽기 보장 (Phantom Read 발생)\n4. Serializable: 완전한 직렬화 보장 (성능 저하 우려)",
+   "section3": "Ⅲ. 격리수준별 이상 현상 매핑 표\n- Dirty Read: Read Uncommitted에서 발생\n- Non-Repeatable Read: Read Uncommitted, Read Committed에서 발생\n- Phantom Read: Read Uncommitted, Read Committed, Repeatable Read에서 발생",
+   "section4": "Ⅳ. 동시성 제어(Concurrency Control) 관점의 고려사항\n- Lock 기반 제어(2PL)와 MVCC(Multi-Version Concurrency Control)를 적절히 혼용하여 동시성과 일관성 타협"
+  },
+  "questionText": "데이터베이스 트랜잭션의 ACID 특성과 트랜잭션 격리수준 4단계 및 이상 현상(Dirty Read, Non-Repeatable Read, Phantom Read)을 설명하시오."
+ },
+ {
+  "id": "kw-008",
+  "mainDomain": "3. 데이터베이스",
+  "subDomain": "3.6 NO-SQL",
+  "keyword": "CAP 이론과 PACELC 정리",
+  "examHistory": "126회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [C-A-P / P-A-C-E-L-C] 분산 DB는 일관성/가용성/분할내성을 선택하고, 장애 발생 여부에 따라 Latency와 Consistency를 타협한다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. CAP 이론의 개요\n- 분산 데이터베이스 환경에서 Consistency(일관성), Availability(가용성), Partition Tolerance(분할내성)의 3가지 속성 중 2가지만 동시에 만족할 수 있다는 정리",
+   "section2": "Ⅱ. CAP 3가지 속성 및 분산 DB 분류\n- CP 시스템: HBase, MongoDB (분할 발생 시 일관성 유지, 가용성 포기)\n- AP 시스템: Cassandra, DynamoDB (분할 발생 시 가용성 유지, 최종 일관성 적용)\n- CA 시스템: RDBMS (네트워크 분할이 없음을 전제)",
+   "section3": "Ⅲ. PACELC 정리로의 확장\n- IF Partition(P): Availability(A) vs Consistency(C) 선택\n- ELSE(E): Latency(L) vs Consistency(C) 선택\n- 정상 상태일 때의 응답 지연(Latency)과 데이터 일관성 간의 트레이드오프 추가 명시",
+   "section4": "Ⅳ. 실무 적용 시 고려사항\n- 완벽한 ACID보다는 Eventual Consistency(최종 일관성)를 지향하는 NoSQL 설계 시 PACELC 지표 적극 활용"
+  },
+  "questionText": "분산 데이터베이스 선택의 기준이 되는 CAP 이론과 이를 확장한 PACELC 정리를 비교 설명하시오."
+ },
+ {
+  "id": "kw-009",
+  "mainDomain": "4. 소프트웨어공학",
+  "subDomain": "4.2 SW아키텍쳐",
+  "keyword": "마이크로서비스 아키텍처 (MSA) & Saga 패턴",
+  "examHistory": "125회 2교시, 134회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [코-오-보-트] Choreography와 Orchestration 방식으로 분산 트랜잭션을 보상 트랜잭션으로 처리한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. MSA와 분산 트랜잭션 이슈\n- 서비스별 독자적 DB(Database per Service)를 갖는 MSA에서는 2PC(2-Phase Commit)의 성능 한계로 인해 분산 트랜잭션 관리가 어려움\n- 롤백 대신 최종 일관성을 보장하는 Saga 패턴 도입 필수",
+   "section2": "Ⅱ. Saga 패턴의 개념 및 보상 트랜잭션\n- Saga 패턴: 연속된 로컬 트랜잭션의 집합으로 하나의 비즈니스 트랜잭션을 완성하는 패턴\n- 보상 트랜잭션(Compensating Transaction): 중간 단계 실패 시 이미 완료된 로컬 트랜잭션을 취소/소거하는 역작업 수행",
+   "section3": "Ⅲ. Saga 패턴 구현 방식 비교\n1. Choreography 기반 Saga: 이벤트 발행/구독(Pub/Sub) 방식으로 각 서비스가 자율적으로 다음 단계 수행 (중앙 통제자 없음, 결합도 낮음)\n2. Orchestration 기반 Saga: 중앙 Orchestrator가 전반적인 트랜잭션 흐름 및 실행 제어 (흐름 파악 용이, 중앙 집권형)",
+   "section4": "Ⅳ. 기술사적 고려사항\n- 멱등성(Idempotency) 보장, 이벤트 중복 수신 대책 수립, Outbox 패턴을 통한 데이터베이스와 메시지 큐 일관성 확보"
+  },
+  "questionText": "MSA 환경에서 분산 트랜잭션의 데이터 일관성을 유지하기 위한 Saga 패턴의 개요, 두 가지 구현 방식(Choreography, Orchestration) 및 보상 트랜잭션을 설명하시오."
+ },
+ {
+  "id": "kw-010",
+  "mainDomain": "4. 소프트웨어공학",
+  "subDomain": "4.8 AI개발",
+  "keyword": "DevSecOps & MLOps / LLMOps",
+  "examHistory": "미출제 예상",
+  "isPredicted": true,
+  "source": "위키독스 / 주간기술동향",
+  "mnemonic": "🔑 [데-모-파-가] 데이터 파이프라인, 모델 학습, 배포 자동화, 지속적 모니터링으로 AI 시스템의 딜리버리를 가속화한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. LLMOps(Large Language Model Operations)의 등장 배경\n- 초거대 언어 모델(LLM)의 미세조정(Fine-Tuning), RAG 구축, 프롬프트 관리 등 새로운 Lifecycle 관리 요구 증대\n- 기존 전통적 MLOps의 한계를 극복하고 LLM에 특화된 지속적 통합/배포(CI/CD/CT) 체계 구축 필요",
+   "section2": "Ⅱ. MLOps vs LLMOps 주요 비교\n- 대상 모델: MLOps(전통적 ML/DL 모델) vs LLMOps(Foundation LLM, sLLM)\n- 중심 과제: MLOps(특성 공학, 모델 재학습) vs LLMOps(프롬프트 관리, RAG 임베딩, 양자화, 환각 제어)\n- 리소스 소모: MLOps(상대적 적음) vs LLMOps(고성능 GPU 인프라, 백만 단위 토큰 관리)",
+   "section3": "Ⅲ. LLMOps 핵심 파이프라인 구성요소\n1. Data & Vector Pipeline: 데이터 수집, 청킹, 임베딩, Vector DB 저장\n2. Prompt & RAG Management: 프롬프트 버전 관리, Evaluator, Context 증강\n3. Model Fine-Tuning & Quantization: PEFT(LoRA/QLoRA), 양자화 적용\n4. Monitoring & Guardrails: 환각(Hallucination) 모니터링, 프롬프트 인젝션 방어 가드레일",
+   "section4": "Ⅳ. 성공적 LLMOps 도입을 위한 제언\n- OWASP Top 10 for LLM 보안 준수, 비용 대 성능 최적화(sLLM 활용), 지속적 인간 피드백(RLHF) 반영 체계 구성"
+  },
+  "questionText": "LLM 기반 소프트웨어 개발을 위한 LLMOps의 정의, 기존 MLOps와의 비교, 파이프라인 구성요소 및 보안 고려사항을 논하시오."
+ },
+ {
+  "id": "kw-011",
+  "mainDomain": "5. 정보보안",
+  "subDomain": "5.3 보안과제",
+  "keyword": "Zero Trust Architecture (제로 트러스트 아키텍처)",
+  "examHistory": "127회 2교시, 133회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [절-검-최-소] 절대로 신뢰하지 말고 항상 검증하며 최소 권한 원칙을 적용한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. Zero Trust Architecture의 개요 및 배경\n- 'Never Trust, Always Verify'를 기치로 내외부 경계 구분 없이 모든 접근 요청에 대해 지속적인 인증과 인가를 수행하는 보안 패러다임\n- 클라우드 전환, 재택근무 확대 등으로 경계 보안(Perimeter Security)이 무력화됨에 따라 필수 도입",
+   "section2": "Ⅱ. Zero Trust 3대 핵심 원칙 (NIST 기준)\n1. Explicit Verification (명시적 검증): 사용 가능한 모든 데이터 포인트(아이디, 위치, 기기 상태 등) 기반 검증\n2. Least Privilege Access (최소 권한 접근): Just-In-Time(JIT) 및 Just-Enough-Access(JEA) 적용\n3. Assume Breach (침해 가정): 세션 분할, 엔드투엔드 암호화, 실시간 위협 탐지",
+   "section3": "Ⅲ. NIST SP 800-207 제로 트러스트 핵심 구성요소\n- Control Plane: Policy Engine (PE, 정책 결정 엔진), Policy Administrator (PA, 정책 관리자)\n- Data Plane: Policy Enforcement Point (PEP, 정책 집행점 - 게이트웨이/대리)",
+   "section4": "Ⅳ. 성공적 제로 트러스트 도입 전략\n- IAM(계정권한관리), ZTNA(Zero Trust Network Access), Micro-segmentation 융합 적용 및 단계적 마이그레이션"
+  },
+  "questionText": "경계 기반 보안의 한계를 극복하기 위한 제로 트러스트(Zero Trust)의 기본 원칙, NIST SP 800-207 아키텍처 및 구현 요소를 설명하시오."
+ },
+ {
+  "id": "kw-012",
+  "mainDomain": "5. 정보보안",
+  "subDomain": "5.4 암호화",
+  "keyword": "양자후암호 (PQC, Post-Quantum Cryptography)",
+  "examHistory": "129회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [격-부-다-해] 격자기반, 부호기반, 다변수기반, 해시기반 암호로 양자컴퓨터의 해독 위협을 방어한다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. PQC(Post-Quantum Cryptography)의 개요\n- 양자 컴퓨터의 쇼어 알고리즘(Shor's Algorithm)에 의해 기존 RSA, ECC 등 공개키 암호체계가 무력화될 것에 대비하여 개발된 수학적 난제 기반 차세대 암호",
+   "section2": "Ⅱ. PQC 주요 암호학적 알고리즘 유형\n1. 격자 기반 (Lattice-based): LWE 난제 활용 (CRYSTALS-Kyber, CRYSTALS-Dilithium) - 성능 및 안전성 우수\n2. 부호 기반 (Code-based): 오류정정 코드 난제 활용 (McEliece)\n3. 다변수 기반 (Multivariate-based): 다항식 방정식 해 도출 난제\n4. 해시 기반 (Hash-based): 일방향 해시 함수 활용 (SPHINCS+)",
+   "section3": "Ⅲ. NIST PQC 표준화 동향\n- 2024년 NIST의 최종 표준안 확정 (Kyber: 전자서명/키교환, Dilithium/Falcon: 전자서명)\n- Crypto-Agility(암호 민첩성): 기존 암호 알고리즘을 PQC로 신속 교체할 수 있는 구조 확보",
+   "section4": "Ⅳ. 대응 방안 및 기술사적 제언\n- 하이브리드 암호화(기존 공개키 + PQC 동시 적용) 체계 도입 및 국가 암호체계 PQC 전환 로드맵 수립"
+  },
+  "questionText": "양자 컴퓨터 출현에 대비한 양자후암호(PQC)의 개념, 필요성 및 NIST 표준화 알고리즘 종류를 설명하시오."
+ },
+ {
+  "id": "kw-013",
+  "mainDomain": "6. 컴퓨터시스템",
+  "subDomain": "6.4 동기화",
+  "keyword": "세마포어 (Semaphore) vs 뮤텍스 (Mutex)",
+  "examHistory": "120회 1교시, 131회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [뮤-소-세-카] 뮤텍스는 소유권 기반 바이너리 락이고, 세마포어는 카운터 기반 공유 자원 열쇠다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. 동기화와 임계 영역의 개요\n- 멀티프로세스/스레드 환경에서 공유 자원에 동시 접근 시 발생하는 경쟁 상태(Race Condition)를 방지하기 위한 기술",
+   "section2": "Ⅱ. 뮤텍스(Mutex)와 세마포어(Semaphore) 개념\n- Mutex: 하나의 스레드만 자원에 접근 가능하도록 하는 상호 배제(Lock) 기법 (소유권 존재, Lock/Unlock 주체 동일)\n- Semaphore: 정수형 변수 S를 이용하여 N개의 자원에 접근 허용 제어 (P/V 연산, 소유권 없음)",
+   "section3": "Ⅲ. 뮤텍스 vs 세마포어 주요 비교 표\n- 자원 개수: Mutex(1개, Binary) vs Semaphore(1개 이상, Counting)\n- 해제 주체: Mutex(Lock을 건 스레드만 해제 가능) vs Semaphore(다른 스레드도 Signal/V 연산 가능)\n- 우선순위 역전: Mutex(우선순위 상승 메커니즘 적용 가능) vs Semaphore(상승 어려움)",
+   "section4": "Ⅳ. 데드락(Deadlock) 방지 고려사항\n- 락 획득 순서 체계화, Spinlock과 Sleep Lock의 성능 비교 후 적절한 선택"
+  },
+  "questionText": "임계 영역(Critical Section)의 동기화를 위한 뮤텍스(Mutex)와 세마포어(Semaphore)의 메커니즘을 비교 설명하시오."
+ },
+ {
+  "id": "kw-014",
+  "mainDomain": "6. 컴퓨터시스템",
+  "subDomain": "6.5 차세대컴퓨팅",
+  "keyword": "Chiplet & UCIe (Universal Chiplet Interconnect Express)",
+  "examHistory": "미출제 예상",
+  "isPredicted": true,
+  "source": "전자신문 / 주간기술동향",
+  "mnemonic": "🔑 [분-조-수-표] 반도체를 기능별 분할 제조 후 수직/수평 결합하고 UCIe 개방형 표준으로 연결한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. 칩렛(Chiplet) 등장 배경\n- 미세 공정의 물리적 한계 및 모놀리식(Monolithic) 다이(Die)의 면적 증가에 따른 수율 저하 및 비용 급증\n- 반도체를 블록 단위(CPU, GPU, Memory Controller 등)로 분할 제조 후 하나로 패키징하는 칩렛 방식이 대세로 부상",
+   "section2": "Ⅱ. 칩렛의 주요 핵심 기술\n1. Advanced Packaging: 2.5D(Interposer), 3D TSV(Through Silicon Via) 적용\n2. High Density Interconnect: 고밀도 다이 간 인터커넥트 기술\n3. Heterogeneous Integration: 서로 다른 공정(예: 3nm GPU + 7nm I/O) 다이의 이종 집적",
+   "section3": "Ⅲ. UCIe(Universal Chiplet Interconnect Express) 오픈 표준\n- 칩렛 간 상호 연동성을 보장하기 위한 개방형 패키지 레벨 인터커넥트 표준\n- Die-to-Die 프로토콜 표준화 (PCIe, CXL, Streaming 프로토콜 지원)",
+   "section4": "Ⅳ. 반도체 산업에 미치는 파급효과 및 전망\n- 개발 기간 및 비용 대폭 절감, AI 가속기 및 초고성능 컴퓨팅(HPC) 시스템의 핵심 아키텍처로 정착"
+  },
+  "questionText": "반도체 수율 한계 극복을 위한 칩렛(Chiplet) 기술의 개념, 3D 패키징 및 UCIe 표준의 역할을 설명하시오."
+ },
+ {
+  "id": "kw-015",
+  "mainDomain": "7. 인공지능데이터",
+  "subDomain": "7.1 AI거버넌스",
+  "keyword": "ISO/IEC 42001 (인공지능 경영시스템)",
+  "examHistory": "미출제 예상",
+  "isPredicted": true,
+  "source": "주간기술동향 / IT FIND",
+  "mnemonic": "🔑 [조-리-운-개] 조직의 AI 리스크를 평가하고, 안전하게 운영하며 지속적 개선 체계를 구축하는 국제 표준!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. ISO/IEC 42001의 등장 배경\n- 생성형 AI 급증에 따른 편향성, 환각, 개인정보 침해, 무단 저작권 활용 등 AI 리스크 확대\n- 조직이 AI 제품 및 서비스를 체계적이고 윤리적으로 관리하도록 지원하는 최초의 국제 AI 경영시스템 표준",
+   "section2": "Ⅱ. ISO/IEC 42001 핵심 요구사항 및 구조 (High-Level Structure)\n- Context of Organization: 조직 상황 및 이해관계자 요구 도출\n- AI Risk Assessment & Impact Assessment: AI 위험 평가 및 영향 평가 통제\n- Operational Control: AI 데이터 관리, 모델 평가, 투명성 확보\n- Continuous Improvement: PDCA(Plan-Do-Check-Act) 기반 지속적 개선",
+   "section3": "Ⅲ. 타 AI 가이드라인과의 비교 (NIST AI RMF, EU AI Act)\n- NIST AI RMF: 자율적 위험관리 프레임워크\n- EU AI Act: 규제 중심의 구속력 있는 법안\n- ISO/IEC 42001: 인증 체계 중심의 기업 경영시스템 표준",
+   "section4": "Ⅳ. 기업의 대응 방안\n- AI 거버넌스 위원회 설치, AI 자산 관리대장 작성 및 ISO/IEC 42001 검인증 추진"
+  },
+  "questionText": "AI 윤리 및 신뢰성 확보를 위한 국제 표준인 ISO/IEC 42001(Artificial Intelligence Management System)의 정의, 구조 및 핵심 요구사항을 설명하시오."
+ },
+ {
+  "id": "kw-016",
+  "mainDomain": "7. 인공지능데이터",
+  "subDomain": "7.4 생성형AI",
+  "keyword": "RAG (Retrieval-Augmented Generation) & Vector DB",
+  "examHistory": "133회 2교시, 137회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [청-임-베-검-증] 문서 청킹, 벡터 임베딩, Vector DB 저장, 고성능 검색 후 생성형 AI가 증강 답안을 작성한다!",
+  "questionType": "2~4교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. RAG(Retrieval-Augmented Generation)의 개요\n- 외부 데이터베이스나 기업 내부 지식베이스에서 관련 정보를 검색(Retrieval)하여 LLM 프롬프트에 증강(Augmentation) 함으로써 정확한 답변을 생성(Generation)하는 기술",
+   "section2": "Ⅱ. RAG 3단계 동작 메커니즘\n1. Data Ingestion: 데이터 수집 -> Chunking -> Vector Embedding (임베딩 모델 활용)\n2. Retrieval: 사용자 질문을 벡터 변환 후 Vector DB에서 Cosine Similarity 기반 유사 문서 K개 검색\n3. Generation: 검색된 문맥(Context)과 질문을 결합한 프롬프트를 LLM에 전달하여 최종 답변 생성",
+   "section3": "Ⅲ. Vector DB 및 Advanced RAG 기술\n- Vector DB: HNSW, IVF 인덱스를 통한 고차원 벡터 초고속 검색\n- Advanced RAG: Hybrid Search(BM25 키워드 + Vector 검색), Re-ranking, Parent-Child Chunking, Query Rewriting",
+   "section4": "Ⅳ. RAG 구현 시 기술사적 제언\n- 최신 지식 반영 간소화, 보안 접근 통제(ACL) 융합, 멀티모달 RAG로의 진화 모니터링"
+  },
+  "questionText": "생성형 AI의 환각(Hallucination) 현상을 극복하기 위한 RAG(검색 증강 생성)의 개념, 동작 메커니즘, Vector DB의 역할 및 Advanced RAG 기법을 설명하시오."
+ },
+ {
+  "id": "kw-017",
+  "mainDomain": "7. 인공지능데이터",
+  "subDomain": "7.5 신경망아키텍처",
+  "keyword": "MoE (Mixture of Experts) 라우팅 아키텍처",
+  "examHistory": "136회 1교시 기출",
+  "isPredicted": false,
+  "source": "기출문제",
+  "mnemonic": "🔑 [게-전-희-효] 게이팅 네트워크가 입력 토큰별로 최적의 전문가(Expert) 모델만 희소 선택하여 추론 효율을 극대화한다!",
+  "questionType": "1교시형",
+  "structured": true,
+  "solution": {
+   "section1": "Ⅰ. MoE(Mixture of Experts)의 등장 배경\n- 파라미터 수가 수천억 개 이상으로 늘어남에 따라 전체 신경망을 활성화하는 Dense 모델의 추론 비용 및 메모리 요구량 급증\n- 활성화 파라미터만 동적으로 사용하는 Sparse MoE 아키텍처 도입",
+   "section2": "Ⅱ. MoE 아키텍처 핵심 구성요소\n1. Expert Sub-networks: 특정 영역에 특화된 여러 개의 전차층(FFN)\n2. Router / Gating Network: 입력 토큰을 분석하여 가장 적합한 Top-K 전문가 모델을 선택하는 확률 함수\n3. Sparse Activation: 전체 파라미터 중 극히 일부(예: 8개 중 2개)만 활성화",
+   "section3": "Ⅲ. MoE의 장점 및 기술적 문제 해결\n- 장점: 파라미터 용량은 획기적으로 늘리면서도 추론 시 FLOPS(연산량)는 대폭 감소\n- 해결과제: Gating 쏠림 현상(Load Imbalancing) 방지를 위한 Auxiliary Loss 적용, VRAM 메모리 적재 문제",
+   "section4": "Ⅳ. MoE의 발전 전망\n- Mixtral 8x7B, GPT-4 등 최신 LLM의 표준 아키텍처로 자리매김, On-Device sLLM과의 결합 확대"
+  },
+  "questionText": "초거대 AI 모델의 계산 효율성을 높이기 위한 MoE(Mixture of Experts)의 개요, Router/Gating Network 및 Sparse Activation을 설명하시오."
+ }
+]
