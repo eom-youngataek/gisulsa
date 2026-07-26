@@ -1,19 +1,283 @@
-### **AI 저작권 가이드라인 & TDM 면책**
+### **AI 시대 창작물 보호: AI 저작권 가이드라인 & TDM 면책**
 
-#### **1. 답안 전개 스토리 (핵심 압축)**
+***
 
-> "AI 기업이 인터넷의 뉴스, 소설, 이미지를 마구 긁어가 학습할 때 **"어디까지가 합법이고 어디서부터 저작권 침해 소송을 먹는지" 가이드라인을 그어주는 국가적 법률 통제 기준**이다. 핵심 쟁점은 \*\*'TDM(Text and Data Mining) 면책 조항'\*\*이다. 데이터를 수집해 기술적으로 마이닝하는 과정에서 영리 목적이라도 저작권자의 허락 없이 학습을 허용해 줄 것인가에 대한 법적 예외 규정이다. 한국 문화체육관광부는 저작권자의 정당한 권익을 침해하지 않는 범위 내에서 상식적인 학습은 권장하나, 저작권자가 "내 데이터는 긁어가지 마라"고 명시(로봇 배제 표준 등)했을 때는 학습에서 제외하는 방안을 권고한다. 또한, AI가 스스로 창작한 생성물은 인간의 사상과 감정이 안 들어갔으므로 저작권을 부여하지 않는다는 원칙 하에, 인간이 90% 이상 리터칭하고 기획한 경우에만 예외적으로 인정하는 저작권 거버넌스의 대전제다."
-
-#### **2. 실제 답안에 쓸 핵심 내용 (암기용)**
+#### 답안 전체 스토리 흐름 (목차)
 
 ```
+Ⅰ. 개요 (왜 AI가 저작권의 새로운 전쟁터가 됐는가)
+Ⅱ. AI 저작권 핵심 쟁점
+Ⅲ. TDM 면책 법리 및 국내외 비교
+Ⅳ. 국내외 AI 저작권 가이드라인 체계
+Ⅴ. 결론 및 발전 방향
 ```
 
-![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NjcuNjI4OTk5OTk5OTk5OSA5MzAuMjk3IiB3aWR0aD0iNzY3LjYyODk5OTk5OTk5OTkiIGhlaWdodD0iOTMwLjI5NyIgc3R5bGU9Ii0tYmc6I0ZGRkZGRjstLWZnOiMzQjNCM0I7LS1saW5lOiMzQjNCM0I7LS1hY2NlbnQ6IzAwNUZCODstLW11dGVkOiMzQjNCM0JDQzstLXN1cmZhY2U6I0Y4RjhGODstLWJvcmRlcjojM0IzQjNCO2JhY2tncm91bmQ6dmFyKC0tYmcpIj4KPHN0eWxlPgogIEBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUludGVyOndnaHRANDAwOzUwMDs2MDA7NzAwJmFtcDtkaXNwbGF5PXN3YXAnKTsKICB0ZXh0IHsgZm9udC1mYW1pbHk6ICdJbnRlcicsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsgfQogIHN2ZyB7CiAgICAvKiBEZXJpdmVkIGZyb20gLS1iZyBhbmQgLS1mZyAob3ZlcnJpZGFibGUgdmlhIC0tbGluZSwgLS1hY2NlbnQsIGV0Yy4pICovCiAgICAtLV90ZXh0OiAgICAgICAgICB2YXIoLS1mZyk7CiAgICAtLV90ZXh0LXNlYzogICAgICB2YXIoLS1tdXRlZCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA2MCUsIHZhcigtLWJnKSkpOwogICAgLS1fdGV4dC1tdXRlZDogICAgdmFyKC0tbXV0ZWQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNDAlLCB2YXIoLS1iZykpKTsKICAgIC0tX3RleHQtZmFpbnQ6ICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMjUlLCB2YXIoLS1iZykpOwogICAgLS1fbGluZTogICAgICAgICAgdmFyKC0tbGluZSwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA1MCUsIHZhcigtLWJnKSkpOwogICAgLS1fYXJyb3c6ICAgICAgICAgdmFyKC0tYWNjZW50LCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDg1JSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ub2RlLWZpbGw6ICAgICB2YXIoLS1zdXJmYWNlLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDMlLCB2YXIoLS1iZykpKTsKICAgIC0tX25vZGUtc3Ryb2tlOiAgIHZhcigtLWJvcmRlciwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAyMCUsIHZhcigtLWJnKSkpOwogICAgLS1fZ3JvdXAtZmlsbDogICAgdmFyKC0tYmcpOwogICAgLS1fZ3JvdXAtaGRyOiAgICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA1JSwgdmFyKC0tYmcpKTsKICAgIC0tX2lubmVyLXN0cm9rZTogIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMTIlLCB2YXIoLS1iZykpOwogICAgLS1fa2V5LWJhZGdlOiAgICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAxMCUsIHZhcigtLWJnKSk7CiAgfQo8L3N0eWxlPgo8ZGVmcz4KICA8bWFya2VyIGlkPSJhcnJvd2hlYWQiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjciIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwLCA4IDIuNSwgMCA1IiBmaWxsPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2U9InZhcigtLV9hcnJvdykiIHN0cm9rZS13aWR0aD0iMC43NSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KICA8L21hcmtlcj4KICA8bWFya2VyIGlkPSJhcnJvd2hlYWQtc3RhcnQiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjEiIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgPHBvbHlnb24gcG9pbnRzPSI4IDAsIDAgMi41LCA4IDUiIGZpbGw9InZhcigtLV9hcnJvdykiIHN0cm9rZT0idmFyKC0tX2Fycm93KSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiAvPgogIDwvbWFya2VyPgo8L2RlZnM+CjxnIGNsYXNzPSJzdWJncmFwaCIgZGF0YS1pZD0iQUlfX19fX18iIGRhdGEtbGFiZWw9IkFJIO2VmeyKtSDrsI8g7IOd7ISxIOyggOyekeq2jCDqsbDrsoTrhIzsiqQg7J2Y7IKs6rKw7KCVIj4KICA8cmVjdCB4PSI0MCIgeT0iNDAiIHdpZHRoPSI2ODcuNjI4OTk5OTk5OTk5OSIgaGVpZ2h0PSI4NTAuMjk3IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ncm91cC1maWxsKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHJlY3QgeD0iNDAiIHk9IjQwIiB3aWR0aD0iNjg3LjYyODk5OTk5OTk5OTkiIGhlaWdodD0iMjgiIHJ4PSIwIiByeT0iMCIgZmlsbD0idmFyKC0tX2dyb3VwLWhkcikiIHN0cm9rZT0idmFyKC0tX25vZGUtc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIxIiAvPgogIDx0ZXh0IHg9IjUyIiB5PSI1NCIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0idmFyKC0tX3RleHQtc2VjKSIgZHk9IjQuMTk5OTk5OTk5OTk5OTk5Ij5BSSDtlZnsirUg67CPIOyDneyEsSDsoIDsnpHqtowg6rGw67KE64SM7IqkIOydmOyCrOqysOyglTwvdGV4dD4KPC9nPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iSU4iIGRhdGEtdG89IkNPTkQxIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0iZmFsc2UiIGRhdGEtYXJyb3ctZW5kPSJ0cnVlIiBwb2ludHM9IjM2Ni4yMTU3NDk5OTk5OTk5NiwxMjAuOSAzNjYuMjE1NzQ5OTk5OTk5OTYsMTQ1LjI3MDUwMDAwMDAwMDAzIDE5NS4zMDg0OTk5OTk5OTk5NSwxNDUuMjcwNTAwMDAwMDAwMDMgMTk1LjMwODQ5OTk5OTk5OTk1LDE2OS42NDEwMDAwMDAwMDAwMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iQ09ORDEiIGRhdGEtdG89IlRETSIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgZGF0YS1sYWJlbD0iVERNIOuptOyxhSDrspTsnIQg7ZmV7J24IiBwb2ludHM9IjE5NS4zMDg0OTk5OTk5OTk5NSw0MDkuNzI2IDE5NS4zMDg0OTk5OTk5OTk5OCw1MjUuMjg1MDAwMDAwMDAwMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iSU4iIGRhdGEtdG89IkNPTkQyIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0iZmFsc2UiIGRhdGEtYXJyb3ctZW5kPSJ0cnVlIiBwb2ludHM9IjM2Ni4yMTU3NDk5OTk5OTk5NiwxMjAuOSAzNjYuMjE1NzQ5OTk5OTk5OTYsMTQ1LjI3MDUwMDAwMDAwMDAzIDUzNy4xMjMsMTQ1LjI3MDUwMDAwMDAwMDAzIDUzNy4xMjMsMTY5LjY0MTAwMDAwMDAwMDAyIiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJDT05EMiIgZGF0YS10bz0iQ09QWSIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgZGF0YS1sYWJlbD0i7LC97J6RIOyjvOyytCDtmZXsnbgiIHBvaW50cz0iNTM3LjEyMyw0MDYuNzYyIDUzNy4xMjI5OTk5OTk5OTk5LDUyNS4yODUwMDAwMDAwMDAxIiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CjxnIGNsYXNzPSJlZGdlLWxhYmVsIiBkYXRhLWZyb209IkNPTkQxIiBkYXRhLXRvPSJURE0iIGRhdGEtbGFiZWw9IlRETSDrqbTssYUg67KU7JyEIO2ZleyduCI+CiAgPHJlY3QgeD0iMTM2LjMwODQ5OTk5OTk5OTk4IiB5PSI0NTEuOTg1IiB3aWR0aD0iMTE3LjQ0MjAwMDAwMDAwMDAyIiBoZWlnaHQ9IjMwLjMiIHJ4PSIyIiByeT0iMiIgZmlsbD0idmFyKC0tYmcpIiBzdHJva2U9InZhcigtLV9pbm5lci1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iMTk1LjAyOTQ5OTk5OTk5OTk4IiB5PSI0NjcuMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iNDAwIiBmaWxsPSJ2YXIoLS1fdGV4dC1zZWMpIiBkeT0iMy44NDk5OTk5OTk5OTk5OTk2Ij5URE0g66m07LGFIOuylOychCDtmZXsnbg8L3RleHQ+CjwvZz4KPGcgY2xhc3M9ImVkZ2UtbGFiZWwiIGRhdGEtZnJvbT0iQ09ORDIiIGRhdGEtdG89IkNPUFkiIGRhdGEtbGFiZWw9IuywveyekSDso7zssrQg7ZmV7J24Ij4KICA8cmVjdCB4PSI0OTAuNjIyOTk5OTk5OTk5OSIgeT0iNDUxLjk4NSIgd2lkdGg9IjkyLjQ5NDAwMDAwMDAwMDAzIiBoZWlnaHQ9IjMwLjMiIHJ4PSIyIiByeT0iMiIgZmlsbD0idmFyKC0tYmcpIiBzdHJva2U9InZhcigtLV9pbm5lci1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iNTM2Ljg2OTk5OTk5OTk5OTkiIHk9IjQ2Ny4xMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSI0MDAiIGZpbGw9InZhcigtLV90ZXh0LXNlYykiIGR5PSIzLjg0OTk5OTk5OTk5OTk5OTYiPuywveyekSDso7zssrQg7ZmV7J24PC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJJTiIgZGF0YS1sYWJlbD0i642w7J207YSwIO2VmeyKtSDrsI8g7IOd7ISxIO2UhOuhnOyEuOyKpCIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSIyNTEuODc0NzQ5OTk5OTk5OTgiIHk9Ijg0IiB3aWR0aD0iMjI4LjY4MiIgaGVpZ2h0PSIzNi45MDAwMDAwMDAwMDAwMDYiIHJ4PSIwIiByeT0iMCIgZmlsbD0idmFyKC0tX25vZGUtZmlsbCkiIHN0cm9rZT0idmFyKC0tX25vZGUtc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9IjM2Ni4yMTU3NDk5OTk5OTk5NiIgeT0iMTAyLjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij7rjbDsnbTthLAg7ZWZ7Iq1IOuwjyDsg53shLEg7ZSE66Gc7IS47IqkPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJDT05EMSIgZGF0YS1sYWJlbD0i8J+aqCDtlZnsirUg642w7J207YSwIOyImOynkSDri6jqs4Qg8J+aqCIgZGF0YS1zaGFwZT0iZGlhbW9uZCI+CiAgPHBvbHlnb24gcG9pbnRzPSIxOTUuMzA4NDk5OTk5OTk5OTUsMTY5LjY0MSAzMTUuMzUwOTk5OTk5OTk5OTQsMjg5LjY4MzUgMTk1LjMwODQ5OTk5OTk5OTk1LDQwOS43MjYgNzUuMjY1OTk5OTk5OTk5OTYsMjg5LjY4MzUiIGZpbGw9IiNmZmYzZTAiIHN0cm9rZT0iI2Y1N2MwMCIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9IjE5NS4zMDg0OTk5OTk5OTk5NSIgeT0iMjg5LjY4MzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPvCfmqgg7ZWZ7Iq1IOuNsOydtO2EsCDsiJjsp5Eg64uo6rOEIPCfmqg8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlRETSIgZGF0YS1sYWJlbD0i7KCA7J6R6raM67KV7IOBIOuptOyxhSDqt5zsoJUg7Lap7KGxPwoxLiDruYTsmIHrpqwg7ZWZ7IigIOyXsOq1rCDrqqnsoIEKMi4gT3B0LW91dCDqsbDrtoAg7J2Y7IKsIO2RnOyLnCDrrLTsi5wg6riI7KeAIiBkYXRhLXNoYXBlPSJkaWFtb25kIj4KICA8cG9seWdvbiBwb2ludHM9IjE5NS4zMDg0OTk5OTk5OTk5OCw1MjUuMjg1MDAwMDAwMDAwMSAzMzQuNjE2OTk5OTk5OTk5OTYsNjY0LjU5MzUwMDAwMDAwMDEgMTk1LjMwODQ5OTk5OTk5OTk4LDgwMy45MDIgNTYsNjY0LjU5MzUwMDAwMDAwMDEiIGZpbGw9IiNmZmViZWUiIHN0cm9rZT0iI2QzMmYyZiIgc3Ryb2tlLXdpZHRoPSIycHgiIC8+CiAgPHRleHQgeD0iMTk1LjMwODQ5OTk5OTk5OTk4IiB5PSI2NjQuNTkzNTAwMDAwMDAwMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIj48dHNwYW4geD0iMTk1LjMwODQ5OTk5OTk5OTk4IiBkeT0iLTEyLjM1MDAwMDAwMDAwMDAwMSI+7KCA7J6R6raM67KV7IOBIOuptOyxhSDqt5zsoJUg7Lap7KGxPzwvdHNwYW4+PHRzcGFuIHg9IjE5NS4zMDg0OTk5OTk5OTk5OCIgZHk9IjE2LjkwMDAwMDAwMDAwMDAwMiI+MS4g67mE7JiB66asIO2VmeyIoCDsl7Dqtawg66qp7KCBPC90c3Bhbj48dHNwYW4geD0iMTk1LjMwODQ5OTk5OTk5OTk4IiBkeT0iMTYuOTAwMDAwMDAwMDAwMDAyIj4yLiBPcHQtb3V0IOqxsOu2gCDsnZjsgqwg7ZGc7IucIOustOyLnCDquIjsp4A8L3RzcGFuPjwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iQ09ORDIiIGRhdGEtbGFiZWw9IvCfmqggQUkg7IOd7ISx66y8IOyggOyekeq2jCDri6jqs4Qg8J+aqCIgZGF0YS1zaGFwZT0iZGlhbW9uZCI+CiAgPHBvbHlnb24gcG9pbnRzPSI1MzcuMTIzLDE2OS42NDEwMDAwMDAwMDAwMiA2NTUuNjgzNTAwMDAwMDAwMSwyODguMjAxNSA1MzcuMTIzLDQwNi43NjIgNDE4LjU2MjUwMDAwMDAwMDA2LDI4OC4yMDE1IiBmaWxsPSJ2YXIoLS1fbm9kZS1maWxsKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iNTM3LjEyMyIgeT0iMjg4LjIwMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPvCfmqggQUkg7IOd7ISx66y8IOyggOyekeq2jCDri6jqs4Qg8J+aqDwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iQ09QWSIgZGF0YS1sYWJlbD0i7J246rCE7J2YIOq4sO2ajSDrsI8g7IKs7IOBIOqwnOyehT8KMS4gQUkgMTAwJSDsnpDsnKgg7IOd7ISxIOKelCDsoIDsnpHqtowg67aA7KCVIOKdjAoyLiDsnbjqsITsnZgg7ZSE66Gs7ZSE7Yq4K+umrO2EsOy5rSDinpQg7KCA7J6R6raMIOyduOyglSDwn5KvIiBkYXRhLXNoYXBlPSJkaWFtb25kIj4KICA8cG9seWdvbiBwb2ludHM9IjUzNy4xMjI5OTk5OTk5OTk5LDUyNS4yODUwMDAwMDAwMDAxIDcxMS42Mjg5OTk5OTk5OTk5LDY5OS43OTEgNTM3LjEyMjk5OTk5OTk5OTksODc0LjI5NyAzNjIuNjE2OTk5OTk5OTk5OTYsNjk5Ljc5MSIgZmlsbD0iI2U4ZjVlOSIgc3Ryb2tlPSIjMzg4ZTNjIiBzdHJva2Utd2lkdGg9IjJweCIgLz4KICA8dGV4dCB4PSI1MzcuMTIyOTk5OTk5OTk5OSIgeT0iNjk5Ljc5MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIj48dHNwYW4geD0iNTM3LjEyMjk5OTk5OTk5OTkiIGR5PSItMTIuMzUwMDAwMDAwMDAwMDAxIj7snbjqsITsnZgg6riw7ZqNIOuwjyDsgqzsg4Eg6rCc7J6FPzwvdHNwYW4+PHRzcGFuIHg9IjUzNy4xMjI5OTk5OTk5OTk5IiBkeT0iMTYuOTAwMDAwMDAwMDAwMDAyIj4xLiBBSSAxMDAlIOyekOycqCDsg53shLEg4p6UIOyggOyekeq2jCDrtoDsoJUg4p2MPC90c3Bhbj48dHNwYW4geD0iNTM3LjEyMjk5OTk5OTk5OTkiIGR5PSIxNi45MDAwMDAwMDAwMDAwMDIiPjIuIOyduOqwhOydmCDtlITroaztlITtirgr66as7YSw7LmtIOKelCDsoIDsnpHqtowg7J247KCVIPCfkq88L3RzcGFuPjwvdGV4dD4KPC9nPgo8L3N2Zz4= "Mermaid diagram")
+포인트: 개요에서 \*\*"앞서 다룬 AI 인프라 생태계의 3계층(데이터)에서 '학습 데이터 확보'가 핵심 과제라면, AI 저작권 가이드라인은 그 학습 데이터 확보 과정에서 '타인의 저작물을 AI 학습에 사용하는 것이 합법인가'와 'AI가 생성한 결과물의 저작권은 누구에게 귀속되는가'라는 두 가지 근본 질문에 대한 법적 해답이다 — NYT vs OpenAI 소송·Getty Images vs Stability AI 소송이 보여주듯 AI 학습 데이터 저작권 분쟁이 글로벌 AI 산업의 최대 법적 리스크로 부상했으며, 앞서 다룬 인공지능기본법과 함께 TDM(Text and Data Mining) 면책 조항이 국내 AI 산업 경쟁력의 핵심 법제도 기반"\*\*이라는 한 줄로 시작하면, 왜 이 답안이 앞서 다룬 AI 데이터·거버넌스·법제도 시리즈 전체의 **법적 기반 핵심**인지 드러납니다.
 
-| **핵심 척도**                | **📊 TDM 면책 조항 (Text & Data Mining) 🚨**                                                           | **🔑 Opt-Out (데이터 수집 거부 권리) 💯**                                                                                           | **🏁 AI 저작권법 개정 쟁점 💯**                                                                                                  |
-| :----------------------- | :------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
-| **개념 / 법적 위상**           | **'공정 이용(Fair Use)의 확장'.** AI 모델 고도화를 위해 대량의 컴퓨터 분석이 필수적이므로 저작물의 복제/가공을 일부 면책해 주는 제도.              | **'저작권자의 방어권 보장'.** 내 자산(블로그 글, 그림)이 AI 팹리스의 학습용 밥으로 쓰이는 것을 원천 거부하는 선언 메커니즘.                                               | 인공지능 창작 생태계 보호와, 원작자의 재산권 보호라는 상충하는 헌법적 가치의 대조.                                                                          |
-| **핵심 세부 내용 (출제 포인트) 🚨** | **\[TDM 법적 면책 🚨]** 연구/분석 목적의 컴퓨터 데이터 크롤링 시 일시적 복제를 허용함. 단, 영리적 대형 기업 학습 시 면책 범위가 여전히 모호해 소송 진행 중. | **\[Opt-Out 의무화 💯]** - 저작권자가 웹사이트의 `robots.txt` 설정이나 이용 약관을 통해 "AI 학습 수집 거부" 의사를 표시(Opt-out)하면, **AI 기업은 이를 강제로 준수**해야 함. | **\[생성물의 저작권 주체 💯]** - **원칙**: 인공지능 단독 생성물은 **저작물로 불인정.** - **예외**: 인간이 지시한 프롬프트의 구체성과 사후 리터칭(가공) 정도에 따라 부분적 저작권 등록 허용. |
+***
 
-* **(제언)** "기업이 상용 AI 모델을 출시하기 전, 학습 데이터셋 아키텍처 내에 저작권 소송 리스크가 없는지 사전 검증해야 합니다. **이를 위해 오픈 도메인 데이터의 라이선스를 정밀 검수하고, 수집 단계부터 원작자의 Opt-out 요구 조건을 자동으로 필터링하는 '저작권 정제 파이프라인'을 거버넌스 규격으로 고착시켜야 합니다.**"
+#### Ⅱ. AI 저작권 핵심 쟁점
+
+**가. 2대 핵심 쟁점**
+
+```
+[AI 저작권 2대 전선]
+
+쟁점1: AI 학습 데이터 저작권 (Input 문제)
+  타인의 저작물로 AI를 학습시키는 것이
+  저작권 침해인가 / TDM 면책인가?
+
+  Input                Output
+  저작물 수집 → AI 학습 → AI 생성물
+  [쟁점1 영역]         [쟁점2 영역]
+
+쟁점2: AI 생성물 저작권 귀속 (Output 문제)
+  AI가 만든 결과물의 저작권은
+  AI에게? 개발사에게? 사용자에게? 없음?
+```
+
+***
+
+**나. 쟁점1: AI 학습 데이터 저작권**
+
+| 입장                  | 내용                    | 근거                         |
+| :------------------ | :-------------------- | :------------------------- |
+| **저작권 침해설**         | 허락 없는 저작물 복제·학습은 침해   | NYT·Getty Images 소송 / 베른협약 |
+| **공정이용(Fair Use)설** | 변형적 이용·비상업적 연구 목적은 허용 | 미국 저작권법 §107 / 구글 Books 판례 |
+| **TDM 면책설**         | 데이터 분석 목적 복제는 법적 면책   | EU DSM 지침·일본 저작권법 개정       |
+
+***
+
+**다. 쟁점2: AI 생성물 저작권 귀속**
+
+```
+[AI 생성물 저작권 4가지 입장]
+
+①AI 저작권 불인정 (현재 다수설)
+  창작성은 인간에게만 / AI는 도구
+  미국 저작권청: "인간 창작성 필요"
+  → 현재 대부분 국가 채택 입장
+
+②개발사 귀속
+  AI 시스템 개발·투자의 산물
+  → 법인 저작물 유추 적용 논의
+
+③사용자 귀속
+  프롬프트 설계·창작 기여 인정
+  → 기여도 비율 논쟁 🚨
+
+④공유 영역(Public Domain)
+  누구의 것도 아님 / 자유 이용
+  → 창작 인센티브 저하 우려
+```
+
+***
+
+#### Ⅲ. TDM 면책 법리 및 국내외 비교
+
+**가. TDM(Text and Data Mining) 정의**
+
+```
+TDM = 텍스트·데이터를 자동화된 방법으로
+      분석해 패턴·지식·인사이트를 추출하는 기술
+
+AI 학습과의 관계:
+  대규모 웹 크롤링 → 텍스트 데이터 수집
+  → LLM 학습 데이터로 활용
+  → TDM 면책 여부가 AI 학습 합법성 결정
+
+핵심 질문:
+  "AI 학습을 위한 저작물 복제가
+   TDM 면책 범위 안에 들어오는가?"
+```
+
+***
+
+**나. 국내외 TDM 면책 비교**
+
+| 국가·지역  | 법적 근거                 | 면책 범위                         | 상업적 이용             |
+| :----- | :-------------------- | :---------------------------- | :----------------- |
+| **일본** | 저작권법 제30조의4 (2019 개정) | **비향유 목적 정보 분석 전면 허용**        | 허용 ✅ (가장 넓음)       |
+| **EU** | DSM 지침 제3·4조 (2019)   | 연구기관: 무조건 허용 / 기업: opt-out 가능 | 제한적 (opt-out 시 불가) |
+| **미국** | 저작권법 §107 공정이용        | 사례별 판단 / 4요소 테스트              | 판례 의존              |
+| **영국** | CDPA 제29A조            | 연구 목적만 / 상업적 불가               | 불가 🚨              |
+| **국내** | 저작권법 개정 논의 중          | 현재 명시적 TDM 면책 규정 미비 🚨        | 불명확                |
+
+***
+
+**다. 일본 TDM 면책의 시사점**
+
+```
+[일본 모델: 가장 넓은 TDM 면책]
+
+저작권법 제30조의4:
+  "정보 해석(TDM)을 위한 복제는
+   저작권자의 이익을 부당하게 해치지
+   않는 한 허용"
+
+핵심 특징:
+  ① 상업적 목적 포함 허용 ✅
+  ② opt-out 조항 없음 ✅
+  ③ AI 기업 친화적 최광범위 면책
+
+효과:
+  → 일본 AI 기업의 학습 데이터 확보 용이
+  → 글로벌 AI 기업의 일본 법인 활용 증가
+  → 국내 대비 AI 산업 법적 리스크 현저히 낮음
+
+국내 시사점:
+  일본 모델 참조한 TDM 명시적 면책 도입 논의
+```
+
+***
+
+**라. 미국 공정이용 4요소 테스트**
+
+```
+[저작권법 §107 공정이용 4요소]
+
+①이용의 목적·성격
+  상업적 vs 비상업적
+  변형적(Transformative) 이용 여부
+  → AI 학습: "변형적 이용"으로 주장 가능
+
+②저작물의 성격
+  사실적 저작물 vs 창작적 저작물
+  → 뉴스·사실 정보: 공정이용 유리
+
+③이용된 양·질
+  전체 vs 일부 / 핵심 부분 여부
+  → 대규모 크롤링: 불리 요소 🚨
+
+④시장 대체 효과
+  원저작물 시장 침해 여부
+  → AI 생성물이 원저작물 대체?
+  → NYT: "ChatGPT가 뉴스 시장 대체" 주장
+```
+
+***
+
+#### Ⅳ. 국내외 AI 저작권 가이드라인 체계
+
+**가. 국내 AI 저작권 가이드라인**
+
+| 항목             | 내용                                | 시점           |
+| :------------- | :-------------------------------- | :----------- |
+| **문체부 가이드라인**  | AI 생성물 저작권 등록 불가 / 인간 창작 기여분만 보호  | 2023.12      |
+| **저작권법 개정 논의** | TDM 면책 명문화 / AI 생성물 보호 특별 규정      | 국회 논의 중      |
+| **인공지능기본법**    | AI 생성 콘텐츠 표시 의무 / 저작권 관련 별도 입법 예고 | 2026.1.22 시행 |
+| **공정이용 가이드라인** | 학술·연구 목적 TDM 한시 허용 유권해석           | 저작권위원회       |
+
+***
+
+**나. 주요 AI 기업 대응 방식**
+
+```
+[글로벌 AI 기업 저작권 대응 전략]
+
+OpenAI:
+  → 뉴스 기관과 라이선스 계약 체결
+  → AP통신·악셀슈프링거 등 유료 협약
+
+Google:
+  → Google Books 공정이용 판례 활용
+  → 학습 데이터 opt-out 도구 제공
+
+Stability AI:
+  → Getty Images 소송 진행 중
+  → 오픈소스 공개로 책임 분산 시도
+
+국내:
+  → NAVER HyperCLOVA: 국내 웹 크롤링
+  → 법적 불확실성 속 자체 가이드라인
+  → 저작권 클리어런스 절차 강화
+```
+
+***
+
+**다. AI 생성물 보호 국내외 현황**
+
+| 국가     | AI 생성물 저작권          | 비고              |
+| :----- | :------------------ | :-------------- |
+| **미국** | 불인정 / 인간 기여분만 보호    | 저작권청 가이드라인 2023 |
+| **중국** | AI 생성물 저작권 인정 판례 존재 | 베이징 법원 2023 판결  |
+| **EU** | 불인정 원칙 / 연구 중       | AI Act와 연계 논의   |
+| **일본** | 불인정 / 인간 창작성 요건     | 문화청 가이드라인       |
+| **국내** | 불인정 / 인간 기여분만       | 문체부 2023 가이드라인  |
+
+***
+
+#### 도식화
+
+```
+[AI 저작권 쟁점 전체 구조]
+
+저작물 보유자         AI 개발사         AI 사용자
+(창작자·언론사)       (OpenAI·네이버)   (기업·개인)
+     │                    │                 │
+     │ 허락 없는 복제 주장  │                 │
+     ├──────────────────→│                 │
+     │                    │ AI 학습          │
+     │                    │ (TDM 면책 주장)  │
+     │                    │                 │
+     │                    │ AI 생성물 제공   │
+     │                    │────────────────→│
+     │                    │                 │
+     │ AI 생성물이 원저작물  │                 │
+     │ 시장을 대체?        │                 │
+     ├──────────────────→│                 │
+     │                    │                 │
+
+[법적 해결 방향]
+
+단기: 라이선스 계약·opt-out 존중
+중기: TDM 면책 명문화·가이드라인 정비
+장기: AI 저작물 국제 표준·조약 마련
+
+[국내 TDM 면책 도입 시 기대 효과]
+  AI 학습 데이터 확보 법적 리스크 해소
+  → 글로벌 AI 경쟁력 확보
+  → 앞서 다룬 AI 인프라 3계층(데이터) 강화
+```
+
+***
+
+#### Ⅴ. 결론 및 발전 방향
+
+**앞서 다룬 개념과의 연결**
+
+| 연계 개념                      | 연결 내용                            |
+| :------------------------- | :------------------------------- |
+| **AI 인프라 데이터 계층**          | TDM 면책이 학습 데이터 확보의 법적 기반         |
+| **인공지능기본법**                | AI 생성 표시 의무·저작권 별도 입법 연계         |
+| **LINDDUN Non-Compliance** | TDM 면책 미비 = 학습 데이터의 법적 컴플라이언스 위험 |
+| **합성데이터**                  | 저작권 우려 시 합성데이터로 학습 데이터 대체        |
+| **개인정보 전송요구권**             | 정보주체가 AI 학습 동의·철회 권리 행사          |
+
+**발전 방향**
+
+```
+①국내 TDM 면책 명문화 (최우선 과제)
+  저작권법 개정으로 AI 학습 목적 TDM 명시적 허용
+  일본 모델 참조·상업적 이용 범위 설정
+  opt-out 메커니즘으로 저작권자 권리 균형
+
+②AI 생성물 보호 특별 규정
+  인간 기여도 기반 보호 범위 명확화
+  "AI 보조 창작물" 중간 카테고리 신설 논의
+
+③국제 저작권 표준 주도
+  WIPO AI 저작권 조약 논의 참여
+  한·일·EU TDM 면책 상호 인정 협력
+
+④저작권 라이선스 플랫폼
+  저작권자·AI 기업 간 학습 데이터
+  라이선스 중개 플랫폼 공공 구축
+  공정한 보상 체계 제도화
+```
+
+***
+
+#### 기술사 답안 포인트
+
+**AI 학습 데이터(Input) vs AI 생성물(Output) 2대 쟁점 → TDM 면책 국내외 비교(일본 전면허용·EU 제한·미국 공정이용·국내 미비) → 미국 공정이용 4요소 테스트 → 주요 소송(NYT·Getty Images) → AI 생성물 저작권 불인정 다수설 → 국내 TDM 면책 명문화 필요성 → 합성데이터·opt-out·라이선스 플랫폼 발전** 흐름으로 서술하면 법제도·AI·데이터를 아우르는 완성도 높은 답안이 됩니다. **국내 TDM 명시적 면책 규정 미비가 AI 산업 경쟁력의 핵심 법적 리스크**임이 핵심 차별화 포인트입니다.**다.**"

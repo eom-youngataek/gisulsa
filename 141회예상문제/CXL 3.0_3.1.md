@@ -1,39 +1,106 @@
-### **I. 데이터센터 메모리 벽 극복의 핵심, CXL 3.0/3.1의 개요**
-
-기존의 CXL 1.1 및 2.0 표준은 PCIe Gen5를 기반으로 단일 호스트 컴퓨터에 메모리를 확장하는 용도에 머물렀습니다. CXL 3.0 및 3.1은 PCIe Gen6(PAM4 변조) 기술을 차용하여 대역폭을 2배로 넓히고, **CXL 스위치 기반의 패브릭(Fabric) 네트워크**를 도입함으로써 여러 대의 CPU/GPU/NPU가 하나의 공유 메모리 자원 풀을 동적으로 나누어 쓰는 \*\*메모리 풀링(Memory Pooling)\*\*을 완벽히 지원하는 차세대 하드웨어 표준입니다.
+### 답안 전체 스토리 흐름 (목차)
 
 ```
+Ⅰ. 개요 (왜 PCIe만으로는 AI 메모리 병목을 못 푸는가)
+Ⅱ. CXL 핵심 구조 및 3대 서브 프로토콜
+Ⅲ. CXL 버전별 진화 및 3.0/3.1 핵심 기능
+Ⅳ. 결론
 ```
 
-![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODcuOTk0OTk5OTk5OTk5OSAyMDEuOCIgd2lkdGg9Ijg4Ny45OTQ5OTk5OTk5OTk5IiBoZWlnaHQ9IjIwMS44IiBzdHlsZT0iLS1iZzojRkZGRkZGOy0tZmc6IzNCM0IzQjstLWxpbmU6IzNCM0IzQjstLWFjY2VudDojMDA1RkI4Oy0tbXV0ZWQ6IzNCM0IzQkNDOy0tc3VyZmFjZTojRjhGOEY4Oy0tYm9yZGVyOiMzQjNCM0I7YmFja2dyb3VuZDp2YXIoLS1iZykiPgo8c3R5bGU+CiAgQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9SW50ZXI6d2dodEA0MDA7NTAwOzYwMDs3MDAmYW1wO2Rpc3BsYXk9c3dhcCcpOwogIHRleHQgeyBmb250LWZhbWlseTogJ0ludGVyJywgc3lzdGVtLXVpLCBzYW5zLXNlcmlmOyB9CiAgc3ZnIHsKICAgIC8qIERlcml2ZWQgZnJvbSAtLWJnIGFuZCAtLWZnIChvdmVycmlkYWJsZSB2aWEgLS1saW5lLCAtLWFjY2VudCwgZXRjLikgKi8KICAgIC0tX3RleHQ6ICAgICAgICAgIHZhcigtLWZnKTsKICAgIC0tX3RleHQtc2VjOiAgICAgIHZhcigtLW11dGVkLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDYwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV90ZXh0LW11dGVkOiAgICB2YXIoLS1tdXRlZCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA0MCUsIHZhcigtLWJnKSkpOwogICAgLS1fdGV4dC1mYWludDogICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAyNSUsIHZhcigtLWJnKSk7CiAgICAtLV9saW5lOiAgICAgICAgICB2YXIoLS1saW5lLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDUwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9hcnJvdzogICAgICAgICB2YXIoLS1hY2NlbnQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgODUlLCB2YXIoLS1iZykpKTsKICAgIC0tX25vZGUtZmlsbDogICAgIHZhcigtLXN1cmZhY2UsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMyUsIHZhcigtLWJnKSkpOwogICAgLS1fbm9kZS1zdHJva2U6ICAgdmFyKC0tYm9yZGVyLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDIwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ncm91cC1maWxsOiAgICB2YXIoLS1iZyk7CiAgICAtLV9ncm91cC1oZHI6ICAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDUlLCB2YXIoLS1iZykpOwogICAgLS1faW5uZXItc3Ryb2tlOiAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAxMiUsIHZhcigtLWJnKSk7CiAgICAtLV9rZXktYmFkZ2U6ICAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDEwJSwgdmFyKC0tYmcpKTsKICB9Cjwvc3R5bGU+CjxkZWZzPgogIDxtYXJrZXIgaWQ9ImFycm93aGVhZCIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iNyIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8iPgogICAgPHBvbHlnb24gcG9pbnRzPSIwIDAsIDggMi41LCAwIDUiIGZpbGw9InZhcigtLV9hcnJvdykiIHN0cm9rZT0idmFyKC0tX2Fycm93KSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiAvPgogIDwvbWFya2VyPgogIDxtYXJrZXIgaWQ9ImFycm93aGVhZC1zdGFydCIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iMSIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+CiAgICA8cG9seWdvbiBwb2ludHM9IjggMCwgMCAyLjUsIDggNSIgZmlsbD0idmFyKC0tX2Fycm93KSIgc3Ryb2tlPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+CiAgPC9tYXJrZXI+CjwvZGVmcz4KPHBvbHlsaW5lIGNsYXNzPSJlZGdlIiBkYXRhLWZyb209IlJPT1QiIGRhdGEtdG89Ikhvc3QiIGRhdGEtc3R5bGU9InNvbGlkIiBkYXRhLWFycm93LXN0YXJ0PSJmYWxzZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNDM1Ljg0NjQ5OTk5OTk5OTksNzYuOSA0MzUuODQ2NDk5OTk5OTk5OSw5NC45IDE2Mi40OTE5OTk5OTk5OTk5Niw5NC45IDE2Mi40OTE5OTk5OTk5OTk5NiwxMTIuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iUk9PVCIgZGF0YS10bz0iU3dpdGNoIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0iZmFsc2UiIGRhdGEtYXJyb3ctZW5kPSJ0cnVlIiBwb2ludHM9IjQzNS44NDY0OTk5OTk5OTk5LDc2LjkgNDM1Ljg0NjQ5OTk5OTk5OTksOTQuOSA0MzUuODQ2NDk5OTk5OTk5OTMsOTQuOSA0MzUuODQ2NDk5OTk5OTk5OTMsMTEyLjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KPHBvbHlsaW5lIGNsYXNzPSJlZGdlIiBkYXRhLWZyb209IlJPT1QiIGRhdGEtdG89IlBvb2wiIGRhdGEtc3R5bGU9InNvbGlkIiBkYXRhLWFycm93LXN0YXJ0PSJmYWxzZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNDM1Ljg0NjQ5OTk5OTk5OTksNzYuOSA0MzUuODQ2NDk5OTk5OTk5OSw5NC45IDcxNy4zNTE5OTk5OTk5OTk5LDk0LjkgNzE3LjM1MTk5OTk5OTk5OTksMTEyLjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlJPT1QiIGRhdGEtbGFiZWw9IkNYTCAzLjAg7Yyo67iM66atIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjM2OC4xODg0OTk5OTk5OTk5IiB5PSI0MCIgd2lkdGg9IjEzNS4zMTU5OTk5OTk5OTk5NyIgaGVpZ2h0PSIzNi45MDAwMDAwMDAwMDAwMDYiIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2ZmZWJlZSIgc3Ryb2tlPSIjZDMyZjJmIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iNDM1Ljg0NjQ5OTk5OTk5OTkiIHk9IjU4LjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5DWEwgMy4wIO2MqOu4jOumrTwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iSG9zdCIgZGF0YS1sYWJlbD0i64uk7KSRIO2YuOyKpO2KuCA6IENQVS9HUFUvTlBVIOumrOyghCIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI0MCIgeT0iMTEyLjkiIHdpZHRoPSIyNDQuOTgzOTk5OTk5OTk5OTUiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSIxNjIuNDkxOTk5OTk5OTk5OTYiIHk9IjEzMS4zNTAwMDAwMDAwMDAwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+64uk7KSRIO2YuOyKpO2KuCA6IENQVS9HUFUvTlBVIOumrOyghDwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iU3dpdGNoIiBkYXRhLWxhYmVsPSJDWEwg7Iqk7JyE7LmYIDog6rCA7IOBIOuplOuqqOumrCDrnbzsmrDtjIUiIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iMzEyLjk4Mzk5OTk5OTk5OTkiIHk9IjExMi45IiB3aWR0aD0iMjQ1LjcyNSIgaGVpZ2h0PSIzNi45MDAwMDAwMDAwMDAwMDYiIHJ4PSIwIiByeT0iMCIgZmlsbD0idmFyKC0tX25vZGUtZmlsbCkiIHN0cm9rZT0idmFyKC0tX25vZGUtc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9IjQzNS44NDY0OTk5OTk5OTk5MyIgeT0iMTMxLjM1MDAwMDAwMDAwMDAyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5DWEwg7Iqk7JyE7LmYIDog6rCA7IOBIOuplOuqqOumrCDrnbzsmrDtjIU8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlBvb2wiIGRhdGEtbGFiZWw9IuuplOuqqOumrCDtkoAgOiBDWEwubWVtIOuPmeyggSDsnpDsm5Ag67Cw67aEIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjU4Ni43MDkiIHk9IjExMi45IiB3aWR0aD0iMjYxLjI4NTk5OTk5OTk5OTk0IiBoZWlnaHQ9IjM2LjkwMDAwMDAwMDAwMDAwNiIgcng9IjAiIHJ5PSIwIiBmaWxsPSIjZThmNWU5IiBzdHJva2U9IiMzODhlM2MiIHN0cm9rZS13aWR0aD0iMnB4IiAvPgogIDx0ZXh0IHg9IjcxNy4zNTE5OTk5OTk5OTk5IiB5PSIxMzEuMzUwMDAwMDAwMDAwMDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPuuplOuqqOumrCDtkoAgOiBDWEwubWVtIOuPmeyggSDsnpDsm5Ag67Cw67aEPC90ZXh0Pgo8L2c+Cjwvc3ZnPg== "Mermaid diagram")
+포인트: 개요에서 **"앞서 다룬 HBM4가 '칩 위 메모리 대역폭 혁신'이라면, CXL(Compute Express Link)은 '서버 간·노드 간 메모리를 하나의 풀로 연결해 CPU·GPU·FPGA가 원격 메모리에 캐시 일관성을 유지하며 직접 접근하는 메모리 인터커넥트 표준'이다 — 앞서 다룬 메모리 풀링이 개념이라면, CXL 3.0은 그 개념을 4,096노드 스파인-리프 패브릭·하드웨어 캐시 일관성·메모리 셰어링으로 실현하는 기술 규격이며, PCIe 6.0 기반 64GT/s 전송속도로 AI 클러스터의 메모리 스트랜딩(낭비)을 원천 해소하는 차세대 데이터센터 인프라 표준"**이라는 한 줄로 시작하면 전체 맥락이 드러납니다.
+\
+![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDYwLjY0OCAzNTUiIHdpZHRoPSIxMDYwLjY0OCIgaGVpZ2h0PSIzNTUiIHN0eWxlPSItLWJnOiNGRkZGRkY7LS1mZzojM0IzQjNCOy0tbGluZTojM0IzQjNCOy0tYWNjZW50OiMwMDVGQjg7LS1tdXRlZDojM0IzQjNCQ0M7LS1zdXJmYWNlOiNGOEY4Rjg7LS1ib3JkZXI6IzNCM0IzQjtiYWNrZ3JvdW5kOnZhcigtLWJnKSI+CjxzdHlsZT4KICBAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1JbnRlcjp3Z2h0QDQwMDs1MDA7NjAwOzcwMCZhbXA7ZGlzcGxheT1zd2FwJyk7CiAgdGV4dCB7IGZvbnQtZmFtaWx5OiAnSW50ZXInLCBzeXN0ZW0tdWksIHNhbnMtc2VyaWY7IH0KICBzdmcgewogICAgLyogRGVyaXZlZCBmcm9tIC0tYmcgYW5kIC0tZmcgKG92ZXJyaWRhYmxlIHZpYSAtLWxpbmUsIC0tYWNjZW50LCBldGMuKSAqLwogICAgLS1fdGV4dDogICAgICAgICAgdmFyKC0tZmcpOwogICAgLS1fdGV4dC1zZWM6ICAgICAgdmFyKC0tbXV0ZWQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNjAlLCB2YXIoLS1iZykpKTsKICAgIC0tX3RleHQtbXV0ZWQ6ICAgIHZhcigtLW11dGVkLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDQwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV90ZXh0LWZhaW50OiAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDI1JSwgdmFyKC0tYmcpKTsKICAgIC0tX2xpbmU6ICAgICAgICAgIHZhcigtLWxpbmUsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNTAlLCB2YXIoLS1iZykpKTsKICAgIC0tX2Fycm93OiAgICAgICAgIHZhcigtLWFjY2VudCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA4NSUsIHZhcigtLWJnKSkpOwogICAgLS1fbm9kZS1maWxsOiAgICAgdmFyKC0tc3VyZmFjZSwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAzJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ub2RlLXN0cm9rZTogICB2YXIoLS1ib3JkZXIsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMjAlLCB2YXIoLS1iZykpKTsKICAgIC0tX2dyb3VwLWZpbGw6ICAgIHZhcigtLWJnKTsKICAgIC0tX2dyb3VwLWhkcjogICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNSUsIHZhcigtLWJnKSk7CiAgICAtLV9pbm5lci1zdHJva2U6ICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDEyJSwgdmFyKC0tYmcpKTsKICAgIC0tX2tleS1iYWRnZTogICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMTAlLCB2YXIoLS1iZykpOwogIH0KPC9zdHlsZT4KPGRlZnM+CiAgPG1hcmtlciBpZD0iYXJyb3doZWFkIiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI1IiByZWZYPSI3IiByZWZZPSIyLjUiIG9yaWVudD0iYXV0byI+CiAgICA8cG9seWdvbiBwb2ludHM9IjAgMCwgOCAyLjUsIDAgNSIgZmlsbD0idmFyKC0tX2Fycm93KSIgc3Ryb2tlPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+CiAgPC9tYXJrZXI+CiAgPG1hcmtlciBpZD0iYXJyb3doZWFkLXN0YXJ0IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI1IiByZWZYPSIxIiByZWZZPSIyLjUiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iOCAwLCAwIDIuNSwgOCA1IiBmaWxsPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2U9InZhcigtLV9hcnJvdykiIHN0cm9rZS13aWR0aD0iMC43NSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KICA8L21hcmtlcj4KPC9kZWZzPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iQ1BVIiBkYXRhLXRvPSJDWEwiIGRhdGEtc3R5bGU9InNvbGlkIiBkYXRhLWFycm93LXN0YXJ0PSJ0cnVlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgZGF0YS1sYWJlbD0iQ1hMLmlvIC8gQ1hMLmNhY2hlIC8gQ1hMLm1lbSIgcG9pbnRzPSI1MDcuMzUyOTk5OTk5OTk5OTUsNzYuOSA1MDcuMzUyOTk5OTk5OTk5OTUsMTkzLjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgbWFya2VyLXN0YXJ0PSJ1cmwoI2Fycm93aGVhZC1zdGFydCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJDWEwiIGRhdGEtdG89IlR5cGUxIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0idHJ1ZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNTA3LjM1Mjk5OTk5OTk5OTk1LDIzMC4xIDUwNy4zNTI5OTk5OTk5OTk5NSwyNDguMTAwMDAwMDAwMDAwMDIgMTczLjYwNjk5OTk5OTk5OTk3LDI0OC4xMDAwMDAwMDAwMDAwMiAxNzMuNjA2OTk5OTk5OTk5OTcsMjY2LjEiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgbWFya2VyLXN0YXJ0PSJ1cmwoI2Fycm93aGVhZC1zdGFydCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJDWEwiIGRhdGEtdG89IlR5cGUyIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0idHJ1ZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNTA3LjM1Mjk5OTk5OTk5OTk1LDIzMC4xIDUwNy4zNTI5OTk5OTk5OTk5NSwyNDguMTAwMDAwMDAwMDAwMDIgNTA3LjM1Mjk5OTk5OTk5OTk1LDI0OC4xMDAwMDAwMDAwMDAwMiA1MDcuMzUyOTk5OTk5OTk5OTUsMjY2LjEiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgbWFya2VyLXN0YXJ0PSJ1cmwoI2Fycm93aGVhZC1zdGFydCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJDWEwiIGRhdGEtdG89IlR5cGUzIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0idHJ1ZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNTA3LjM1Mjk5OTk5OTk5OTk1LDIzMC4xIDUwNy4zNTI5OTk5OTk5OTk5NSwyNDguMTAwMDAwMDAwMDAwMDIgODY0LjA2OTk5OTk5OTk5OTksMjQ4LjEwMDAwMDAwMDAwMDAyIDg2NC4wNjk5OTk5OTk5OTk5LDI2Ni4xIiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIG1hcmtlci1zdGFydD0idXJsKCNhcnJvd2hlYWQtc3RhcnQpIiAvPgo8ZyBjbGFzcz0iZWRnZS1sYWJlbCIgZGF0YS1mcm9tPSJDUFUiIGRhdGEtdG89IkNYTCIgZGF0YS1sYWJlbD0iQ1hMLmlvIC8gQ1hMLmNhY2hlIC8gQ1hMLm1lbSI+CiAgPHJlY3QgeD0iNDI2Ljg1Mjk5OTk5OTk5OTk1IiB5PSIxMTkuOSIgd2lkdGg9IjE2MC4yMDk5OTk5OTk5OTk5OCIgaGVpZ2h0PSIzMC4zIiByeD0iMiIgcnk9IjIiIGZpbGw9InZhcigtLWJnKSIgc3Ryb2tlPSJ2YXIoLS1faW5uZXItc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIxIiAvPgogIDx0ZXh0IHg9IjUwNi45NTc5OTk5OTk5OTk5NyIgeT0iMTM1LjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iNDAwIiBmaWxsPSJ2YXIoLS1fdGV4dC1zZWMpIiBkeT0iMy44NDk5OTk5OTk5OTk5OTk2Ij5DWEwuaW8gLyBDWEwuY2FjaGUgLyBDWEwubWVtPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJDUFUiIGRhdGEtbGFiZWw9Iu2YuOyKpO2KuCBDUFUiIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iNDQ5LjY5ODQ5OTk5OTk5OTk3IiB5PSI0MCIgd2lkdGg9IjExNS4zMDg5OTk5OTk5OTk5OCIgaGVpZ2h0PSIzNi45MDAwMDAwMDAwMDAwMDYiIHJ4PSIwIiByeT0iMCIgZmlsbD0idmFyKC0tX25vZGUtZmlsbCkiIHN0cm9rZT0idmFyKC0tX25vZGUtc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9IjUwNy4zNTI5OTk5OTk5OTk5NSIgeT0iNTguNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPu2YuOyKpO2KuCBDUFU8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IkNYTCIgZGF0YS1sYWJlbD0iQ1hMIOyKpOychOy5mCAmYW1wOyDtjKjruIzrpq0g7J247YSw7Luk64Sl7Yq4IiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjM4My4zNzg5OTk5OTk5OTk5NiIgeT0iMTkzLjIiIHdpZHRoPSIyNDcuOTQ3OTk5OTk5OTk5OTgiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9IiNmZmViZWUiIHN0cm9rZT0iI2QzMmYyZiIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9IjUwNy4zNTI5OTk5OTk5OTk5NSIgeT0iMjExLjY0OTk5OTk5OTk5OTk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5DWEwg7Iqk7JyE7LmYICZhbXA7IO2MqOu4jOumrSDsnbjthLDsu6TrhKXtirg8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlR5cGUxIiBkYXRhLWxhYmVsPSJUeXBlIDEgOiBTbWFydE5JQyAvIENYTC5pbyArIENYTC5jYWNoZSIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI0MCIgeT0iMjY2LjEiIHdpZHRoPSIyNjcuMjEzOTk5OTk5OTk5OTQiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSIxNzMuNjA2OTk5OTk5OTk5OTciIHk9IjI4NC41NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+VHlwZSAxIDogU21hcnROSUMgLyBDWEwuaW8gKyBDWEwuY2FjaGU8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlR5cGUyIiBkYXRhLWxhYmVsPSJUeXBlIDIgOiBHUFXCt05QVSAvIENYTC5pbyArIENYTC5jYWNoZSArIENYTC5tZW0iIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iMzM1LjIxMzk5OTk5OTk5OTk0IiB5PSIyNjYuMSIgd2lkdGg9IjM0NC4yNzgiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSI1MDcuMzUyOTk5OTk5OTk5OTUiIHk9IjI4NC41NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+VHlwZSAyIDogR1BVwrdOUFUgLyBDWEwuaW8gKyBDWEwuY2FjaGUgKyBDWEwubWVtPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJUeXBlMyIgZGF0YS1sYWJlbD0iVHlwZSAzIDog66mU66qo66asIO2SgOungSDsnqXsuZggLyBDWEwuaW8gKyBDWEwubWVtIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjcwNy40OTIiIHk9IjI2Ni4xIiB3aWR0aD0iMzEzLjE1NTk5OTk5OTk5OTk1IiBoZWlnaHQ9IjM2LjkwMDAwMDAwMDAwMDAwNiIgcng9IjAiIHJ5PSIwIiBmaWxsPSIjZThmNWU5IiBzdHJva2U9IiMzODhlM2MiIHN0cm9rZS13aWR0aD0iMnB4IiAvPgogIDx0ZXh0IHg9Ijg2NC4wNjk5OTk5OTk5OTk5IiB5PSIyODQuNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPlR5cGUgMyA6IOuplOuqqOumrCDtkoDrp4Eg7J6l7LmYIC8gQ1hMLmlvICsgQ1hMLm1lbTwvdGV4dD4KPC9nPgo8L3N2Zz4= "Mermaid diagram")
 
 ***
 
-### **II. CXL 3.0/3.1의 3대 핵심 프로토콜 및 아키텍처 기술**
+#### Ⅱ. CXL 핵심 구조 및 3대 서브 프로토콜
 
-| **분류**                | **🔑 핵심 구성 요소 및 프로토콜 🚨**   | **🏁 역할 및 통제 목적 💯**                      |
-| :-------------------- | :-------------------------- | :---------------------------------------- |
-| **CXL.io**            | 장치 발견, 구성 및 링크 관리 (PCIe 호환) | 하드웨어 초기화, I/O 가상화 및 제어 데이터의 송수신 제어        |
-| **CXL.cache**         | 호스트와 장치 간 캐시 메모리 공유 통제      | GPU/NPU 가속기가 호스트 메모리 데이터를 저지연 복사/캐싱하도록 보장 |
-| **CXL.mem**           | 호스트가 장치의 메모리를 주소 공간에 매핑     | 외부 CXL 메모리 카드를 시스템의 가상 RAM 영역으로 마운트 처리    |
-| **Back-Invalidation** | 캐시 무효화 메커니즘 (CXL 3.0 신규)    | 다중 호스트가 동일 메모리 풀을 쓸 때 발생할 데이터 정합성 파괴 방지   |
+**가. 3대 서브 프로토콜**
 
-***
-
-### **III. 기존 CXL 1.1/2.0 표준과 신규 CXL 3.0/3.1 표준의 비교**
-
-| **비교 항목**   | **💻 기존 CXL 1.1 / 2.0 표준**     | **⚡ 신규 CXL 3.0 / 3.1 표준**             |
-| :---------- | :----------------------------- | :------------------------------------ |
-| **물리 대역폭**  | PCIe Gen5 기반 (최대 32GT/s 전송)    | **PCIe Gen6 기반 (PAM4 적용, 최대 64GT/s)** |
-| **연결 토폴로지** | 1:1 점대점 (Point-to-Point) 직접 연결 | **CXL 스위치 스패닝 트리 기반 패브릭 구조**          |
-| **메모리 공유**  | 호스트 단독 전용 메모리 확장 수준            | **다중 호스트 간의 실시간 메모리 풀링/공유**           |
-| **디바이스 계층** | 싱글 레벨 스위치 구성만 가능               | 다단계 다중 홉(Multi-hop) 스위칭 라우팅 지원        |
+| 프로토콜          | 역할                     | 디바이스 타입       | 핵심 키워드                |
+| :------------ | :--------------------- | :------------ | :-------------------- |
+| **CXL.io**    | PCIe 기반 I/O / 모든 장치 공통 | Type 1·2·3 전체 | 레거시 PCIe 호환·기본 통신     |
+| **CXL.cache** | 가속기→호스트 메모리 캐시 접근      | Type 1·2      | 가속기가 CPU 메모리를 캐시처럼 활용 |
+| **CXL.mem**   | 호스트→CXL 장치 메모리 직접 접근   | Type 2·3      | 메모리 확장·풀링의 핵심 프로토콜    |
 
 ***
 
-### **IV. CXL 3.0/3.1 도입 시 차세대 데이터센터의 이점 및 발전 전망**
+**나. CXL 디바이스 타입 3종**
 
-**IMPORTANT**
+```
+[CXL 디바이스 유형]
 
-1. **메모리 가두리(Stranding) 현상 예방**: 특정 서버에 메모리가 유휴 상태로 낭비되고 다른 서버는 메모리가 부족한 현상을 극복하여, 메모리 풀(Pool)에서 동적으로 할당/회수함으로써 전사 데이터센터의 TCO를 혁신적으로 감축합니다.
-2. **HBM과의 시너지 (가상 UMA 환경 구축)**: 물리적 한계로 프로세서에 밀착 적층되는 고비용 HBM과 물리적 확장이 자유로운 저비용 CXL 메모리 풀을 결합하여, 거대 LLM 모델의 파라미터가 끊김 없이 처리되는 하이브리드 가상 메모리 아키텍처를 완성합니다.
+Type 1: CXL.io + CXL.cache
+  → 스마트NIC·가속기 / 호스트 메모리 캐시 접근
+  → 자체 메모리 없음
+
+Type 2: CXL.io + CXL.cache + CXL.mem
+  → GPU·FPGA·AI 가속기
+  → 양방향 캐시 일관성 / 최고 복잡도
+
+Type 3: CXL.io + CXL.mem
+  → CMM(CXL Memory Module)·메모리 확장 장치
+  → 메모리 풀링 전용 / 가장 단순·범용
+```
+
+***
+
+#### Ⅲ. CXL 버전별 진화 및 3.0/3.1 핵심 기능
+
+**가. 버전별 진화**
+
+| **핵심 척도**  | **📊 CXL 1.x / 2.0 🚨**                        | **🔑 CXL 3.0 🚨**                                                                                                   | **🏁 CXL 3.1 💯**                                                                       |
+| :--------- | :--------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------- |
+| **기반 규격**  | PCIe 5.0 / 32GT/s                              | **PCIe 6.0 / 64GT/s** (대역폭 2배)                                                                                      | PCIe 6.0 유지·기능 확장                                                                       |
+| **핵심 혁신**  | **CXL 2.0**: 스위치 도입·멀티호스트 풀링 시작 / 단일 스위치 레벨 한계 | **스파인-리프 패브릭**: 최대 **4,096노드** 연결 / **하드웨어 캐시 일관성**: 멀티호스트 간 소프트웨어 개입 없는 캐시 동기화 / **메모리 셰어링**: 복수 호스트가 동일 메모리 동시 접근 | **향상된 RAS**: 신뢰성·가용성·서비스성 강화 / **보안 기능**: 메모리 암호화·접근 제어 강화 / **저지연 최적화**: AI 추론 워크로드 특화 |
+| **메모리 풀링** | CXL 2.0: 단일 스위치 내 풀링 (수십 노드)                   | **글로벌 메모리 풀**: 수천 노드 단일 논리 메모리 / **DCS(Dynamic Capacity Service)**: 쿠버네티스 연계 동적 메모리 할당 / 앞서 다룬 **메모리 스트랜딩 20% 절감**  | AI 클러스터 KV 캐시 공유 / LLM 추론 처리량 **21.9배 향상** / 토큰당 에너지 **60배 절감**                         |
+
+***
+
+**나. CXL 3.0 핵심 기능 도식화**
+
+```
+[CXL 3.0 스파인-리프 패브릭 구조]
+
+        CXL 스파인 스위치
+       /        |        \
+   Leaf       Leaf       Leaf
+   /|\        /|\        /|\
+  H H H     H H H     H H H
+  (호스트 CPU·GPU·AI 가속기)
+         ↕ CXL.mem
+    [글로벌 CXL 메모리 풀]
+    CMM CMM CMM CMM CMM
+    (CXL Memory Module)
+
+특징:
+  최대 4,096 노드 연결
+  하드웨어 캐시 일관성 (소프트웨어 개입 없음)
+  복수 호스트 동일 메모리 동시 접근
+
+[메모리 풀링 효과]
+기존:
+  서버A: DRAM 512GB (200GB 사용·312GB 유휴) 🚨
+  서버B: DRAM 512GB (480GB 사용·부족) 🚨
+  → 메모리 스트랜딩 낭비
+
+CXL 3.0:
+  서버A+서버B → 1TB 글로벌 메모리 풀
+  DCS로 동적 할당 → 수요에 따라 탄력 배분
+  → 스트랜딩 제거·활용률 극대화 ✅
+```
+
+***
+
+**다. CXL 3.0 활용 사례**
+
+| 활용 사례            | 내용                           | 기대 효과                   |
+| :--------------- | :--------------------------- | :---------------------- |
+| **LLM KV 캐시 공유** | 복수 GPU가 동일 KV 캐시 메모리 접근      | 추론 처리량 21.9배·에너지 60배 절감 |
+| **AI 학습 메모리 확장** | HBM 한계 초과 시 CXL로 메모리 확장      | 초대형 모델 학습 가능            |
+| **2-Tier 메모리**   | 핫 데이터: 로컬 DRAM / 웜·콜드: CXL 풀 | 비용 최적화·성능 유지            |
+| **쿠버네티스 통합**     | DCS로 Pod 메모리 동적 할당           | 메모리 과잉 예약 제거            |
+
+***
+
+**(제언)** "CXL 3.0은 '서버별로 고립됐던 메모리를 네트워크 전체의 단일 메모리 풀로 해방'시키는 메모리 민주화의 핵심 표준입니다. **앞서 다룬 HBM4(칩 위 고대역폭)·분산 스토리지 패브릭(영속 계층)·CXL 3.0(메모리 계층) 세 기술이 계층별로 통합될 때 AI 데이터센터의 완전한 풀드 아키텍처가 완성되며, 앞서 다룬 AIDC 특별법 기반 국내 AI 데이터센터 설계 시 CXL 3.0 메모리 풀링을 초기부터 반영해 메모리 스트랜딩 낭비를 제거하고 LLM 추론 효율을 극대화하는 것이 GPU 활용률·TCO 최적화의 핵심 전략입니다.**"리 아키텍처를 완성합니다.

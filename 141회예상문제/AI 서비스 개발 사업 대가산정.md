@@ -1,33 +1,230 @@
-### **1. 답안 전개 스토리 (핵심 압축)**
-
-> "기존의 단순 웹페이지 개발용 '기능점수(FP)' 계산법을 AI 개발에 억지로 갖다 붙여 단가가 헐값으로 후려쳐지던 치명적 결함을 해결한 \*\*'인공지능 특화 사업 대가산정 가이드라인'\*\*이다. AI 서비스는 CRUD 데이터베이스 개수보다 데이터의 수집, 전처리, 라벨링, 모델 튜닝, 평가 검증 등 데이터 엔지니어링이 90% 이상을 차지한다. 대가 산정은 3대 축으로 구성된다. 첫째, 데이터 구축의 **'가공비'** (건수 × 가공 단가). 둘째, 모델링을 담당하는 데이터 사이언티스트의 **'투입공수(MM)'** (직무별 공인 단가). 셋째, 모델 학습에 필수적인 **'GPU 인프라비'** (클라우드 서버 비용 실비 청구)다. 발주처와 개발사 간의 예산 삭감 분쟁을 예방하고 정당한 개발 가치를 제도적으로 보증하는 AI 비즈니스의 필수 표준 공식이다."
+### **공공 AI 서비스 조달 기준: AI 서비스 대가산정 가이드라인**
 
 ***
 
-### **2. 실제 답안에 쓸 핵심 내용 (암기용)**
-
-#### **I. \[도입] 데이터 과학의 가치 정량화, AI 서비스 대가산정 가이드라인 개요**
-
-* **정의:** 한국소프트웨어산업협회(KOSA) 등이 제정한 표준으로, 기존 기능점수(FP) 방식 적용이 불가능한 AI 도입/개발 사업에 대해 데이터 가공비, 모델 개발공수(MM), 클라우드 컴퓨팅 실비를 종합 계상하는 대가 기준.
-* **목적:** AI 구축 시 가장 비중이 큰 데이터 전처리, 모델 최적화 및 튜닝 업무를 소프트웨어 사업 대가 기준에 정당하게 반영하여 AI 전문 강소기업의 수익성을 보장하고 제값을 주기 위함.
-
-#### **II. \[본론 1] (극단적 단순화 버전) AI 가치 보존을 위한 3대 예산 분리 계상 구조**
+#### 답안 전체 스토리 흐름 (목차)
 
 ```
+Ⅰ. 개요 (왜 기존 SW 대가산정으로는 AI 서비스를 못 다루는가)
+Ⅱ. AI 서비스 유형 분류 체계
+Ⅲ. 유형별 대가산정 방법론
+Ⅳ. AI 특화 비목 및 산정 기준
+Ⅴ. 결론 및 발전 방향
 ```
 
-![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3NzIuMjc3IDM5MS4yIiB3aWR0aD0iNzcyLjI3NyIgaGVpZ2h0PSIzOTEuMiIgc3R5bGU9Ii0tYmc6I0ZGRkZGRjstLWZnOiMzQjNCM0I7LS1saW5lOiMzQjNCM0I7LS1hY2NlbnQ6IzAwNUZCODstLW11dGVkOiMzQjNCM0JDQzstLXN1cmZhY2U6I0Y4RjhGODstLWJvcmRlcjojM0IzQjNCO2JhY2tncm91bmQ6dmFyKC0tYmcpIj4KPHN0eWxlPgogIEBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUludGVyOndnaHRANDAwOzUwMDs2MDA7NzAwJmFtcDtkaXNwbGF5PXN3YXAnKTsKICB0ZXh0IHsgZm9udC1mYW1pbHk6ICdJbnRlcicsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsgfQogIHN2ZyB7CiAgICAvKiBEZXJpdmVkIGZyb20gLS1iZyBhbmQgLS1mZyAob3ZlcnJpZGFibGUgdmlhIC0tbGluZSwgLS1hY2NlbnQsIGV0Yy4pICovCiAgICAtLV90ZXh0OiAgICAgICAgICB2YXIoLS1mZyk7CiAgICAtLV90ZXh0LXNlYzogICAgICB2YXIoLS1tdXRlZCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA2MCUsIHZhcigtLWJnKSkpOwogICAgLS1fdGV4dC1tdXRlZDogICAgdmFyKC0tbXV0ZWQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNDAlLCB2YXIoLS1iZykpKTsKICAgIC0tX3RleHQtZmFpbnQ6ICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMjUlLCB2YXIoLS1iZykpOwogICAgLS1fbGluZTogICAgICAgICAgdmFyKC0tbGluZSwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA1MCUsIHZhcigtLWJnKSkpOwogICAgLS1fYXJyb3c6ICAgICAgICAgdmFyKC0tYWNjZW50LCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDg1JSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ub2RlLWZpbGw6ICAgICB2YXIoLS1zdXJmYWNlLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDMlLCB2YXIoLS1iZykpKTsKICAgIC0tX25vZGUtc3Ryb2tlOiAgIHZhcigtLWJvcmRlciwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAyMCUsIHZhcigtLWJnKSkpOwogICAgLS1fZ3JvdXAtZmlsbDogICAgdmFyKC0tYmcpOwogICAgLS1fZ3JvdXAtaGRyOiAgICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA1JSwgdmFyKC0tYmcpKTsKICAgIC0tX2lubmVyLXN0cm9rZTogIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMTIlLCB2YXIoLS1iZykpOwogICAgLS1fa2V5LWJhZGdlOiAgICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAxMCUsIHZhcigtLWJnKSk7CiAgfQo8L3N0eWxlPgo8ZGVmcz4KICA8bWFya2VyIGlkPSJhcnJvd2hlYWQiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjciIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwLCA4IDIuNSwgMCA1IiBmaWxsPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2U9InZhcigtLV9hcnJvdykiIHN0cm9rZS13aWR0aD0iMC43NSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KICA8L21hcmtlcj4KICA8bWFya2VyIGlkPSJhcnJvd2hlYWQtc3RhcnQiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjEiIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgPHBvbHlnb24gcG9pbnRzPSI4IDAsIDAgMi41LCA4IDUiIGZpbGw9InZhcigtLV9hcnJvdykiIHN0cm9rZT0idmFyKC0tX2Fycm93KSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiAvPgogIDwvbWFya2VyPgo8L2RlZnM+CjxnIGNsYXNzPSJzdWJncmFwaCIgZGF0YS1pZD0iQUlfX19fX18iIGRhdGEtbGFiZWw9IkFJIOyEnOu5hOyKpCDqsJzrsJwg7IKs7JeFIOuMgOqwgOyCsOyglSDsmIjsgrAg6rWs7ISxIj4KICA8cmVjdCB4PSI0MCIgeT0iNDAiIHdpZHRoPSI2OTIuMjc3IiBoZWlnaHQ9IjMxMS4yIiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ncm91cC1maWxsKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHJlY3QgeD0iNDAiIHk9IjQwIiB3aWR0aD0iNjkyLjI3NyIgaGVpZ2h0PSIyOCIgcng9IjAiIHJ5PSIwIiBmaWxsPSJ2YXIoLS1fZ3JvdXAtaGRyKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iNTIiIHk9IjU0IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSJ2YXIoLS1fdGV4dC1zZWMpIiBkeT0iNC4xOTk5OTk5OTk5OTk5OTkiPkFJIOyEnOu5hOyKpCDqsJzrsJwg7IKs7JeFIOuMgOqwgOyCsOyglSDsmIjsgrAg6rWs7ISxPC90ZXh0Pgo8L2c+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJUT1RBTCIgZGF0YS10bz0iREFUQSIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgZGF0YS1sYWJlbD0iMS4g642w7J207YSwIOqwgOqzteu5hCIgcG9pbnRzPSIyMjQuNjYxLDIwMS4xNSA0MjUuMzUxLDIwMS4xNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iVE9UQUwiIGRhdGEtdG89IkRFViIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgZGF0YS1sYWJlbD0iMi4g7JWM6rOg66as7KaYIOqwnOuwnOu5hCIgcG9pbnRzPSIyMjQuNjYxLDIxMC4zNzUgMjM2LjY2MSwyMTAuMzc1IDIzNi42NjEsMjk5Ljg1IDQyNS4zNTEsMjk5Ljg1IiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJUT1RBTCIgZGF0YS10bz0iSU5GIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0iZmFsc2UiIGRhdGEtYXJyb3ctZW5kPSJ0cnVlIiBkYXRhLWxhYmVsPSIzLiDsnbjtlITrnbwg7Iuk67mEIiBwb2ludHM9IjIyNC42NjEsMTkxLjkyNSAyMzYuNjYxLDE5MS45MjUgMjM2LjY2MSwxMTAuOSA0MjUuMzUxLDExMC45IiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CjxnIGNsYXNzPSJlZGdlLWxhYmVsIiBkYXRhLWZyb209IlRPVEFMIiBkYXRhLXRvPSJEQVRBIiBkYXRhLWxhYmVsPSIxLiDrjbDsnbTthLAg6rCA6rO167mEIj4KICA8cmVjdCB4PSIyNzYuMzgzMDAwMDAwMDAwMDQiIHk9IjE4NS4xNSIgd2lkdGg9Ijk3LjI0NiIgaGVpZ2h0PSIzMC4zIiByeD0iMiIgcnk9IjIiIGZpbGw9InZhcigtLWJnKSIgc3Ryb2tlPSJ2YXIoLS1faW5uZXItc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIxIiAvPgogIDx0ZXh0IHg9IjMyNS4wMDYwMDAwMDAwMDAwMyIgeT0iMjAwLjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSI0MDAiIGZpbGw9InZhcigtLV90ZXh0LXNlYykiIGR5PSIzLjg0OTk5OTk5OTk5OTk5OTYiPjEuIOuNsOydtO2EsCDqsIDqs7XruYQ8L3RleHQ+CjwvZz4KPGcgY2xhc3M9ImVkZ2UtbGFiZWwiIGRhdGEtZnJvbT0iVE9UQUwiIGRhdGEtdG89IkRFViIgZGF0YS1sYWJlbD0iMi4g7JWM6rOg66as7KaYIOqwnOuwnOu5hCI+CiAgPHJlY3QgeD0iMjY4LjY2MSIgeT0iMjgzLjg1IiB3aWR0aD0iMTEyLjY5MDAwMDAwMDAwMDAxIiBoZWlnaHQ9IjMwLjMiIHJ4PSIyIiByeT0iMiIgZmlsbD0idmFyKC0tYmcpIiBzdHJva2U9InZhcigtLV9pbm5lci1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iMzI1LjAwNjAwMDAwMDAwMDAzIiB5PSIyOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSI0MDAiIGZpbGw9InZhcigtLV90ZXh0LXNlYykiIGR5PSIzLjg0OTk5OTk5OTk5OTk5OTYiPjIuIOyVjOqzoOumrOymmCDqsJzrsJzruYQ8L3RleHQ+CjwvZz4KPGcgY2xhc3M9ImVkZ2UtbGFiZWwiIGRhdGEtZnJvbT0iVE9UQUwiIGRhdGEtdG89IklORiIgZGF0YS1sYWJlbD0iMy4g7J247ZSE6528IOyLpOu5hCI+CiAgPHJlY3QgeD0iMjgwLjU0MDk5OTk5OTk5OTk0IiB5PSI5NC45IiB3aWR0aD0iODguOTMiIGhlaWdodD0iMzAuMyIgcng9IjIiIHJ5PSIyIiBmaWxsPSJ2YXIoLS1iZykiIHN0cm9rZT0idmFyKC0tX2lubmVyLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMSIgLz4KICA8dGV4dCB4PSIzMjUuMDA2IiB5PSIxMTAuMDUwMDAwMDAwMDAwMDEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSI0MDAiIGZpbGw9InZhcigtLV90ZXh0LXNlYykiIGR5PSIzLjg0OTk5OTk5OTk5OTk5OTYiPjMuIOyduO2UhOudvCDsi6TruYQ8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlRPVEFMIiBkYXRhLWxhYmVsPSLinKggQUkg7LSdIOyCrOyXhSDrjIDqsIAg4pyoIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjU2IiB5PSIxODIuNyIgd2lkdGg9IjE2OC42NjEiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9IiNmZmViZWUiIHN0cm9rZT0iI2QzMmYyZiIgc3Ryb2tlLXdpZHRoPSIycHgiIC8+CiAgPHRleHQgeD0iMTQwLjMzMDUiIHk9IjIwMS4xNDk5OTk5OTk5OTk5OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+4pyoIEFJIOy0nSDsgqzsl4Ug64yA6rCAIOKcqDwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iREFUQSIgZGF0YS1sYWJlbD0i4pyoIOuNsOydtO2EsCDqsIDqs7Ug64uo6rCAIPCfkq8g4pyoCuybkOyynCDsiJjsp5EgKyDrnbzrsqjrp4Eg67mE7JqpCuuNsOydtO2EsCDqsbTsiJggeCDqsbTri7kg64uo6rCAIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjQyNS4zNTEiIHk9IjE2NS44IiB3aWR0aD0iMjAxLjI2NTAwMDAwMDAwMDAxIiBoZWlnaHQ9IjcwLjciIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2ZmZjNlMCIgc3Ryb2tlPSIjZjU3YzAwIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iNTI1Ljk4MzUiIHk9IjIwMS4xNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIj48dHNwYW4geD0iNTI1Ljk4MzUiIGR5PSItMTIuMzUwMDAwMDAwMDAwMDAxIj7inKgg642w7J207YSwIOqwgOqztSDri6jqsIAg8J+SryDinKg8L3RzcGFuPjx0c3BhbiB4PSI1MjUuOTgzNSIgZHk9IjE2LjkwMDAwMDAwMDAwMDAwMiI+7JuQ7LKcIOyImOynkSArIOudvOuyqOungSDruYTsmqk8L3RzcGFuPjx0c3BhbiB4PSI1MjUuOTgzNSIgZHk9IjE2LjkwMDAwMDAwMDAwMDAwMiI+642w7J207YSwIOqxtOyImCB4IOqxtOuLuSDri6jqsIA8L3RzcGFuPjwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iREVWIiBkYXRhLWxhYmVsPSLinKgg7Yis7J6F6rO17IiYIChNTSkg67Cp7IudIPCfmqgg4pyoCuuNsOydtO2EsCDsgqzsnbTslrjti7DsiqTtirggLyBNTE9wcyDsl5Tsp4Dri4jslrQK7KeB66y067OEIOuTseq4iSDqs7Xsnbgg64W47J6EIOuLqOqwgCDsoIHsmqkiIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iNDI1LjM1MSIgeT0iMjY0LjUiIHdpZHRoPSIyOTAuOTI2IiBoZWlnaHQ9IjcwLjciIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2UxZjVmZSIgc3Ryb2tlPSIjMDI4OGQxIiBzdHJva2Utd2lkdGg9IjJweCIgLz4KICA8dGV4dCB4PSI1NzAuODE0IiB5PSIyOTkuODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSI+PHRzcGFuIHg9IjU3MC44MTQiIGR5PSItMTIuMzUwMDAwMDAwMDAwMDAxIj7inKgg7Yis7J6F6rO17IiYIChNTSkg67Cp7IudIPCfmqgg4pyoPC90c3Bhbj48dHNwYW4geD0iNTcwLjgxNCIgZHk9IjE2LjkwMDAwMDAwMDAwMDAwMiI+642w7J207YSwIOyCrOydtOyWuO2LsOyKpO2KuCAvIE1MT3BzIOyXlOyngOuLiOyWtDwvdHNwYW4+PHRzcGFuIHg9IjU3MC44MTQiIGR5PSIxNi45MDAwMDAwMDAwMDAwMDIiPuyngeustOuzhCDrk7HquIkg6rO17J24IOuFuOyehCDri6jqsIAg7KCB7JqpPC90c3Bhbj48L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IklORiIgZGF0YS1sYWJlbD0i4pyoIOusvOumrCDsnbjtlITrnbzruYQg4pyoCu2VmeyKteyaqSBHUFUgQ2xvdWQg67mE7JqpIOyLpOu5hCDqs4Tsg4EiIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iNDI1LjM1MSIgeT0iODQiIHdpZHRoPSIyNDcuMjA3IiBoZWlnaHQ9IjUzLjgwMDAwMDAwMDAwMDAwNCIgcng9IjAiIHJ5PSIwIiBmaWxsPSJ2YXIoLS1fbm9kZS1maWxsKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iNTQ4Ljk1NDUiIHk9IjExMC45IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiPjx0c3BhbiB4PSI1NDguOTU0NSIgZHk9Ii0zLjkwMDAwMDAwMDAwMDAwMTIiPuKcqCDrrLzrpqwg7J247ZSE652867mEIOKcqDwvdHNwYW4+PHRzcGFuIHg9IjU0OC45NTQ1IiBkeT0iMTYuOTAwMDAwMDAwMDAwMDAyIj7tlZnsirXsmqkgR1BVIENsb3VkIOu5hOyaqSDsi6TruYQg6rOE7IOBPC90c3Bhbj48L3RleHQ+CjwvZz4KPC9zdmc+ "Mermaid diagram")
+포인트: 개요에서 \*\*"앞서 다룬 디지털서비스 전문계약제도가 '공공기관이 SaaS·AI 서비스를 구독·이용 방식으로 유연하게 계약하는 제도적 기반'이라면, AI 서비스 대가산정 가이드라인은 '그 계약의 가격을 어떻게 합리적으로 산정하는가'의 기술적·경제적 기준이다 — 기존 소프트웨어 기능점수(FP) 기반 대가산정은 데이터 구축·GPU 인프라·모델 드리프트 대응·RLHF 재학습 비용을 반영하지 못하며, AI 서비스의 불확실성·데이터 의존성·지속 운영 특성을 담은 별도 산정 체계가 2023년 과기정통부·NIA 가이드라인으로 표준화"\*\*라는 한 줄로 시작하면, 왜 이 답안이 앞서 다룬 공공 SaaS 거버넌스·디지털서비스 전문계약·MLOps 시리즈 전체의 **AI 조달 가격 기준**인지 드러납니다.
 
-#### **III. \[본론 2] AI 대가산정 3대 구성 항목 및 라이프사이클별 산정 방식 전격 해부 (3단 표)**
+***
 
-이 토픽은 기존 \*\*'기능점수(FP)의 명확한 한계점(화면 위주 산정의 모순)'\*\*을 먼저 규명하고, 가이드라인이 명시한 \*\*'가공비와 모델개발비(MM)의 이원화 구조'\*\*를 정밀하게 대조 서술하는 것이 고득점 포인트입니다.
+#### Ⅱ. AI 서비스 유형 분류 체계
 
-| **핵심 척도**                | **📊 대가산정 3대 구성 항목 🚨**                                                                                                  | **🔑 단계별 대가 산정 방식 💯**                                                                                                                                                             | **💼 기존 기능점수(FP)의 한계 💯**                                                                               |
-| :----------------------- | :----------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------ |
-| **개념 / 기존 FP 한계**        | **'데이터와 모델의 가치 인정'.** 단순 DB 테이블(ILF/EIF)과 입출력(EI/EO) 화면 개수로 규격화되던 관행 탈피.                                                 | **'수명 주기별 실비 계상'.** AI 라이프사이클에 최적화하여, 각 단계의 리소스 소모 특징에 맞춤형 단가 산식을 대입함.                                                                                                             | 화면이 거의 없는 백엔드 AI 엔진(예: 추천 알고리즘) 개발 시, 기능점수로 계산하면 **거의 0원에 가깝게 책정되는 비현실성.**                              |
-| **핵심 세부 내용 (출제 포인트) 🚨** | **1. \[데이터 가공비 🚨]** 수집, 정제, 라벨링 비용. **2. \[모델 개발비 🚨]** 알고리즘 튜닝 및 학습 엔지니어링 비용 (공인 노임 MM). **3. \[인프라 도입비]** GPU 구매/대여료. | **1. \[데이터 준비 단계 💯]** - 수식: **(데이터 수집 건수 × 난이도별 수집 단가) + (가공 건수 × 난이도별 가공 단가)**. **2. \[모델 개발 단계 🚨]** - 수식: **∑ (투입 인력 수 × 참여 기간(월) × IT직무별 노임 단가)** (데이터 아키텍트, 데이터 분석가 단가 차등화). | 기존 FP는 데이터 입력/출력 폼(Form) 위주로 대가를 산정하므로, 눈에 보이지 않는 **'1,000만 장의 이미지 데이터 정제 및 모델 파인튜닝'** 가치 측정이 완전히 불가능함. |
-| **의의 및 정책**              | 공공 AI 조달 사업 발주 시 예산 조율의 법적 근거가 마련되어 불필요한 갑을 분쟁 원천 차단.                                                                    | 클라우드 사용비(GPU 인프라 비용)는 실비 정산을 원칙으로 하여, 인프라 비용 폭증 시 개발사가 파산하는 리스크 방어.                                                                                                                | KOSA(한국SW산업협회)의 공식 가이드라인 개정으로 민간 B2B 계약 시에도 대가 기준으로 준용되는 추세.                                            |
+**가. AI 서비스 4대 유형**
 
-#### **IV. \[결론/제언] AI성능 보증의 한계와 SLA(서비스 수준 협약)의 재정립**
+| 유형          | 정의                    | 대표 사례                      | 산정 방식             |
+| :---------- | :-------------------- | :------------------------- | :---------------- |
+| **구독·활용형**  | 상용 AI API·SaaS 그대로 활용 | ChatGPT API·Clova·OCR SaaS | 사용량 기반(토큰·건수·사용자) |
+| **커스터마이징형** | 기반 모델 파인튜닝·RAG 구성     | 공공 챗봇·문서 분류 AI             | 투입공수+데이터구축비       |
+| **신규 개발형**  | AI 시스템 처음부터 설계·개발     | 영상 분석 AI·예측 모델             | FP+AI 보정계수        |
+| **인프라 구축형** | GPU 서버·MLOps 플랫폼 구축   | AI 데이터센터·학습 클러스터           | 물량산출·HW 단가 기반     |
 
-* **(키워드 위주 2줄 마무리)** "AI 서비스는 학습용 데이터 분포에 따라 성능(정확도)이 수시로 변하므로 전통 소프트웨어처럼 하자보수 기간에 '무결점 정확도 보증'을 요구하는 것은 무리입니다. 대가산정 정착과 동시에 **'학습 데이터 신뢰 범위 하에서의 작동 조건'을 명시하는 'AI 특화 SLA(서비스 수준 협약)'를 체결하여 개발사의 법적 소송 위험을 방어해야 합니다.**"
+***
+
+**나. 유형 판별 흐름**
+
+```
+[AI 서비스 유형 판별 의사결정]
+
+상용 AI API 그대로 사용?
+  Yes → 구독·활용형 (사용량 기반 산정)
+  No  ↓
+기존 모델 파인튜닝·RAG 구성?
+  Yes → 커스터마이징형 (공수+데이터 산정)
+  No  ↓
+AI 모델 처음부터 개발?
+  Yes → 신규 개발형 (FP+보정계수 산정)
+  No  ↓
+GPU·인프라만 구축?
+  Yes → 인프라 구축형 (물량산출 산정)
+```
+
+***
+
+#### Ⅲ. 유형별 대가산정 방법론
+
+**가. 구독·활용형 대가산정**
+
+```
+[구독·활용형 산정 공식]
+
+월정 비용 = 단가(토큰·건수·사용자) × 예상 사용량
+           + 플랫폼 이용료(구독료)
+           + 커스터마이징 설정 비용
+
+산정 시 필수 확인:
+  ①API 호출 단가 (입력·출력 토큰별)
+  ②월간 예상 사용량 (트래픽 분석 기반)
+  ③SLA 수준 (가용성·응답시간)
+  ④데이터 보안 등급 (앞서 다룬 CSAP 연계)
+
+예시:
+  GPT-4 API: 입력 $0.03/1K토큰 + 출력 $0.06/1K토큰
+  월 1억 토큰 사용 예상 → 월 비용 산정
+  + 한국어 최적화 프롬프트 개발 공수 별도 산정
+```
+
+***
+
+**나. 커스터마이징형 대가산정**
+
+| 비목            | 산정 기준                  | 핵심 내용                         |
+| :------------ | :--------------------- | :---------------------------- |
+| **파인튜닝 비용**   | GPU 시간 × 단가 + 엔지니어 공수  | A100 기준 시간당 단가·에포크 수·데이터 규모   |
+| **데이터 구축비**   | 수집·정제·어노테이션·검증 단가 × 건수 | 앞서 다룬 **데이터 어노테이션** IAA 품질 기준 |
+| **RAG 파이프라인** | 벡터 DB 구축·임베딩·검색 엔진 구성  | 앞서 다룬 **Advanced RAG** 단계별 공수 |
+| **모델 평가 비용**  | 성능 검증·벤치마크·레드티밍        | 앞서 다룬 **AI 레드티밍** 비용 포함       |
+| **초기 운영 안정화** | 배포 후 3\~6개월 모니터링·튜닝    | 앞서 다룬 **MLOps** 드리프트 대응       |
+
+***
+
+**다. 신규 개발형 대가산정**
+
+```
+[신규 개발형 AI 보정계수 적용]
+
+기본 산정:
+  개발비 = 기능점수(FP) × FP당 단가
+
+AI 보정계수 추가 적용:
+  AI 복잡도 계수 (α): 1.1~1.5
+    - 단순 분류: 1.1
+    - 복합 추론·멀티모달: 1.5
+
+  데이터 의존도 계수 (β): 1.1~1.3
+    - 공개 데이터 활용: 1.1
+    - 전용 데이터 구축 필요: 1.3
+
+  불확실성 계수 (γ): 1.1~1.2
+    - 명확한 성능 목표: 1.1
+    - R&D 성격·목표 불명확: 1.2
+
+최종 개발비 = FP × 단가 × α × β × γ
+
+AI 특화 추가 비목:
+  + 데이터 구축비 (수집·정제·레이블링)
+  + GPU 인프라 임차비 (학습 기간)
+  + MLOps 파이프라인 구축비
+  + 모델 성능 KPI 검증비
+```
+
+***
+
+**라. 인프라 구축형 대가산정**
+
+| 항목            | 산정 방법                   | 핵심                        |
+| :------------ | :---------------------- | :------------------------ |
+| **GPU 서버**    | 대수 × 단가 (H100·A100 기준)  | AIDC 특별법 연계 / 전력·냉각 비용 포함 |
+| **스토리지**      | 앞서 다룬 **분산 스토리지 패브릭**   | NVMe-oF·용량 기반 단가          |
+| **네트워크**      | InfiniBand·RoCEv2 구성 비용 | 앞서 다룬 **RDMA 패브릭**        |
+| **MLOps 플랫폼** | 피처스토어·실험추적·모델레지스트리      | 오픈소스 vs 상용 선택 비용          |
+| **유지보수**      | 구축비의 10\~15%/년          | SLA·가용성 수준 기반             |
+
+***
+
+#### Ⅳ. AI 특화 비목 및 산정 기준
+
+**가. 기존 SW 대가산정 vs AI 서비스 대가산정 비교**
+
+| 비교 항목       | 기존 SW 대가산정    | AI 서비스 대가산정        |
+| :---------- | :------------ | :----------------- |
+| **산정 기준**   | 기능점수(FP)·투입공수 | FP+AI 보정계수+데이터비    |
+| **데이터 비용**  | 미반영 🚨        | 수집·정제·어노테이션 별도 비목  |
+| **인프라**     | 일반 서버         | GPU·HBM·RDMA 특화 단가 |
+| **성능 불확실성** | 낮음            | AI 보정계수(γ) 반영      |
+| **지속 비용**   | 유지보수 정률       | 모델 드리프트 재학습 비용 추가  |
+| **API 비용**  | 없음            | 토큰·건수 기반 종량제       |
+| **평가 비용**   | 기능 테스트        | AI 품질 평가·레드티밍      |
+
+***
+
+**나. AI 서비스 특화 비목 체계**
+
+```
+[AI 서비스 대가산정 전체 비목 구조]
+
+①개발·구축비
+  ├─ 소프트웨어 개발비 (FP 기반)
+  ├─ AI 모델 개발비 (보정계수 적용)
+  ├─ 데이터 구축비
+  │    ├─ 데이터 수집·크롤링
+  │    ├─ 데이터 정제·전처리
+  │    ├─ 어노테이션·레이블링
+  │    └─ 품질 검증 (IAA·코헨의 카파)
+  └─ 인프라 구축비 (GPU·네트워크·스토리지)
+
+②운영·유지보수비
+  ├─ 모델 모니터링 (드리프트 탐지)
+  ├─ 재학습·파인튜닝 (CT 파이프라인)
+  ├─ API 이용료 (구독·종량제)
+  └─ 보안 운영 (앞서 다룬 AI 레드티밍)
+
+③성과 검증비
+  ├─ AI 품질 평가 (정확도·F1·FID)
+  ├─ 공정성 평가 (Demographic Parity)
+  └─ 레드티밍·안전성 검증
+
+④리스크 대응 예비비
+  불확실성·모델 재설계 대응
+  보통 전체의 10~20% 책정
+```
+
+***
+
+**다. 모델 성능 KPI 계약 명시 기준**
+
+| KPI 항목      | 측정 지표               | 계약 기준 예시              |
+| :---------- | :------------------ | :-------------------- |
+| **정확도**     | F1-Score·AUC        | F1 ≥ 0.85 유지          |
+| **응답 지연**   | P95 응답시간            | 95% 요청 3초 이내          |
+| **가용성**     | 서비스 업타임             | 99.9% 이상              |
+| **환각률**     | Faithfulness(RAGAS) | 0.9 이상 유지             |
+| **드리프트 대응** | 재학습 주기              | PSI > 0.2 시 30일 내 재학습 |
+
+***
+
+#### Ⅴ. 결론 및 발전 방향
+
+**앞서 다룬 개념과의 연결**
+
+| 연계 개념            | 연결 내용                      |
+| :--------------- | :------------------------- |
+| **디지털서비스 전문계약**  | 대가산정 결과를 수의계약·구독 계약으로 연결   |
+| **공공 SaaS 거버넌스** | 구독·활용형 AI의 위험관리 4대 원칙 연계   |
+| **MLOps CT**     | 드리프트 재학습 비용을 운영비에 사전 반영    |
+| **AI 레드티밍**      | 성과 검증비에 레드티밍 비용 필수 포함      |
+| **AIDC 특별법**     | 인프라 구축형 GPU 단가·전력 비용 기준 연계 |
+
+**발전 방향**
+
+```
+①LLM API 종량제 표준 단가
+  공공기관 LLM API 도입 시
+  토큰 단가 표준화·비교 기준 마련
+
+②성과 기반 계약(PBC) 확대
+  단순 구축비→AI 성과 KPI 달성 기반 정산
+  앞서 다룬 IT거버넌스 가치 전달 철학 구현
+
+③AI 탄소 비용 반영
+  GPU 전력·탄소배출 비용의 대가산정 포함
+  그린 AI·ESG 연계 조달 기준
+
+④오픈소스 AI 활용 비용 산정
+  라이선스 무료 모델(Llama·Mistral) 도입 시
+  파인튜닝·운영 비용 중심 산정 기준 별도화
+```
+
+***
+
+#### 기술사 답안 포인트
+
+**기존 FP 기반 SW 대가산정의 AI 적용 한계 → AI 서비스 4대 유형(구독·커스터마이징·신규개발·인프라) 분류 → 유형별 산정(토큰 종량제·공수+데이터비·FP+보정계수·물량산출) → AI 보정계수(복잡도α·데이터의존도β·불확실성γ) → AI 특화 비목(데이터구축·GPU·드리프트재학습·레드티밍) → 모델 성능 KPI 계약 명시 → 디지털서비스 전문계약·AIDC 특별법·MLOps 연계 → 성과 기반 계약·탄소 비용·오픈소스 발전** 흐름으로 서술하면 조달·AI·운영을 아우르는 완성도 높은 답안이 됩니다. **AI 보정계수(α·β·γ) 적용과 드리프트 재학습 비용의 운영비 사전 반영**이 핵심 차별화 포인트입니다.

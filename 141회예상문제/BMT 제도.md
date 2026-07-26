@@ -1,38 +1,95 @@
-### **I. 공공 SW 조달의 핵심 가드레일, 직접구매 및 BMT 제도의 개요**
-
-과거 대규모 시스템 통합(SI) 사업 발주 시 상용 소프트웨어가 하도급 형태로 묶여 발주되면서 단가 후려치기와 품질 저하 문제가 빈발했습니다. 이를 방지하기 위해 상용 SW를 국가 기관이 직접 별도 계약하는 **상용SW 직접구매 제도**와, 직접구매 대상 제품 간의 공정한 기술성 검증을 강제하는 **품질성능평가시험(BMT) 의무화 제도**가 소프트웨어 진흥법에 의거하여 시행되고 있습니다.
+### 답안 전체 스토리 흐름 (목차)
 
 ```
+Ⅰ. 개요 (왜 "스펙 제출"만으로는 공공 IT 조달이 불안한가)
+Ⅱ. BMT 제도 핵심 구조
+Ⅲ. 절차 및 평가 체계
+Ⅳ. 결론
 ```
 
-![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MTQuMzc0OTk5OTk5OTk5OSAyMDEuOCIgd2lkdGg9IjkxNC4zNzQ5OTk5OTk5OTk5IiBoZWlnaHQ9IjIwMS44IiBzdHlsZT0iLS1iZzojRkZGRkZGOy0tZmc6IzNCM0IzQjstLWxpbmU6IzNCM0IzQjstLWFjY2VudDojMDA1RkI4Oy0tbXV0ZWQ6IzNCM0IzQkNDOy0tc3VyZmFjZTojRjhGOEY4Oy0tYm9yZGVyOiMzQjNCM0I7YmFja2dyb3VuZDp2YXIoLS1iZykiPgo8c3R5bGU+CiAgQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9SW50ZXI6d2dodEA0MDA7NTAwOzYwMDs3MDAmYW1wO2Rpc3BsYXk9c3dhcCcpOwogIHRleHQgeyBmb250LWZhbWlseTogJ0ludGVyJywgc3lzdGVtLXVpLCBzYW5zLXNlcmlmOyB9CiAgc3ZnIHsKICAgIC8qIERlcml2ZWQgZnJvbSAtLWJnIGFuZCAtLWZnIChvdmVycmlkYWJsZSB2aWEgLS1saW5lLCAtLWFjY2VudCwgZXRjLikgKi8KICAgIC0tX3RleHQ6ICAgICAgICAgIHZhcigtLWZnKTsKICAgIC0tX3RleHQtc2VjOiAgICAgIHZhcigtLW11dGVkLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDYwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV90ZXh0LW11dGVkOiAgICB2YXIoLS1tdXRlZCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA0MCUsIHZhcigtLWJnKSkpOwogICAgLS1fdGV4dC1mYWludDogICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAyNSUsIHZhcigtLWJnKSk7CiAgICAtLV9saW5lOiAgICAgICAgICB2YXIoLS1saW5lLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDUwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9hcnJvdzogICAgICAgICB2YXIoLS1hY2NlbnQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgODUlLCB2YXIoLS1iZykpKTsKICAgIC0tX25vZGUtZmlsbDogICAgIHZhcigtLXN1cmZhY2UsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMyUsIHZhcigtLWJnKSkpOwogICAgLS1fbm9kZS1zdHJva2U6ICAgdmFyKC0tYm9yZGVyLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDIwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ncm91cC1maWxsOiAgICB2YXIoLS1iZyk7CiAgICAtLV9ncm91cC1oZHI6ICAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDUlLCB2YXIoLS1iZykpOwogICAgLS1faW5uZXItc3Ryb2tlOiAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAxMiUsIHZhcigtLWJnKSk7CiAgICAtLV9rZXktYmFkZ2U6ICAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDEwJSwgdmFyKC0tYmcpKTsKICB9Cjwvc3R5bGU+CjxkZWZzPgogIDxtYXJrZXIgaWQ9ImFycm93aGVhZCIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iNyIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8iPgogICAgPHBvbHlnb24gcG9pbnRzPSIwIDAsIDggMi41LCAwIDUiIGZpbGw9InZhcigtLV9hcnJvdykiIHN0cm9rZT0idmFyKC0tX2Fycm93KSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiAvPgogIDwvbWFya2VyPgogIDxtYXJrZXIgaWQ9ImFycm93aGVhZC1zdGFydCIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iMSIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+CiAgICA8cG9seWdvbiBwb2ludHM9IjggMCwgMCAyLjUsIDggNSIgZmlsbD0idmFyKC0tX2Fycm93KSIgc3Ryb2tlPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+CiAgPC9tYXJrZXI+CjwvZGVmcz4KPHBvbHlsaW5lIGNsYXNzPSJlZGdlIiBkYXRhLWZyb209IlJPT1QiIGRhdGEtdG89IkRpcmVjdCIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgcG9pbnRzPSI0NDYuMjU3NzUsNzYuOSA0NDYuMjU3NzUsMTAwLjkgMjMwLjY2NCwxMDAuOSAyMzAuNjY0LDEyNC45IiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJST09UIiBkYXRhLXRvPSJCTVQiIGRhdGEtc3R5bGU9InNvbGlkIiBkYXRhLWFycm93LXN0YXJ0PSJmYWxzZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNDQ2LjI1Nzc1LDc2LjkgNDQ2LjI1Nzc1LDEwMC45IDY2MS44NTE1LDEwMC45IDY2MS44NTE1LDEyNC45IiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJST09UIiBkYXRhLWxhYmVsPSLqs7Xqs7UgU1cg7KGw64usIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjM4My40MTYyNSIgeT0iNDAiIHdpZHRoPSIxMjUuNjgyOTk5OTk5OTk5OTkiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9IiNmZmViZWUiIHN0cm9rZT0iI2QzMmYyZiIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9IjQ0Ni4yNTc3NSIgeT0iNTguNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPuqzteqztSBTVyDsobDri6w8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IkRpcmVjdCIgZGF0YS1sYWJlbD0i7IOB7JqpU1cg7KeB7KCR6rWs66ekIDogU0kg7Ya17ZWpIOqzhOyVvSDrtoTrpqwsIOuNsOydtO2EsCDso7zqtowg7ZmV67O0IiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjQwIiB5PSIxMjQuOSIgd2lkdGg9IjM4MS4zMjgiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSIyMzAuNjY0IiB5PSIxNDMuMzUwMDAwMDAwMDAwMDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPuyDgeyaqVNXIOyngeygkeq1rOunpCA6IFNJIO2Gte2VqSDqs4Tslb0g67aE66asLCDrjbDsnbTthLAg7KO86raMIO2ZleuztDwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iQk1UIiBkYXRhLWxhYmVsPSJCTVQg7J2Y66y07ZmUIDog6rCd6rSA7KCBIOyEseuKpSDrjIDsobAsIOu2hOumrOuwnOyjvCDsmIjsmbgg7KGw7ZWtIOyVheyaqSDssKjri6giIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iNDQ5LjMyOCIgeT0iMTI0LjkiIHdpZHRoPSI0MjUuMDQ2OTk5OTk5OTk5OSIgaGVpZ2h0PSIzNi45MDAwMDAwMDAwMDAwMDYiIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2U4ZjVlOSIgc3Ryb2tlPSIjMzg4ZTNjIiBzdHJva2Utd2lkdGg9IjJweCIgLz4KICA8dGV4dCB4PSI2NjEuODUxNSIgeT0iMTQzLjM1MDAwMDAwMDAwMDAyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5CTVQg7J2Y66y07ZmUIDog6rCd6rSA7KCBIOyEseuKpSDrjIDsobAsIOu2hOumrOuwnOyjvCDsmIjsmbgg7KGw7ZWtIOyVheyaqSDssKjri6g8L3RleHQ+CjwvZz4KPC9zdmc+ "Mermaid diagram")
+포인트: 개요에서 \*\*"앞서 다룬 디지털서비스 전문계약제도·AI 서비스 대가산정이 '공공 IT 조달의 계약·가격 기준'이라면, BMT(Benchmark Test·성능 비교 시험) 제도는 '도입 전 실제 업무 환경에서 제품·서비스의 성능을 객관적으로 검증해 최적 제품을 선택하는 기술 검증 절차'다 — 스펙 서류와 실제 성능의 괴리를 사전에 차단하고, 앞서 다룬 AI 서비스 대가산정의 KPI 기준과 결합해 '계약 전 성능 검증→계약 체결→운영 중 SLA 모니터링'의 조달 품질 3단계를 완성하는 공공 IT 조달의 기술적 신뢰 기반"\*\*이라는 한 줄로 시작하면 전체 맥락이 드러납니다.
 
 ***
 
-### **II. 상용SW 직접구매 및 BMT 의무화의 법적 기준 및 절차**
+#### Ⅱ. BMT 제도 핵심 구조
 
-| **분류**     | **🔑 상용SW 직접구매 (분리발주) 🚨**                        | **🏁 품질성능평가시험 (BMT) 💯**                |
-| :--------- | :------------------------------------------------ | :-------------------------------------- |
-| **의무화 기준** | 총 사업규모 **3억 원 이상** 공공사업 중 개별 단품 **5천만 원 이상** 상용SW | 직접구매 대상 중 국가기관 등 발주 금액이 **1억 원 이상**인 경우 |
-| **평가 기관**  | 조달청 (디지털서비스몰 등록 대행 및 계약)                          | TTA(한국정보통신기술협회), KISA 등 국가 지정 시험기관      |
-| **예외 조항**  | 현저한 비용 증가, 현저한 사업 지연, 상호 호환성 불가                   | 동일 제품군 2개 미만, 이미 BMT를 통과한 유효 제품 등       |
+**가. BMT 정의 및 목적**
 
-***
-
-### **III. 상용SW 직접구매 제도와 BMT 의무화 제도의 비교**
-
-| **비교 항목** | **📦 상용SW 직접구매 (분리발주) 제도** | **🧪 품질성능평가시험 (BMT) 제도**   |
-| :-------- | :------------------------- | :------------------------- |
-| **핵심 목적** | SW 제값받기 실현 및 중소 패키지 기업 육성  | 서류 평가 한계 극복 및 기술 변별력 확보    |
-| **법적 근거** | 소프트웨어 진흥법 제54조             | 소프트웨어 진흥법 제54조 제2항 및 관련 고시 |
-| **통제 대상** | 조달 등록된 모든 패키지 소프트웨어 제품군    | 직접구매 대상 중 단일 예산 1억 이상 품목   |
-| **평가 방식** | 조달청 종합쇼핑몰 계약 조건 심사         | 실제 가동 환경과 동일한 벤치마크 테스트 수행  |
+| 항목        | 내용                                                        |
+| :-------- | :-------------------------------------------------------- |
+| **정의**    | 도입 예정 IT 제품·서비스를 실제 업무 환경과 유사한 조건에서 성능·기능·호환성을 객관 검증하는 절차 |
+| **법적 근거** | 국가계약법·소프트웨어진흥법·공공기관 IT 조달 지침                              |
+| **주관 기관** | 발주 공공기관·전문 BMT 수행 기관(TTA·KISA·NIA 등)                      |
+| **적용 대상** | 대규모 HW·SW·클라우드·AI 서비스 도입 / 일정 금액 이상 공공 IT 사업              |
 
 ***
 
-### **IV. 공공 소프트웨어 사업 제값받기 정착을 위한 조달 거버넌스 가이드라인**
+**나. BMT 3대 평가 영역**
 
-**IMPORTANT**
+| 평가 영역               | 세부 항목                 | 핵심 지표                  |
+| :------------------ | :-------------------- | :--------------------- |
+| **성능(Performance)** | 처리 속도·응답 시간·처리량·동시 접속 | TPS·응답시간 P95·가용성 99.9% |
+| **기능(Function)**    | 요구사항 충족률·호환성·상호운용성    | 기능 체크리스트 충족률           |
+| **보안(Security)**    | 취약점·인증·암호화·접근통제       | 앞서 다룬 **CSAP·ISMS** 기준 |
 
-1. **통합발주 예외 신청 심사의 강화**: 발주 기관이 편의성을 이유로 상용SW 직접구매를 우회하지 못하도록, '상호 호환성 불가' 신청 시 기술성평가위원회의 객관적 소명 심사를 강제해야 합니다.
-2. **유지관리 요율의 현실화**: 조달 구매 완료 후 매년 지급되는 유지관리 대가 요율을 현행 10~15% 수준에서 **글로벌 스탠다드 수준(20%대)으로 점진적 인상 유도**하여 패키지 소프트웨어의 지속 가능한 품질 업그레이드 생태계를 지원해야 합니다.
+***
+
+#### Ⅲ. 절차 및 평가 체계
+
+**가. BMT 수행 절차**
+
+| **핵심 척도**     | **📊 사전 준비 단계 🚨**                                                 | **🔑 본 시험 단계 🚨**                                           | **🏁 결과 활용 단계 💯**                                       |
+| :------------ | :----------------------------------------------------------------- | :---------------------------------------------------------- | :------------------------------------------------------- |
+| **주요 활동**     | BMT 계획 수립 / 평가 기준·배점 확정 / 참가 업체 모집·환경 구성 / 시험 시나리오 설계              | 기능 시험→성능 시험→보안 시험 순차 수행 / 업체별 동일 조건·환경 보장 / 객관성 확보(블라인드 평가) | BMT 결과 보고서 작성 / 입찰 평가 반영 / 계약 KPI 기준으로 활용                |
+| **핵심 원칙**     | **동일 조건 보장**: 모든 참가 업체에 동일 환경·데이터·시나리오 적용                          | **재현 가능성**: 동일 조건 재시험 시 동일 결과 / **공정성**: 특정 업체 유리한 환경 금지    | **계약 연계**: BMT 합격 기준=계약 SLA 기준 / 앞서 다룬 **AI 서비스 KPI** 연동 |
+| **AI 서비스 특화** | AI 성능 KPI 사전 정의 (F1·응답시간·환각률) / 앞서 다룬 **RAGAS** 기준 RAG 품질 측정 기준 설정 | 실제 업무 데이터 기반 AI 추론 성능 측정 / 앞서 다룬 **드리프트** 대응 능력 포함          | BMT 결과→AI 서비스 대가산정 보정계수 반영 / 재학습 주기·비용 계약 명시             |
+
+***
+
+**나. BMT 도식화**
+
+```
+[BMT 수행 전체 흐름]
+
+발주기관 BMT 계획 수립
+  평가 기준·배점·합격선 확정
+       ↓
+참가 업체 모집·환경 구성
+  동일 HW·SW·데이터 환경 보장
+       ↓
+①기능 시험
+  요구사항 체크리스트 항목별 검증
+       ↓
+②성능 시험
+  부하 테스트·응답시간·TPS·동시접속
+  앞서 다룬 k6·JMeter 활용
+       ↓
+③보안 시험
+  취약점 스캔·인증·암호화·접근통제
+  앞서 다룬 CSAP 등급 기준 연계
+       ↓
+④AI 성능 시험 (AI 서비스 도입 시)
+  F1·응답시간·환각률·공정성 측정
+  앞서 다룬 AI 레드티밍 포함
+       ↓
+결과 종합·보고서 작성
+  업체별 점수·합격 여부 판정
+       ↓
+입찰 평가 반영→계약 체결
+  BMT 기준=계약 SLA 기준으로 연동
+```
+
+***
+
+**다. BMT 한계 및 보완 방향**
+
+| 한계              | 내용                 | 보완 방향                             |
+| :-------------- | :----------------- | :-------------------------------- |
+| **시험 환경 괴리**    | BMT 환경 ≠ 실제 운영 환경  | 실제 운영 데이터·환경 최대 반영                |
+| **단기 측정 한계**    | 장기 운영 품질·드리프트 미반영  | 앞서 다룬 **MLOps 드리프트** 탐지 SLA 계약 포함 |
+| **벤더 최적화 위험**   | BMT만을 위한 과최적화 튜닝   | 블라인드 평가·불시 재시험 조항                 |
+| **AI 평가 기준 미비** | AI 성능 표준 BMT 기준 부재 | 앞서 다룬 **AI 서비스 대가산정 KPI** 연동      |
+
+***
+
+**(제언)** "BMT는 공공 IT 조달에서 '스펙 허위 기재·과장 성능 표기'를 사전 차단하는 핵심 기술 검증 절차입니다. **특히 AI 서비스 도입 시 F1·응답시간·환각률·공정성(Demographic Parity)을 BMT 합격 기준으로 명시하고, 이를 앞서 다룬 디지털서비스 전문계약의 SLA·대가산정의 KPI와 일관되게 연동함으로써 계약 전 BMT → 계약 중 SLA → 계약 후 드리프트 모니터링의 3단계 품질 보증 체계를 구축하는 것이 공공 AI 서비스 조달 신뢰성 확보의 핵심입니다.**"
