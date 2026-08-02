@@ -5,7 +5,7 @@ set -e
 cd "$(dirname "$0")"
 echo "[0/4] 실제 기출문제(120~139회) 파싱..."
 python3 00_parse_exam_questions.py
-echo "[1/4] 도메인 폴더 + 141회예상문제 폴더 파싱/분류..."
+echo "[1/4] 도메인 폴더(7개) 파싱/분류..."
 python3 01_parse_domains.py
 echo "[2/4] 기출문제 도메인 분류 + 기출/예상 대조 태깅..."
 python3 02_classify_and_tag.py

@@ -22,7 +22,7 @@ for folder in FOLDER_LIST:
     dom = DOMAIN_BY_FOLDER[folder]
     fdir = os.path.join(SRC, folder)
     for fname in sorted(os.listdir(fdir)):
-        if not fname.endswith(".md"):
+        if not fname.lower().endswith(".md"):
             continue
         path = os.path.join(fdir, fname)
         with open(path, encoding="utf-8") as f:
@@ -49,33 +49,9 @@ for folder in FOLDER_LIST:
 
 print("domain_entries:", len(domain_entries))
 
-# ---------- 2. 141회예상문제 폴더 파싱 ----------
-pred_dir = os.path.join(SRC, "141회예상문제")
-SKIP_FILES = {"141회 예상문제.md", "141회 예상출제 분석.md", "141회대비_신규트렌드키워드_정리.md", "Untitled.md"}
-
+# ---------- 2. 141회예상문제 폴더 (2026-08-02 부로 폐지: 해당 폴더의 .md 파일들은 7개 도메인 폴더로 재배치 완료,
+# 위 1단계 도메인 폴더 파싱에서 함께 처리됨) ----------
 pred_raw = []
-for fname in sorted(os.listdir(pred_dir)):
-    if not fname.endswith(".md") or fname in SKIP_FILES:
-        continue
-    path = os.path.join(pred_dir, fname)
-    with open(path, encoding="utf-8") as f:
-        raw = f.read()
-    name_noext = fname[:-3]
-    content = strip_content(raw)
-    title = extract_title(content, name_noext)
-    title = re.sub(r"^\d+\.\s*", "", title).strip() or name_noext
-    if is_bad_title(title):
-        title = clean_filename_title(name_noext)
-    mnemonic = extract_mnemonic(content, title)
-    pred_raw.append({
-        "fname": fname,
-        "name_noext": name_noext,
-        "title": title,
-        "content": content,
-        "mnemonic": mnemonic,
-        "tokens": tokenize(title + " " + name_noext),
-    })
-
 print("predicted_raw:", len(pred_raw))
 
 # ---------- 3. 도메인 판별용 토큰 인덱스 (도메인폴더 항목 기반, IDF 가중치) ----------

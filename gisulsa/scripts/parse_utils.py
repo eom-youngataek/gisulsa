@@ -25,7 +25,7 @@ def strip_content(text: str) -> str:
     return text.strip()
 
 
-BAD_TITLE_MARKERS = ["답안 전개", "스토리", "핵심 압축", "숏폼", "머릿속 핵심", "핵심 요약", "요약 스토리"]
+BAD_TITLE_MARKERS = ["답안 전개", "스토리", "핵심 압축", "숏폼", "머릿속 핵심", "핵심 요약", "요약 스토리", "실제 답안에 쓸", "암기용"]
 
 def clean_filename_title(name_noext: str) -> str:
     t = name_noext.strip()
