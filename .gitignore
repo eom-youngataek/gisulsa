@@ -1,0 +1,3 @@
+gisulsa/scripts/build_output/
+gisulsa/scripts/__pycache__/
+*.pyc

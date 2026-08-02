@@ -1,0 +1,42 @@
+### **I. 셀룰러 네트워크 오프로딩의 핵심, D2D 통신의 개요**
+
+전통적인 셀룰러 통신은 인접한 두 단말이 대화를 나누더라도 반드시 기지국(gNB)과 코어망(5GC)을 경유하여 데이터를 전송해야 하므로 라우팅 지연과 주파수 자원 낭비가 심했습니다. **D2D(Device-to-Device) 통신**은 기지국의 제어 하에 근접한 단말 간에 **PC5 사이드링크(Sidelink) 인터페이스를 이용하여 기지국 경유 없이 직접 무선 통신**을 수행함으로써, \*\*전송 지연(Latency)을 극도로 줄이고 무선 트래픽을 오프로딩(Offloading)\*\*하는 핵심 기술입니다.
+
+![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NDQuNjE2IDI3MC4xIiB3aWR0aD0iNTQ0LjYxNiIgaGVpZ2h0PSIyNzAuMSIgc3R5bGU9Ii0tYmc6I0ZGRkZGRjstLWZnOiMzQjNCM0I7LS1saW5lOiMzQjNCM0I7LS1hY2NlbnQ6IzAwNUZCODstLW11dGVkOiMzQjNCM0JDQzstLXN1cmZhY2U6I0Y4RjhGODstLWJvcmRlcjojM0IzQjNCO2JhY2tncm91bmQ6dmFyKC0tYmcpIj4KPHN0eWxlPgogIEBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUludGVyOndnaHRANDAwOzUwMDs2MDA7NzAwJmFtcDtkaXNwbGF5PXN3YXAnKTsKICB0ZXh0IHsgZm9udC1mYW1pbHk6ICdJbnRlcicsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsgfQogIHN2ZyB7CiAgICAvKiBEZXJpdmVkIGZyb20gLS1iZyBhbmQgLS1mZyAob3ZlcnJpZGFibGUgdmlhIC0tbGluZSwgLS1hY2NlbnQsIGV0Yy4pICovCiAgICAtLV90ZXh0OiAgICAgICAgICB2YXIoLS1mZyk7CiAgICAtLV90ZXh0LXNlYzogICAgICB2YXIoLS1tdXRlZCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA2MCUsIHZhcigtLWJnKSkpOwogICAgLS1fdGV4dC1tdXRlZDogICAgdmFyKC0tbXV0ZWQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNDAlLCB2YXIoLS1iZykpKTsKICAgIC0tX3RleHQtZmFpbnQ6ICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMjUlLCB2YXIoLS1iZykpOwogICAgLS1fbGluZTogICAgICAgICAgdmFyKC0tbGluZSwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA1MCUsIHZhcigtLWJnKSkpOwogICAgLS1fYXJyb3c6ICAgICAgICAgdmFyKC0tYWNjZW50LCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDg1JSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ub2RlLWZpbGw6ICAgICB2YXIoLS1zdXJmYWNlLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDMlLCB2YXIoLS1iZykpKTsKICAgIC0tX25vZGUtc3Ryb2tlOiAgIHZhcigtLWJvcmRlciwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAyMCUsIHZhcigtLWJnKSkpOwogICAgLS1fZ3JvdXAtZmlsbDogICAgdmFyKC0tYmcpOwogICAgLS1fZ3JvdXAtaGRyOiAgICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA1JSwgdmFyKC0tYmcpKTsKICAgIC0tX2lubmVyLXN0cm9rZTogIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMTIlLCB2YXIoLS1iZykpOwogICAgLS1fa2V5LWJhZGdlOiAgICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAxMCUsIHZhcigtLWJnKSk7CiAgfQo8L3N0eWxlPgo8ZGVmcz4KICA8bWFya2VyIGlkPSJhcnJvd2hlYWQiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjciIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCAwLCA4IDIuNSwgMCA1IiBmaWxsPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2U9InZhcigtLV9hcnJvdykiIHN0cm9rZS13aWR0aD0iMC43NSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KICA8L21hcmtlcj4KICA8bWFya2VyIGlkPSJhcnJvd2hlYWQtc3RhcnQiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjUiIHJlZlg9IjEiIHJlZlk9IjIuNSIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPgogICAgPHBvbHlnb24gcG9pbnRzPSI4IDAsIDAgMi41LCA4IDUiIGZpbGw9InZhcigtLV9hcnJvdykiIHN0cm9rZT0idmFyKC0tX2Fycm93KSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiAvPgogIDwvbWFya2VyPgo8L2RlZnM+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJVRTEiIGRhdGEtdG89IlVFMiIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9InRydWUiIGRhdGEtYXJyb3ctZW5kPSJ0cnVlIiBkYXRhLWxhYmVsPSJQQzUgU2lkZWxpbmsg642w7J207YSwIOyngeygkSDsoITshqEiIHBvaW50cz0iMjI0LjMxNDMzMzMzMzMzMzMsNzYuOSAyMjQuMzE0MzMzMzMzMzMzMywxMTIuOSAxMzEuNzQwNSwxMTIuOSAxMzEuNzQwNSwxOTMuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiBtYXJrZXItc3RhcnQ9InVybCgjYXJyb3doZWFkLXN0YXJ0KSIgLz4KPHBvbHlsaW5lIGNsYXNzPSJlZGdlIiBkYXRhLWZyb209IlVFMSIgZGF0YS10bz0iZ05CIiBkYXRhLXN0eWxlPSJkb3R0ZWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgZGF0YS1sYWJlbD0i7KCc7Ja0IOyLoO2YuCDrsI8g64+Z6riw7ZmUIOuLtOuLuSIgcG9pbnRzPSIyODUuNDc0NjY2NjY2NjY2Nyw3Ni45IDI4NS40NzQ2NjY2NjY2NjY3LDExMi45IDM3OC4wNDg1LDExMi45IDM3OC4wNDg1LDE5My4yIiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KPGcgY2xhc3M9ImVkZ2UtbGFiZWwiIGRhdGEtZnJvbT0iVUUxIiBkYXRhLXRvPSJVRTIiIGRhdGEtbGFiZWw9IlBDNSBTaWRlbGluayDrjbDsnbTthLAg7KeB7KCRIOyghOyGoSI+CiAgPHJlY3QgeD0iNDguMjQwNDk5OTk5OTk5OTgiIHk9IjExOS45IiB3aWR0aD0iMTY2LjE1IiBoZWlnaHQ9IjMwLjMiIHJ4PSIyIiByeT0iMiIgZmlsbD0idmFyKC0tYmcpIiBzdHJva2U9InZhcigtLV9pbm5lci1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iMTMxLjMxNTUiIHk9IjEzNS4wNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9IjQwMCIgZmlsbD0idmFyKC0tX3RleHQtc2VjKSIgZHk9IjMuODQ5OTk5OTk5OTk5OTk5NiI+UEM1IFNpZGVsaW5rIOuNsOydtO2EsCDsp4HsoJEg7KCE7IahPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJlZGdlLWxhYmVsIiBkYXRhLWZyb209IlVFMSIgZGF0YS10bz0iZ05CIiBkYXRhLWxhYmVsPSLsoJzslrQg7Iug7Zi4IOuwjyDrj5nquLDtmZQg64u064u5Ij4KICA8cmVjdCB4PSIzMDYuMDQ4NSIgeT0iMTE5LjkiIHdpZHRoPSIxNDMuNTc4MDAwMDAwMDAwMDMiIGhlaWdodD0iMzAuMyIgcng9IjIiIHJ5PSIyIiBmaWxsPSJ2YXIoLS1iZykiIHN0cm9rZT0idmFyKC0tX2lubmVyLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMSIgLz4KICA8dGV4dCB4PSIzNzcuODM3NSIgeT0iMTM1LjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iNDAwIiBmaWxsPSJ2YXIoLS1fdGV4dC1zZWMpIiBkeT0iMy44NDk5OTk5OTk5OTk5OTk2Ij7soJzslrQg7Iug7Zi4IOuwjyDrj5nquLDtmZQg64u064u5PC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJVRTEiIGRhdGEtbGFiZWw9IuuLqOunkCBBIDog6re87KCRIOyGoeyLoCDri6jrp5AiIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iMTYzLjE1NCIgeT0iNDAiIHdpZHRoPSIxODMuNDgxIiBoZWlnaHQ9IjM2LjkwMDAwMDAwMDAwMDAwNiIgcng9IjAiIHJ5PSIwIiBmaWxsPSIjZmZlYmVlIiBzdHJva2U9IiNkMzJmMmYiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSIyNTQuODk0NSIgeT0iNTguNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPuuLqOunkCBBIDog6re87KCRIOyGoeyLoCDri6jrp5A8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlVFMiIgZGF0YS1sYWJlbD0i64uo66eQIEIgOiDqt7zsoJEg7IiY7IugIOuLqOunkCIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI0MCIgeT0iMTkzLjIiIHdpZHRoPSIxODMuNDgxIiBoZWlnaHQ9IjM2LjkwMDAwMDAwMDAwMDAwNiIgcng9IjAiIHJ5PSIwIiBmaWxsPSIjZThmNWU5IiBzdHJva2U9IiMzODhlM2MiIHN0cm9rZS13aWR0aD0iMnB4IiAvPgogIDx0ZXh0IHg9IjEzMS43NDA1IiB5PSIyMTEuNjQ5OTk5OTk5OTk5OTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPuuLqOunkCBCIDog6re87KCRIOyImOyLoCDri6jrp5A8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9ImdOQiIgZGF0YS1sYWJlbD0iNUcvNkcg6riw7KeA6rWtIGdOQiA6IOygnOyWtCDtj4nrqbQg6rSA66asIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjI1MS40ODEiIHk9IjE5My4yIiB3aWR0aD0iMjUzLjEzNDk5OTk5OTk5OTk2IiBoZWlnaHQ9IjM2LjkwMDAwMDAwMDAwMDAwNiIgcng9IjAiIHJ5PSIwIiBmaWxsPSJ2YXIoLS1fbm9kZS1maWxsKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iMzc4LjA0ODUiIHk9IjIxMS42NDk5OTk5OTk5OTk5OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+NUcvNkcg6riw7KeA6rWtIGdOQiA6IOygnOyWtCDtj4nrqbQg6rSA66asPC90ZXh0Pgo8L2c+Cjwvc3ZnPg== "Mermaid diagram")
+
+***
+
+### **II. D2D 통신의 주파수 사용 형태 및 3GPP 표준 기술**
+
+#### **1. 주파수 대역별 운용 형태**
+
+* **In-Band D2D (인밴드 방식)**: 셀룰러 이동통신 인가 대역을 공유 (주파수 효율이 높으나 셀 회원과의 간섭 제어 필수)
+  * *Underlay*: 셀룰러 자원을 함께 공유 / *Overlay*: D2D 전용으로 주파수를 할당
+* **Out-of-Band D2D (아웃오브밴드 방식)**: 비인가 대역(Wi-Fi Direct, Bluetooth, 5.9GHz ISM 등)을 활용하여 셀 간섭 최소화
+
+#### **2. 3GPP 핵심 표준 기술**
+
+* **3GPP ProSe (Proximity Services)**: 단말 간 탐색(Discovery) 및 직접 통신을 위한 근접 서비스 표준 규격
+* **PC5 Sidelink (사이드링크)**: 기존 Uu 인터페이스(단말-기지국)와 달리 **단말과 단말 사이를 1:1, 1:N으로 직접 연결하는 전용 무선 인터페이스**
+* **C-V2X (Cellular-V2X)**: D2D 통신 기술을 차량 자율주행 영역으로 확장하여 V2V(차량간), V2I(차량-인프라) 통신 수행
+
+***
+
+### **III. 전통적 셀룰러 통신과 D2D 직접 통신의 상세 비교**
+
+| **비교 항목**           | **📶 전통적 셀룰러 통신 (Cellular)**  | **⚡ D2D 직접 통신 (Device-to-Device)**         |
+| :------------------ | :---------------------------- | :----------------------------------------- |
+| **데이터 전송 경로**       | 단말 ➔ 기지국(gNB) ➔ 코어망(5GC) ➔ 단말 | **단말 ➔ 단말 직접 연결 (PC5 Sidelink 전용 전송)**     |
+| **전송 지연 (Latency)** | 기지국/코어망 멀티홉 라우팅으로 지연시간 큼      | **직접 전송으로 초저지연 (1ms 수준 URLLC 충족)**         |
+| **주파수 자원 효율**       | 인접 단말 간 통신 시에도 기지국 자원 중복 사용   | **트래픽 오프로딩 및 자원 재사용률(Reuse Ratio) 극대화**    |
+| **재난/음영지역 대응**      | 기지국 파손 시 통신 기능 완벽 마비          | **기지국 파계 시 단말 간 릴레이(Multi-hop)로 통신 유지**    |
+| **주요 활용 분야**        | 일반 광역 데이터 서비스, 웹서핑, 동영상 스트리밍  | **재난안전망(PS-LTE), 자율주행(C-V2X), 근접 SNS 마케팅** |
+
+***
+
+### **IV. D2D 통신 구축 시 엔지니어링 고려사항 및 발전 방향**
+
+**IMPORTANT**
+
+1. **셀룰러 사용자와의 간섭(Interference) 관리**: In-Band D2D 환경에서는 기존 셀룰러 단말과 D2D 단말 간 상호 간섭이 유발됩니다. 기지국 기반 전력 제어(Power Control) 및 자원 분할(Resource Allocation) 알고리즘을 지능화해야 합니다.
+2. **재난통신망(PS-LTE) 및 V2X로의 확장**: 재난 발생 시 기지국이 상실되어도 신소대원 간의 다중 홉(Multi-hop) D2D 통신을 개시하여 음영 지역을 해소하고, 자율주행차 간의 교차로 충돌 방지를 위한 초저지연 센서 데이터 공유 채널로 발전하고 있습니다.

@@ -1,110 +1,153 @@
-### 답안 전체 스토리 흐름 (목차)
-
-```
-Ⅰ. 개요 (27701정의,2025년대개정핵심) — 3~4줄
-Ⅱ. 2019구조vs2025구조 (본론①, 도식 1개 필수)
-Ⅲ. PIMS 통제체계및국내현황 (본론②, 핵심 배점)
-Ⅳ. 오늘시리즈총연결 (29100/개인정보보호법/과징금)
-Ⅴ. 결론
-```
-
-포인트: 개요에서 \*\*"앞서다룬29100의11원칙은'무엇을해야하는지'를정의한추상적프레임워크였는데, 27701은그원칙을 '조직이실제로어떻게운영·인증받는지'를규정한 구체적경영시스템표준(PIMS,PrivacyInformationManagementSystem) — 그런데2025년,이표준의근본구조자체가바뀌었다"\*\*는한줄로시작하면, 왜 2025년개정이 오늘답안의핵심인지드러납니다.
-
-### Ⅱ. 2019구조 vs 2025구조 — 핵심전환
-
-| 구분         | **2019년(1판)**                                      | **2025년(2판)**                                       |
-| :--------- | :------------------------------------------------- | :-------------------------------------------------- |
-| **독립성**    | ISO/IEC27001의 **확장(Extension)** — **27001인증이전제조건** | **완전독립된단독표준**(Standalone) — 27001없이도 **PIMS단독인증가능** |
-| **구조**     | 27001에 **덧붙이는형태**                                  | ISO의 \*\*조화상위수준구조(4\~10항)\*\*를 따르는 **완전한조항기반구조**    |
-| **적용범위확대** | -                                                  | **생체정보,건강정보,IoT,AI관련프라이버시위험**포함                     |
-| **전환기한**   | -                                                  | 기존인증기업은 **2028년10월까지**신버전전환필요                       |
-
-→ 암기: **"예전엔27001(보안)을먼저갖춰야27701(개인정보)을할수있었는데, 이제는개인정보관리만따로도인증받을수있다"** — 앞서다룬 \*\*"ISMS-P가ISMS의확장이자대체"\*\*였던구조와, \*\*정확히같은논리(독립화·단순화)\*\*가 국제표준에서도 나타난다는게 핵심연결점입니다.
-
-### 도식화 제안
-
-```
-[2019년 27701]                      [2025년 27701]
-[27001(ISMS)] ← 반드시먼저필요           [27701(PIMS)] ← 단독으로가능
-      ↓ 확장                                (27001과의연계는선택)
-[27701(PIMS)]                        4~10항 (ISO공통상위구조)
-(27001의부속표준)                      +부록A(관리자34개,처리자21개,
-                                          공유31개통제)
-```
-
-### Ⅲ. PIMS 통제체계 및 국내현황 — 핵심 배점
-
-**함정 방지: "인증받으면끝"이라고답하면절반. 구체적통제구조와, 국내기업의실제취득현황을보여줘야완성됩니다.**
-
-| 구성              | 내용                                                                       |
-| :-------------- | :----------------------------------------------------------------------- |
-| **부록A**(2025개정) | **PII관리자34개+처리자21개+공유31개**통제 — ISO/IEC27002:2022에맞춰재구성                   |
-| **부록B**(신규)     | 각통제를 **실제로어떻게구현·입증하는지**설명                                                |
-| **부록C**         | 앞서다룬 **29100프라이버시프레임워크와의매핑**                                             |
-| **국내취득사례**      | **NHN,디케이테크인(카카오자회사),동아쏘시오홀딩스,경기평택항만공사**등— IT·플랫폼기업중심이나 **공공기관취득사례도확산중** |
-
-→ 앞서다룬 \*\*"29100의4대행위자(PII주체,관리자,처리자,제3자)"\*\*가, 여기서 \*\*"부록A의34개+21개+31개통제"\*\*로 **실제구현항목**이됩니다 — **29100=원칙,27701=그원칙을실행하는구체적통제목록**이라는 관계가 명확해집니다.
-
-### 도식화 제안
-
-```
-[ISO/IEC 29100] "11대원칙" (무엇을해야하는가)
-        ↓ 구체화
-[ISO/IEC 27701] "PIMS 통제체계" (어떻게실행·인증받는가)
-   관리자34개통제+처리자21개통제+공유31개통제
-        ↓ 국내적용
-[NHN,카카오계열사,동아쏘시오홀딩스 등] 실제인증취득
-```
-
-### Ⅳ. 오늘시리즈총연결 — 개인정보보호법 과징금과의 실무적 연결
-
-**함정 방지: "국제표준"으로만끝내면절반. 왜한국기업이지금이표준에주목하는지, 앞서다룬법개정과연결해야완성됩니다.**
-
-| 연결                     | 내용                                                                        |
-| :--------------------- | :------------------------------------------------------------------------ |
-| **2025년법3차개정**(앞서다룬그것) | 과징금상한이 \*\*매출액10%\*\*로상향(GDPR4%보다높음),**SKT2,324만명유출사례**에 실제 **역대최대과징금**부과 |
-| **27701의실무적가치**        | **"매출액10%과징금시대,관리체계구축이최선의방어"**— 27701인증취득이 **사고예방+과징금감경**의 실질적근거          |
-| **글로벌표준일원화**           | GDPR,한국개인정보보호법등 **각국법을개별대응하기어려워**, 27701 **하나의프레임워크로글로벌규정대응**가능           |
-
-→ 앞서다룬 \*\*"ISMS-P의과징금감경혜택"\*\*과 동일한논리로, \*\*"27701인증도 국내법위반시책임경감의근거로활용될수있다"\*\*는 것이 2025\~2026년 한국기업들의 **가장현실적인도입동기**입니다.
-
-### Ⅴ. 결론 포인트 — 오늘 하루 방대한 데이터·프라이버시 시리즈의 완결
-
-ISO/IEC 27701은 \*\*"앞서다룬29100의11대원칙을,조직이실제로운영하고제3자에게증명하는구체적경영시스템(PIMS)"\*\*이며, 2025년 \*\*"27001로부터의완전독립"\*\*은 앞서다룬 **ISMS-P의독립화흐름,N2SF의자율책임규제전환**과 \*\*정확히같은세계적방향(개인정보보호의전문화·독립화)\*\*을 보여줍니다 — 이로써 오늘하루다룬 \*\*개인정보보호법(국내강제규범)→PbD(설계철학)→PET(기술적구현)→가명익명처리(실무기법)→CBPR(국경간인증)→ISO29100(국제공통원칙)→ISO27701(실제운영·인증시스템)\*\*로이어지는 데이터·프라이버시시리즈전체가, \*\*"이론적원칙에서시작해, 결국기업이실제로인증받고,법적책임을경감받는 구체적경영시스템으로귀결된다"\*\*는 완결된하나의그림으로 마무리됩니다.
-
-### **1. 답안 전개 스토리 (암기 직결 숏폼)**
-
-> "기업이 보안을 잘하고 있다는 것을 증명하는 세계 최고의 자격증이 'ISO 27001'이다. 하지만 이건 해커를 막는 '정보 보안(Security)' 인증이지, 고객의 개인정보를 법대로 정당하게 수집하고 파기하는지 보는 '프라이버시(Privacy)' 인증은 아니다. 유럽의 무시무시한 GDPR 등 프라이버시 규제가 쏟아지자, ISO는 '기존 27001 보안 인증에 프라이버시 조항을 추가팩(확장판)으로 얹어버리자!'라고 결정했다. 그렇게 탄생한 글로벌 개인정보보호 경영시스템 표준이 바로 \*\*'ISO/IEC 27701'\*\*이다. 이 표준의 암기 핵심은 \*\*'확장(Extension)'\*\*이다. ISO 27001 인증(기반 공사)이 없는 기업은 이 27701 인증(프라이버시 건물)을 단독으로 받을 수 없다. 또 하나의 핵심은 개인정보를 다루는 주체를 \*\*'PII 관리자(Controller, 네이버/카카오 본사)'\*\*와 \*\*'PII 수탁자(Processor, 외주 콜센터)'\*\*로 명확히 쪼개어, 각자의 책임과 통제 의무를 완전히 분리해 놓았다는 점이다. 기업은 이 인증 하나로 전 세계 개인정보보호법(GDPR)을 지키고 있다는 것을 글로벌하게 증명할 수 있다."
+#### **개인정보보호 관리체계 국제 표준: ISO/IEC 27701**
 
 ***
 
-### **2. 실제 답안에 쓸 핵심 내용 (암기용)**
-
-#### **I. \[도입] GDPR 대응을 위한 프라이버시 확장팩, ISO/IEC 27701 개요**
-
-* **정의:** 기존의 정보보호 경영시스템(ISO/IEC 27001 및 27002)의 요구사항에 '개인정보보호(Privacy)'를 위한 통제 항목을 추가로 확장(Extension)하여 제정한 **개인정보보호 경영시스템(PIMS, Privacy Information Management System) 국제 표준**.
-* **도입 목적:** 조직이 개인식별정보(PII)를 관리할 때 겪는 글로벌 컴플라이언스(유럽 GDPR, 한국 개인정보보호법 등) 준수 부담을 줄이고, 전 세계 파트너들에게 신뢰를 증명하기 위한 글로벌 인증서 역할.
-
-#### **II. \[본론 1] (단순화 버전) 27001 기반 위에 얹어지는 27701 확장 아키텍처 (도식화)**
-
-왜 단독으로 인증을 받을 수 없는지, 그 '확장팩'의 구조를 가장 직관적으로 시각화합니다.
+#### 답안 전체 스토리 흐름 (목차)
 
 ```
+Ⅰ. 개요 (왜 정보보안 인증만으로는 개인정보보호를 증명 못 하는가)
+Ⅱ. ISO/IEC 27701 핵심 구조
+Ⅲ. 국내외 인증 체계 비교 및 적용 체계
+Ⅳ. 결론
 ```
 
-![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDcxLjQwMyA1NDMuMiIgd2lkdGg9IjEwNzEuNDAzIiBoZWlnaHQ9IjU0My4yIiBzdHlsZT0iLS1iZzojRkZGRkZGOy0tZmc6IzNCM0IzQjstLWxpbmU6IzNCM0IzQjstLWFjY2VudDojMDA1RkI4Oy0tbXV0ZWQ6IzNCM0IzQkNDOy0tc3VyZmFjZTojRjhGOEY4Oy0tYm9yZGVyOiMzQjNCM0I7YmFja2dyb3VuZDp2YXIoLS1iZykiPgo8c3R5bGU+CiAgQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9SW50ZXI6d2dodEA0MDA7NTAwOzYwMDs3MDAmYW1wO2Rpc3BsYXk9c3dhcCcpOwogIHRleHQgeyBmb250LWZhbWlseTogJ0ludGVyJywgc3lzdGVtLXVpLCBzYW5zLXNlcmlmOyB9CiAgc3ZnIHsKICAgIC8qIERlcml2ZWQgZnJvbSAtLWJnIGFuZCAtLWZnIChvdmVycmlkYWJsZSB2aWEgLS1saW5lLCAtLWFjY2VudCwgZXRjLikgKi8KICAgIC0tX3RleHQ6ICAgICAgICAgIHZhcigtLWZnKTsKICAgIC0tX3RleHQtc2VjOiAgICAgIHZhcigtLW11dGVkLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDYwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV90ZXh0LW11dGVkOiAgICB2YXIoLS1tdXRlZCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA0MCUsIHZhcigtLWJnKSkpOwogICAgLS1fdGV4dC1mYWludDogICAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAyNSUsIHZhcigtLWJnKSk7CiAgICAtLV9saW5lOiAgICAgICAgICB2YXIoLS1saW5lLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDUwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9hcnJvdzogICAgICAgICB2YXIoLS1hY2NlbnQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgODUlLCB2YXIoLS1iZykpKTsKICAgIC0tX25vZGUtZmlsbDogICAgIHZhcigtLXN1cmZhY2UsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMyUsIHZhcigtLWJnKSkpOwogICAgLS1fbm9kZS1zdHJva2U6ICAgdmFyKC0tYm9yZGVyLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDIwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ncm91cC1maWxsOiAgICB2YXIoLS1iZyk7CiAgICAtLV9ncm91cC1oZHI6ICAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDUlLCB2YXIoLS1iZykpOwogICAgLS1faW5uZXItc3Ryb2tlOiAgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAxMiUsIHZhcigtLWJnKSk7CiAgICAtLV9rZXktYmFkZ2U6ICAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDEwJSwgdmFyKC0tYmcpKTsKICB9Cjwvc3R5bGU+CjxkZWZzPgogIDxtYXJrZXIgaWQ9ImFycm93aGVhZCIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iNyIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8iPgogICAgPHBvbHlnb24gcG9pbnRzPSIwIDAsIDggMi41LCAwIDUiIGZpbGw9InZhcigtLV9hcnJvdykiIHN0cm9rZT0idmFyKC0tX2Fycm93KSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiAvPgogIDwvbWFya2VyPgogIDxtYXJrZXIgaWQ9ImFycm93aGVhZC1zdGFydCIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iMSIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+CiAgICA8cG9seWdvbiBwb2ludHM9IjggMCwgMCAyLjUsIDggNSIgZmlsbD0idmFyKC0tX2Fycm93KSIgc3Ryb2tlPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+CiAgPC9tYXJrZXI+CjwvZGVmcz4KPGcgY2xhc3M9InN1YmdyYXBoIiBkYXRhLWlkPSJJU09JRUNfMjc3MDFfX19fUElNU18iIGRhdGEtbGFiZWw9IklTTy9JRUMgMjc3MDEgKOqwnOyduOygleuztOuztO2YuCDqsr3smIHsi5zsiqTthZwgLSBQSU1TKSDqtazsobAiPgogIDxyZWN0IHg9IjEyOC42MjYiIHk9IjQwIiB3aWR0aD0iODc0Ljc3NyIgaGVpZ2h0PSI0NTUuMjAwMDAwMDAwMDAwMDUiIHJ4PSIwIiByeT0iMCIgZmlsbD0idmFyKC0tX2dyb3VwLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMSIgLz4KICA8cmVjdCB4PSIxMjguNjI2IiB5PSI0MCIgd2lkdGg9Ijg3NC43NzciIGhlaWdodD0iMjgiIHJ4PSIwIiByeT0iMCIgZmlsbD0idmFyKC0tX2dyb3VwLWhkcikiIHN0cm9rZT0idmFyKC0tX25vZGUtc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIxIiAvPgogIDx0ZXh0IHg9IjE0MC42MjYiIHk9IjU0IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSJ2YXIoLS1fdGV4dC1zZWMpIiBkeT0iNC4xOTk5OTk5OTk5OTk5OTkiPklTTy9JRUMgMjc3MDEgKOqwnOyduOygleuztOuztO2YuCDqsr3smIHsi5zsiqTthZwgLSBQSU1TKSDqtazsobA8L3RleHQ+CjxnIGNsYXNzPSJzdWJncmFwaCIgZGF0YS1pZD0iSVNPSUVDXzI3NzAxX19Qcml2YWN5X0V4dGVuc2lvbiIgZGF0YS1sYWJlbD0iSVNPL0lFQyAyNzcwMSDtmZXsnqXtjJAgKFByaXZhY3kgRXh0ZW5zaW9uKSI+CiAgPHJlY3QgeD0iNTc2LjAwOSIgeT0iMTQwLjkiIHdpZHRoPSI0MTEuMzk0IiBoZWlnaHQ9IjE5NS42MDAwMDAwMDAwMDAwMiIgcng9IjAiIHJ5PSIwIiBmaWxsPSJ2YXIoLS1fZ3JvdXAtZmlsbCkiIHN0cm9rZT0idmFyKC0tX25vZGUtc3Ryb2tlKSIgc3Ryb2tlLXdpZHRoPSIxIiAvPgogIDxyZWN0IHg9IjU3Ni4wMDkiIHk9IjE0MC45IiB3aWR0aD0iNDExLjM5NCIgaGVpZ2h0PSIyOCIgcng9IjAiIHJ5PSIwIiBmaWxsPSJ2YXIoLS1fZ3JvdXAtaGRyKSIgc3Ryb2tlPSJ2YXIoLS1fbm9kZS1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iNTg4LjAwOSIgeT0iMTU0LjkiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSI2MDAiIGZpbGw9InZhcigtLV90ZXh0LXNlYykiIGR5PSI0LjE5OTk5OTk5OTk5OTk5OSI+SVNPL0lFQyAyNzcwMSDtmZXsnqXtjJAgKFByaXZhY3kgRXh0ZW5zaW9uKTwvdGV4dD4KPC9nPgo8L2c+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJCQVNFIiBkYXRhLXRvPSJFWFRFTlNJT04iIGRhdGEtc3R5bGU9InNvbGlkIiBkYXRhLWFycm93LXN0YXJ0PSJmYWxzZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIGRhdGEtbGFiZWw9Iu2UhOudvOydtOuyhOyLnCDtla3rqqnsnYQg7LaU6rCA66GcIO2ZleyepSAoRXh0ZW5zaW9uKSDinpUiIHBvaW50cz0iMjgxLjU2NzUsNDU1LjIgMjgxLjU2NzUsNDY3LjIwMDAwMDAwMDAwMDA1IDQyMy43ODgyNDk5OTk5OTk5NSw0NjcuMjAwMDAwMDAwMDAwMDUgNDIzLjc4ODI0OTk5OTk5OTk1LDQ5NS4yMDAwMDAwMDAwMDAwNSAxMDIzLjQwMyw0OTUuMjAwMDAwMDAwMDAwMDUgMTAyMy40MDMsNDI3LjIwMDAwMDAwMDAwMDA1IDI5NS4xNjIyNSw0MjcuMjAwMDAwMDAwMDAwMDUgNDM3LjM4MzAwMDAwMDAwMDA0LDQyNy4yMDAwMDAwMDAwMDAwNSA0MzcuMzgzMDAwMDAwMDAwMDQsMjEyLjcwMDAwMDAwMDAwMDAyIDQ0Ny4zODMwMDAwMDAwMDAwNCwyMTIuNzAwMDAwMDAwMDAwMDIgMTAyMy40MDMsMjEyLjcwMDAwMDAwMDAwMDAyIDEwMjMuNDAzLDI1Mi43MDAwMDAwMDAwMDAwMiA1OTIuMDA5LDI1Mi43MDAwMDAwMDAwMDAwMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iRVhURU5TSU9OIiBkYXRhLXRvPSJDT04iIGRhdGEtc3R5bGU9InNvbGlkIiBkYXRhLWFycm93LXN0YXJ0PSJmYWxzZSIgZGF0YS1hcnJvdy1lbmQ9InRydWUiIHBvaW50cz0iNzA4LjA1OSwyNDYuNTUgNzIwLjA1OSwyNDYuNTUgNzIwLjA1OSwyMTEuOCA3NTYuMDU5LDIxMS44IiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJFWFRFTlNJT04iIGRhdGEtdG89IlBSTyIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgcG9pbnRzPSI3MDguMDU5LDI1OC44NSA3MjAuMDU5LDI1OC44NSA3MjAuMDU5LDI5My42IDc1Ni4wNTksMjkzLjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KPGcgY2xhc3M9ImVkZ2UtbGFiZWwiIGRhdGEtZnJvbT0iQkFTRSIgZGF0YS10bz0iRVhURU5TSU9OIiBkYXRhLWxhYmVsPSLtlITrnbzsnbTrsoTsi5wg7ZWt66qp7J2EIOy2lOqwgOuhnCDtmZXsnqUgKEV4dGVuc2lvbikg4p6VIj4KICA8cmVjdCB4PSIyNTMuOTYyOTk5OTk5OTk5OSIgeT0iNDEyLjA1MDAwMDAwMDAwMDA3IiB3aWR0aD0iMjQ2LjM0IiBoZWlnaHQ9IjMwLjMiIHJ4PSIyIiByeT0iMiIgZmlsbD0idmFyKC0tYmcpIiBzdHJva2U9InZhcigtLV9pbm5lci1zdHJva2UpIiBzdHJva2Utd2lkdGg9IjEiIC8+CiAgPHRleHQgeD0iMzc3LjEzMjk5OTk5OTk5OTkiIHk9IjQyNy4yMDAwMDAwMDAwMDAwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9IjQwMCIgZmlsbD0idmFyKC0tX3RleHQtc2VjKSIgZHk9IjMuODQ5OTk5OTk5OTk5OTk5NiI+7ZSE65287J2067KE7IucIO2VreuqqeydhCDstpTqsIDroZwg7ZmV7J6lIChFeHRlbnNpb24pIOKelTwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iTm90ZSIgZGF0YS1sYWJlbD0iTm90ZSIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI0MCIgeT0iNDAiIHdpZHRoPSI2OC42MjYiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSI3NC4zMTMiIHk9IjU4LjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5Ob3RlPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJCQVNFIiBkYXRhLWxhYmVsPSLquLDrsJgg6rO17IKsIO2VhOyImCDwn6exCklTTy9JRUMgMjcwMDEgKOygleuztOuztO2YuCDsmpTqtazsgqztla0pCklTTy9JRUMgMjcwMDIgKOygleuztOuztO2YuCDthrXsoJwg6rCA7J2065OcKSIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSIxNDQuNjI2IiB5PSIzODQuNSIgd2lkdGg9IjI3My44ODMiIGhlaWdodD0iNzAuNyIgcng9IjAiIHJ5PSIwIiBmaWxsPSIjY2ZkOGRjIiBzdHJva2U9IiM5MGE0YWUiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSIyODEuNTY3NSIgeT0iNDE5Ljg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiPjx0c3BhbiB4PSIyODEuNTY3NSIgZHk9Ii0xMi4zNTAwMDAwMDAwMDAwMDEiPuq4sOuwmCDqs7Xsgqwg7ZWE7IiYIPCfp7E8L3RzcGFuPjx0c3BhbiB4PSIyODEuNTY3NSIgZHk9IjE2LjkwMDAwMDAwMDAwMDAwMiI+SVNPL0lFQyAyNzAwMSAo7KCV67O067O07Zi4IOyalOq1rOyCrO2VrSk8L3RzcGFuPjx0c3BhbiB4PSIyODEuNTY3NSIgZHk9IjE2LjkwMDAwMDAwMDAwMDAwMiI+SVNPL0lFQyAyNzAwMiAo7KCV67O067O07Zi4IO2GteygnCDqsIDsnbTrk5wpPC90c3Bhbj48L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IkVYVEVOU0lPTiIgZGF0YS1sYWJlbD0iRVhURU5TSU9OIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjE0NC42MjYiIHk9Ijg0IiB3aWR0aD0iMTE2LjA1IiBoZWlnaHQ9IjM2LjkwMDAwMDAwMDAwMDAwNiIgcng9IjAiIHJ5PSIwIiBmaWxsPSIjZmZmM2UwIiBzdHJva2U9IiNmNTdjMDAiIHN0cm9rZS13aWR0aD0iMnB4IiAvPgogIDx0ZXh0IHg9IjIwMi42NTEiIHk9IjEwMi40NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+RVhURU5TSU9OPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJFWFRFTlNJT04iIGRhdGEtbGFiZWw9IkVYVEVOU0lPTiIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI1OTIuMDA5IiB5PSIyMzQuMjUiIHdpZHRoPSIxMTYuMDUiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9IiNmZmYzZTAiIHN0cm9rZT0iI2Y1N2MwMCIgc3Ryb2tlLXdpZHRoPSIycHgiIC8+CiAgPHRleHQgeD0iNjUwLjAzNCIgeT0iMjUyLjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI1MDAiIGZpbGw9InZhcigtLV90ZXh0KSIgZHk9IjQuNTUiPkVYVEVOU0lPTjwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iQ09OIiBkYXRhLWxhYmVsPSJQSUkg6rSA66as7J6QIChDb250cm9sbGVyKSDthrXsoJwK7IiY7KeRL+uPmeydmC/tjIzquLAg7LGF7J6EIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9Ijc1Ni4wNTkiIHk9IjE4NC45IiB3aWR0aD0iMjA0LjIyOSIgaGVpZ2h0PSI1My44MDAwMDAwMDAwMDAwMDQiIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2UxZjVmZSIgc3Ryb2tlPSIjMDI4OGQxIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iODU4LjE3MzUiIHk9IjIxMS44IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiPjx0c3BhbiB4PSI4NTguMTczNSIgZHk9Ii0zLjkwMDAwMDAwMDAwMDAwMTIiPlBJSSDqtIDrpqzsnpAgKENvbnRyb2xsZXIpIO2GteygnDwvdHNwYW4+PHRzcGFuIHg9Ijg1OC4xNzM1IiBkeT0iMTYuOTAwMDAwMDAwMDAwMDAyIj7siJjsp5Ev64+Z7J2YL+2MjOq4sCDssYXsnoQ8L3RzcGFuPjwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iUFJPIiBkYXRhLWxhYmVsPSJQSUkg7IiY7YOB7J6QIChQcm9jZXNzb3IpIO2GteygnArslYjsoITtlZwg67O06rSAL+ychO2DgSDsspjrpqwg7LGF7J6EIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9Ijc1Ni4wNTkiIHk9IjI2Ni43MDAwMDAwMDAwMDAwNSIgd2lkdGg9IjIxNS4zNDQiIGhlaWdodD0iNTMuODAwMDAwMDAwMDAwMDA0IiByeD0iMCIgcnk9IjAiIGZpbGw9IiNlMWY1ZmUiIHN0cm9rZT0iIzAyODhkMSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiAvPgogIDx0ZXh0IHg9Ijg2My43MzEiIHk9IjI5My42IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiPjx0c3BhbiB4PSI4NjMuNzMxIiBkeT0iLTMuOTAwMDAwMDAwMDAwMDAxMiI+UElJIOyImO2DgeyekCAoUHJvY2Vzc29yKSDthrXsoJw8L3RzcGFuPjx0c3BhbiB4PSI4NjMuNzMxIiBkeT0iMTYuOTAwMDAwMDAwMDAwMDAyIj7slYjsoITtlZwg67O06rSAL+ychO2DgSDsspjrpqwg7LGF7J6EPC90c3Bhbj48L3RleHQ+CjwvZz4KPC9zdmc+ "Mermaid diagram")
+포인트: 개요에서 \*\*"앞서 다룬 개인정보 안전성 확보조치 기준이 '국내 개인정보보호법의 구체적 기술·관리 의무'라면, ISO/IEC 27701은 그 개인정보보호를 전사적 경영시스템(Management System) 수준으로 끌어올려 국제적으로 공인받는 표준이다 — 기존 ISO/IEC 27001이 '정보 자산 전반의 기밀성·무결성·가용성을 보호하는 정보보안경영시스템(ISMS)'을 다룬다면, 2019년 제정된 27701은 그 위에 '개인정보(PII)를 처리하는 조직이 GDPR·CCPA 같은 전 세계 다양한 개인정보 법제를 하나의 공통 프레임워크로 충족할 수 있게 확장한 개인정보보호경영시스템(PIMS) 인증'이며, 국내 ISMS-P가 정보보안+개인정보보호를 결합한 국내 특화 인증이라면 27701은 그 국제판에 해당하는 글로벌 상호운용 표준"\*\*이라는 한 줄로 시작하면 전체 맥락이 드러납니다.
+![Mermaid diagram](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDMuOTY1OTk5OTk5OTk5OSAyODYuNzAwMDAwMDAwMDAwMDUiIHdpZHRoPSI4MDMuOTY1OTk5OTk5OTk5OSIgaGVpZ2h0PSIyODYuNzAwMDAwMDAwMDAwMDUiIHN0eWxlPSItLWJnOiNGRkZGRkY7LS1mZzojM0IzQjNCOy0tbGluZTojM0IzQjNCOy0tYWNjZW50OiMwMDVGQjg7LS1tdXRlZDojM0IzQjNCQ0M7LS1zdXJmYWNlOiNGOEY4Rjg7LS1ib3JkZXI6IzNCM0IzQjtiYWNrZ3JvdW5kOnZhcigtLWJnKSI+CjxzdHlsZT4KICBAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1JbnRlcjp3Z2h0QDQwMDs1MDA7NjAwOzcwMCZhbXA7ZGlzcGxheT1zd2FwJyk7CiAgdGV4dCB7IGZvbnQtZmFtaWx5OiAnSW50ZXInLCBzeXN0ZW0tdWksIHNhbnMtc2VyaWY7IH0KICBzdmcgewogICAgLyogRGVyaXZlZCBmcm9tIC0tYmcgYW5kIC0tZmcgKG92ZXJyaWRhYmxlIHZpYSAtLWxpbmUsIC0tYWNjZW50LCBldGMuKSAqLwogICAgLS1fdGV4dDogICAgICAgICAgdmFyKC0tZmcpOwogICAgLS1fdGV4dC1zZWM6ICAgICAgdmFyKC0tbXV0ZWQsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNjAlLCB2YXIoLS1iZykpKTsKICAgIC0tX3RleHQtbXV0ZWQ6ICAgIHZhcigtLW11dGVkLCBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDQwJSwgdmFyKC0tYmcpKSk7CiAgICAtLV90ZXh0LWZhaW50OiAgICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDI1JSwgdmFyKC0tYmcpKTsKICAgIC0tX2xpbmU6ICAgICAgICAgIHZhcigtLWxpbmUsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNTAlLCB2YXIoLS1iZykpKTsKICAgIC0tX2Fycm93OiAgICAgICAgIHZhcigtLWFjY2VudCwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSA4NSUsIHZhcigtLWJnKSkpOwogICAgLS1fbm9kZS1maWxsOiAgICAgdmFyKC0tc3VyZmFjZSwgY29sb3ItbWl4KGluIHNyZ2IsIHZhcigtLWZnKSAzJSwgdmFyKC0tYmcpKSk7CiAgICAtLV9ub2RlLXN0cm9rZTogICB2YXIoLS1ib3JkZXIsIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMjAlLCB2YXIoLS1iZykpKTsKICAgIC0tX2dyb3VwLWZpbGw6ICAgIHZhcigtLWJnKTsKICAgIC0tX2dyb3VwLWhkcjogICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgNSUsIHZhcigtLWJnKSk7CiAgICAtLV9pbm5lci1zdHJva2U6ICBjb2xvci1taXgoaW4gc3JnYiwgdmFyKC0tZmcpIDEyJSwgdmFyKC0tYmcpKTsKICAgIC0tX2tleS1iYWRnZTogICAgIGNvbG9yLW1peChpbiBzcmdiLCB2YXIoLS1mZykgMTAlLCB2YXIoLS1iZykpOwogIH0KPC9zdHlsZT4KPGRlZnM+CiAgPG1hcmtlciBpZD0iYXJyb3doZWFkIiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI1IiByZWZYPSI3IiByZWZZPSIyLjUiIG9yaWVudD0iYXV0byI+CiAgICA8cG9seWdvbiBwb2ludHM9IjAgMCwgOCAyLjUsIDAgNSIgZmlsbD0idmFyKC0tX2Fycm93KSIgc3Ryb2tlPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIC8+CiAgPC9tYXJrZXI+CiAgPG1hcmtlciBpZD0iYXJyb3doZWFkLXN0YXJ0IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI1IiByZWZYPSIxIiByZWZZPSIyLjUiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iOCAwLCAwIDIuNSwgOCA1IiBmaWxsPSJ2YXIoLS1fYXJyb3cpIiBzdHJva2U9InZhcigtLV9hcnJvdykiIHN0cm9rZS13aWR0aD0iMC43NSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KICA8L21hcmtlcj4KPC9kZWZzPgo8cG9seWxpbmUgY2xhc3M9ImVkZ2UiIGRhdGEtZnJvbT0iSVNNUyIgZGF0YS10bz0iUElNUyIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgcG9pbnRzPSI0MDAuNTAwOTk5OTk5OTk5OSw3Ni45IDQwMC41MDA5OTk5OTk5OTk5LDEyNC45IiBmaWxsPSJub25lIiBzdHJva2U9InZhcigtLV9saW5lKSIgc3Ryb2tlLXdpZHRoPSIxIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93aGVhZCkiIC8+Cjxwb2x5bGluZSBjbGFzcz0iZWRnZSIgZGF0YS1mcm9tPSJQSU1TIiBkYXRhLXRvPSJDb250cm9sbGVyIiBkYXRhLXN0eWxlPSJzb2xpZCIgZGF0YS1hcnJvdy1zdGFydD0iZmFsc2UiIGRhdGEtYXJyb3ctZW5kPSJ0cnVlIiBwb2ludHM9IjQwMC41MDA5OTk5OTk5OTk5LDE2MS44IDQwMC41MDA5OTk5OTk5OTk5LDE4NS44IDIxMi41MDk0OTk5OTk5OTk5NywxODUuOCAyMTIuNTA5NDk5OTk5OTk5OTcsMjA5LjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0idmFyKC0tX2xpbmUpIiBzdHJva2Utd2lkdGg9IjEiIG1hcmtlci1lbmQ9InVybCgjYXJyb3doZWFkKSIgLz4KPHBvbHlsaW5lIGNsYXNzPSJlZGdlIiBkYXRhLWZyb209IlBJTVMiIGRhdGEtdG89IlByb2Nlc3NvciIgZGF0YS1zdHlsZT0ic29saWQiIGRhdGEtYXJyb3ctc3RhcnQ9ImZhbHNlIiBkYXRhLWFycm93LWVuZD0idHJ1ZSIgcG9pbnRzPSI0MDAuNTAwOTk5OTk5OTk5OSwxNjEuOCA0MDAuNTAwOTk5OTk5OTk5OSwxODUuOCA1ODguNDkyNDk5OTk5OTk5OCwxODUuOCA1ODguNDkyNDk5OTk5OTk5OCwyMDkuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ2YXIoLS1fbGluZSkiIHN0cm9rZS13aWR0aD0iMSIgbWFya2VyLWVuZD0idXJsKCNhcnJvd2hlYWQpIiAvPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iSVNNUyIgZGF0YS1sYWJlbD0iSVNPL0lFQyAyNzAwMSA6IOygleuztOuztOyViCDqsr3smIHsi5zsiqTthZwg7ZWE7IiYIOyEoO2WiSDquLDrsJgiIGRhdGEtc2hhcGU9InJlY3RhbmdsZSI+CiAgPHJlY3QgeD0iMjIwLjIxMDk5OTk5OTk5OTkzIiB5PSI0MCIgd2lkdGg9IjM2MC41OCIgaGVpZ2h0PSIzNi45MDAwMDAwMDAwMDAwMDYiIHJ4PSIwIiByeT0iMCIgZmlsbD0iI2ZmZWJlZSIgc3Ryb2tlPSIjZDMyZjJmIiBzdHJva2Utd2lkdGg9IjAuNzUiIC8+CiAgPHRleHQgeD0iNDAwLjUwMDk5OTk5OTk5OTkiIHk9IjU4LjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5JU08vSUVDIDI3MDAxIDog7KCV67O067O07JWIIOqyveyYgeyLnOyKpO2FnCDtlYTsiJgg7ISg7ZaJIOq4sOuwmDwvdGV4dD4KPC9nPgo8ZyBjbGFzcz0ibm9kZSIgZGF0YS1pZD0iUElNUyIgZGF0YS1sYWJlbD0iSVNPL0lFQyAyNzcwMSA6IOqwnOyduOygleuztOuztO2YuCDqsr3smIHsi5zsiqTthZwg7ZmV7J6lIiBkYXRhLXNoYXBlPSJyZWN0YW5nbGUiPgogIDxyZWN0IHg9IjIzNy4yNTM5OTk5OTk5OTk5MyIgeT0iMTI0LjkiIHdpZHRoPSIzMjYuNDkzOTk5OTk5OTk5OTciIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9IiNlOGY1ZTkiIHN0cm9rZT0iIzM4OGUzYyIgc3Ryb2tlLXdpZHRoPSIycHgiIC8+CiAgPHRleHQgeD0iNDAwLjUwMDk5OTk5OTk5OTkiIHk9IjE0My4zNTAwMDAwMDAwMDAwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+SVNPL0lFQyAyNzcwMSA6IOqwnOyduOygleuztOuztO2YuCDqsr3smIHsi5zsiqTthZwg7ZmV7J6lPC90ZXh0Pgo8L2c+CjxnIGNsYXNzPSJub2RlIiBkYXRhLWlkPSJDb250cm9sbGVyIiBkYXRhLWxhYmVsPSJDbGF1c2UgNyAvIEFubmV4IEEgOiBQSUkgQ29udHJvbGxlciDsspjrpqzsnpAg7KCE7JqpIO2GteygnCIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI0MCIgeT0iMjA5LjgiIHdpZHRoPSIzNDUuMDE4OTk5OTk5OTk5OTUiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSIyMTIuNTA5NDk5OTk5OTk5OTciIHk9IjIyOC4yNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0idmFyKC0tX3RleHQpIiBkeT0iNC41NSI+Q2xhdXNlIDcgLyBBbm5leCBBIDogUElJIENvbnRyb2xsZXIg7LKY66as7J6QIOyghOyaqSDthrXsoJw8L3RleHQ+CjwvZz4KPGcgY2xhc3M9Im5vZGUiIGRhdGEtaWQ9IlByb2Nlc3NvciIgZGF0YS1sYWJlbD0iQ2xhdXNlIDggLyBBbm5leCBCIDogUElJIFByb2Nlc3NvciDsiJjtg4HsnpAg7KCE7JqpIO2GteygnCIgZGF0YS1zaGFwZT0icmVjdGFuZ2xlIj4KICA8cmVjdCB4PSI0MTMuMDE4OTk5OTk5OTk5OTUiIHk9IjIwOS44IiB3aWR0aD0iMzUwLjk0Njk5OTk5OTk5OTkiIGhlaWdodD0iMzYuOTAwMDAwMDAwMDAwMDA2IiByeD0iMCIgcnk9IjAiIGZpbGw9InZhcigtLV9ub2RlLWZpbGwpIiBzdHJva2U9InZhcigtLV9ub2RlLXN0cm9rZSkiIHN0cm9rZS13aWR0aD0iMC43NSIgLz4KICA8dGV4dCB4PSI1ODguNDkyNDk5OTk5OTk5OCIgeT0iMjI4LjI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iNTAwIiBmaWxsPSJ2YXIoLS1fdGV4dCkiIGR5PSI0LjU1Ij5DbGF1c2UgOCAvIEFubmV4IEIgOiBQSUkgUHJvY2Vzc29yIOyImO2DgeyekCDsoITsmqkg7Ya17KCcPC90ZXh0Pgo8L2c+Cjwvc3ZnPg== "Mermaid diagram")
 
-#### **III. \[본론 2] 기존 보안 인증(27001) vs 차세대 프라이버시 인증(27701) 전격 비교 (3단 표)**
+***
 
-이 두 인증의 \*\*보호 타겟(정보 자산 vs 개인 정보)\*\*과 적용 방식을 대조하는 것이 출제의 핵심입니다.
+#### Ⅱ. ISO/IEC 27701 핵심 구조
 
-| **핵심 척도 (비교 잣대)**                 | **🛡️ ISO/IEC 27001 (ISMS)**                                                                              | **👤 ISO/IEC 27701 (PIMS) 🚨**                                                                                  |
-| :-------------------------------- | :-------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| **인증의 절대 목적 및 핵심 보호 대상 (Target)** | **'조직의 모든 정보 자산에 대한 기밀성, 무결성, 가용성(CIA) 보호'.** 고객 정보뿐만 아니라 회사의 소스코드, 기밀문서, 서버 등 정보 보안(Security) 그 자체에 집중함. | **'개인식별정보(PII) 주체의 프라이버시 권리 보호'.** 데이터 최소화, 동의 획득, 적법한 파기 등 개인정보 보호법(Privacy) 준수에 집중함.                          |
-| **인증 획득 조건 및 독립성 (가장 중요 🚨)**     | **\[독립적 인증 가능]** 이 표준 하나만으로 단독 인증 획득이 가능함. (보안의 가장 기초 뼈대).                                                | **\[단독 인증 불가 (종속적 확장)]** 반드시 ISO 27001 인증을 보유하고 있거나, 27001과 27701을 **'동시에'** 심사받아야만 획득 가능함.                     |
-| **역할 기반의 통제 요구사항 유무**             | 조직 전체에 대한 공통된 '정보 보안 통제' 기준 93개(2022년 개정본)를 적용함.                                                          | 통제 대상을 \*\*'PII 관리자(Controller)'\*\*와 \*\*'PII 수탁자(Processor)'\*\*로 완벽히 분리하여, 각자의 역할에 맞는 별도의 통제 가이드라인을 엄격히 제시함. |
-| **글로벌 규제 대응력**                    | 사이버 공격이나 해킹 방어 관점의 기본 신뢰도 제공.                                                                             | **유럽 GDPR 컴플라이언스와 1:1로 매핑**되어 있어, 글로벌 개인정보 규제 대응을 위한 강력한 면죄부(신뢰) 역할을 함.                                         |
+**가. 27701의 위치: 27001의 확장(Extension)**
 
-#### **IV. \[결론/제언] 대한민국 ISMS-P와의 상호 인정(Mapping) 및 통합 인증 체계 도입**
+```
+[ISO 27000 패밀리 내 27701의 구조적 위치]
 
-* **(키워드 위주 2줄 마무리)** "ISO/IEC 27701은 글로벌 스탠다드지만, 대한민국의 기업들은 이와 유사한 성격의 국내 국가 공인 인증인 **'ISMS-P(정보보호 및 개인정보보호 관리체계)'** 의무 대상이기도 합니다. 이중 심사로 인한 기업의 비용과 행정 낭비를 줄이기 위해, 두 인증 간의 통제 항목을 1:1로 매핑하여 상호 인정(Cross-Recognition)하는 효율적인 통합 컴플라이언스 전략이 필수적입니다."
+ISO/IEC 27001 (ISMS·정보보안경영시스템)
+  Annex A: 정보보안 통제 항목(93개, 2022개정판 기준)
+       ↓ 확장(Extension)
+ISO/IEC 27701 (PIMS·개인정보보호경영시스템)
+  27001의 모든 요구사항 그대로 승계 +
+  개인정보 처리자 역할별(PII Controller/Processor) 추가 통제
+
+핵심 특징:
+  27701은 단독 인증이 불가능 🚨
+  반드시 27001 인증을 기반으로 그 위에 확장 인증받는 구조
+  (27001 없이 27701만 취득 불가)
+```
+
+**나. PII Controller vs PII Processor 역할 구분**
+
+| 역할                          | 정의                           | 국내 개인정보보호법 대응   |
+| :-------------------------- | :--------------------------- | :-------------- |
+| **PII Controller(개인정보처리자)** | 개인정보 처리 목적·방법을 결정하는 주체       | 개인정보처리자         |
+| **PII Processor(수탁처리자)**    | Controller의 지시에 따라 위탁 처리만 수행 | 개인정보처리 위탁을 받은 자 |
+
+**다. 27701 부속서(Annex) 구조**
+
+| 부속서           | 대상             | 내용                        |
+| :------------ | :------------- | :------------------------ |
+| **Annex A**   | PII Controller | 개인정보처리자 특화 추가 통제 항목       |
+| **Annex B**   | PII Processor  | 수탁처리자 특화 추가 통제 항목         |
+| **Annex C**   | ISO 29100 매핑   | 개인정보보호 프레임워크(29100)와의 연계표 |
+| **Annex D**   | GDPR 매핑        | EU GDPR 조항별 대응 관계표        |
+| **Annex E/F** | 기타 국가별 규제 매핑   | 각국 개인정보 법제와의 상호 대응표       |
+
+***
+
+#### Ⅲ. 국내외 인증 체계 비교 및 적용 체계
+
+**가. ISO/IEC 27701 vs ISMS-P vs GDPR 인증 비교**
+
+| 비교 항목         | ISO/IEC 27701          | ISMS-P(국내)         | GDPR(EU 규제)               |
+| :------------ | :--------------------- | :----------------- | :------------------------ |
+| **성격**        | **국제 인증 표준**           | 국내 법정 인증           | 법률(인증 아님)                 |
+| **기반 표준**     | ISO 27001 확장           | K-ISMS + 개인정보보호 결합 | 별도 법조문                    |
+| **적용 범위**     | **전 세계 상호운용** ✅        | 국내 한정              | EU 역내·역외 적용               |
+| **법적 강제성**    | 자율 인증(계약상 요구 가능)       | 일부 대상 의무           | **법적 의무**(위반 시 매출 4% 과징금) |
+| **글로벌 사업 활용** | **해외 고객사 신뢰 확보에 유리** ✅ | 해외에서 인지도 낮음 🚨     | 준수 증빙 자료로 27701 활용 가능     |
+| **인증 기관**     | 국제 인증기관(공인 CB)         | KISA·인터넷진흥원 지정기관   | 별도 인증기관 없음                |
+
+**나. 국내 ISMS-P와의 관계 및 활용 전략**
+
+| 항목                              | 내용                                                    |
+| :------------------------------ | :---------------------------------------------------- |
+| **중복성**                         | ISMS-P와 27701은 통제 항목이 상당 부분 유사(둘 다 27001 계열 기반)       |
+| **동시 취득 이점**                    | 통합 심사(Integrated Audit)로 심사 비용·시간 절감 가능               |
+| **국내기업 활용 시나리오**                | 국내는 ISMS-P로 법적 요건 충족, 해외 수출·글로벌 클라이언트 대응은 27701 추가 취득 |
+| **KIPRIS Plus 등 공공 IP 플랫폼 시사점** | 해외 특허청·글로벌 IP 기관과의 데이터 연동 시 27701이 신뢰 기반 근거로 작용 가능    |
+
+**다. 27701 도입 프로세스**
+
+| 단계                      | 내용                                                |
+| :---------------------- | :------------------------------------------------ |
+| **①갭 분석(Gap Analysis)** | 기존 27001 통제와 27701 추가 요구사항 간 차이 진단                |
+| **②PII 처리 활동 매핑**       | 앞서 다룬 \*\*데이터 계보(Lineage)\*\*처럼 개인정보 흐름을 전사적으로 매핑 |
+| **③역할 결정**              | 조직이 Controller인지 Processor인지(또는 둘 다인지) 명확화        |
+| **④통제 이행**              | Annex A/B의 추가 통제 항목을 정책·절차·기술로 구현                 |
+| **⑤내부 심사·인증 심사**        | 27001 인증 심사와 통합해 진행하는 것이 일반적                      |
+
+**라. 27701이 요구하는 대표 추가 통제 영역**
+
+| 영역               | 내용                                           |
+| :--------------- | :------------------------------------------- |
+| **동의 관리**        | 정보주체 동의 취득·철회 절차의 체계적 관리                     |
+| **정보주체 권리 대응**   | 열람·정정·삭제·전송 요구에 대한 표준화된 대응 절차(SLA 포함)        |
+| **PII 처리 목적 제한** | 수집 목적 외 사용 방지를 위한 기술적·관리적 통제                 |
+| **국외 이전 관리**     | 앞서 다룬 **가명정보 결합**과 유사하게, 국경 간 이전 시 적정성 보장 절차 |
+| **개인정보 침해 통지**   | 사고 발생 시 규제기관·정보주체 통지 절차 및 기한 관리              |
+
+***
+
+**(제언)** "ISO/IEC 27701의 실질적 가치는 GDPR·CCPA·국내 개인정보보호법처럼 국가마다 제각각인 개인정보 규제를 매번 별도로 대응하는 대신, 하나의 국제 표준 프레임워크를 구축해두면 Annex C\~F의 매핑표를 통해 여러 법제 요구사항을 동시에 충족했음을 효율적으로 증명할 수 있다는 데 있습니다. 국내 조직 입장에서는 이미 ISMS-P를 획득했다면 통제 체계의 상당 부분이 27701과 중복되므로 추가 취득 비용이 크지 않은 반면, 해외 고객사·글로벌 파트너와의 계약에서 국제적으로 통용되는 신뢰 증빙이 필요한 경우(예: KIPRIS Plus의 해외 특허청 데이터 연동, 글로벌 SaaS 진출) 27701이 ISMS-P보다 훨씬 설득력 있는 근거가 되므로, 국내 규제 대응은 ISMS-P로, 국제 신뢰 확보는 27701로 이원화하는 전략과 두 인증의 통합 심사를 통한 비용 효율화를 함께 고려하는 것이 실무적으로 합리적입니다.
+
+***
+
+**앞서 다룬 개념과의 연결**
+
+| 연계 개념                   | 연결 내용                                                      |
+| :---------------------- | :--------------------------------------------------------- |
+| **개인정보 안전성 확보조치 기준**    | 27701의 기술적 통제 항목이 국내 안전조치 기준과 상당 부분 내용상 대응                 |
+| **가명정보 결합**             | 27701의 국외 이전·목적 제한 통제가 가명정보 결합 시의 안전조치 요구와 연계              |
+| **데이터 계보(Lineage)**     | PII 처리 활동 매핑 단계에서 데이터 계보 추적 체계를 그대로 활용 가능                  |
+| **Hoepman 8대 프라이버시 전략** | 27701의 통제 항목들이 Hoepman 전략을 경영시스템 차원에서 제도화한 것               |
+| **AI 레드티밍·인공지능기본법**     | 향후 AI 특화 확장(ISO/IEC 42001 등)과 함께 AI 개인정보 거버넌스의 국제 표준 기반 형성 |
+
+### **I. 글로벌 프라이버시 관리체계의 표준, ISO/IEC 27701의 개요**
+
+전 세계적으로 개인정보 침해에 대한 과징금 수위가 높아짐에 따라, 글로벌 서비스를 제공하는 기업들은 국별 개인정보 법률을 넘어서는 통합 관리체계가 필요해졌습니다. **ISO/IEC 27701**은 정보보안 경영시스템 표준인 **ISO/IEC 27001 및 27002의 확장 표준**으로 제정되었으며, 기업이 개인식별정보(PII: Personally Identifiable Information)를 수집, 처리, 보관, 파기하는 전 과정에 대해 **PII 처리자(Controller)와 수탁자(Processor)의 통제 항목을 제시하는 글로벌 PIMS 인증 표준**입니다.
+
+***
+
+### **II. ISO/IEC 27701의 아키텍처 및 4대 핵심 구조**
+
+#### **1. 표준문서 조항(Clause) 체계**
+
+* **Clause 5**: ISO/IEC 27001 연계 개인정보보호 조직 요구사항 확장 (PIMS 전용 리스크 평가)
+* **Clause 6**: ISO/IEC 27002 정보보안 통제 항목에 프라이버시 관점의 지침 확장
+* **Clause 7 (Annex A)**: **PII Controller (개인정보 처리자)** 지침 (동의 관리, 최소 수집, 주체 권리 보장 등)
+* **Clause 8 (Annex B)**: **PII Processor (개인정보 수탁자)** 지침 (위탁 계약 준수, 하도급 통제 등)
+
+#### **2. 프라이버시 핵심 통제 원칙**
+
+* **Privacy by Design (기획 단계 프라이버시 내재화)**: 서비스 개발 기획 시점부터 프라이버시 영향평가(PIA) 수행
+* **주체 권리 보장 (Data Subject Rights)**: 데이터 열람, 정정, 삭제(잊힐 권리), 이동권 보장 통제
+
+***
+
+### **III. 기존 ISO/IEC 27001(정보보안)과 신규 ISO/IEC 27701(개인정보)의 상세 비교**
+
+| **비교 항목**     | **🛡️ ISO/IEC 27001 (ISMS 표준)** | **🔒 ISO/IEC 27701 (PIMS 표준)**                        |
+| :------------ | :------------------------------ | :---------------------------------------------------- |
+| **핵심 보안 목표**  | 정보 자산의 기밀성, 무결성, 가용성 (CIA) 보장   | **개인식별정보(PII) 주체의 프라이버시 보호 및 규제 준수**                  |
+| **인증 획득 조건**  | **단독 독립 인증 획득 가능**              | **단독 인증 불가 (ISO/IEC 27001 인증 보유 선행 필수)**              |
+| **보안 대상 자산**  | 기업의 모든 IT 인프라, 데이터, 인적 자원       | **기업이 취급하는 모든 PII (고객/임직원 개인정보)**                     |
+| **통제 역할 분리**  | 정보보안 담당자 및 IT 관리자 중심 통제         | **PII Controller(처리자)와 PII Processor(수탁자)로 역할 명확 분리** |
+| **글로벌 규제 매핑** | 기업 일반 정보보안 관리체계 수립 지표           | **EU GDPR, US CCPA 등 글로벌 프라이버시 법률 대치 증적**             |
+
+***
+
+### **IV. ISO/IEC 27701 기반 글로벌 프라이버시 거버넌스 구축 전략**
+
+1. **EU GDPR 적격성 증적 활용**: ISO/IEC 27701 인증을 보유하면 GDPR Article 42(인증 메커니즘)에 의거하여 감독기관 검사 시 개인정보보호 조치의 유효성을 입증하는 강력한 면책/감경 증적으로 활용할 수 있습니다.
+2. **국내 ISMS-P 인증과의 통합 운용**: 국내 기업이 해외 진출 시 한국의 ISMS-P 인증과 ISO 27701을 별도로 수립하면 중복 오버헤드가 크므로, 동일한 프라이버시 영향평가(PIA)와 PII 자산 카탈로그를 공유하여 수평 통합 심사를 받는 것이 효율적입니다.
